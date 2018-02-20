@@ -1,10 +1,13 @@
 import pylab as pp
 import numpy as np
-from PWG_EPA_tools import *
+import os
 
+from Transient_Calcs import *
+
+Directory = 'Projects/5_Pipes_Input_for_Kalman_Modelling/'
 
 FileName = '5Pipes.inp'
-Net = Import_EPANet_Geom(FileName)
+Net = Import_EPANet_Geom(Directory+FileName)
 #Net.geom_Plot(plot_Node_Names = True)
 Net.Import_EPANet_Results()
 Net.Constant_Wavespeed(300)
@@ -13,7 +16,7 @@ Net.MOC_Initialisation(0.05)
 #Net.Assign_Emmiters('Emitters.csv')
 
 #Net.Control_Input('Trials/StochasticDemandsPWGInput.csv')
-Net.Control_Input('Kalman_Trial.csv')
+Net.Control_Input(Directory+'Kalman_Trial.csv')
 Net.MOC_Run(150)
 #Net.MOC_Run(86350)
 #Net.geom_Plot(plot_Node_Names = True)
@@ -21,8 +24,8 @@ Net.MOC_Run(150)
 
 Net.transient_Node_Plot(['1','2','3','4','5','6'])
 
-#for Node in Net.nodes:
-#	np.save('Deterministic_Solutions_as_inputs/MeasureData'+str(Node.Name)+'.npy',Node.TranH)
+for Node in Net.nodes:
+	np.save(Directory +'MeasureData'+str(Node.Name)+'.npy',Node.TranH)
 	
 #for Node in Net.nodes:
 #	pp.scatter([int(Node.Name)], [np.mean(Node.TranH)])
