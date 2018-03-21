@@ -376,3 +376,7 @@ class Network(object):
 			
 		pp.axis('equal')
 		pp.show()
+
+	def set_fixed_friction(self,value):
+		for pipe in self.pipes:
+			pipe.FF_0 = value

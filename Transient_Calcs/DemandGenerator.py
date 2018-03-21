@@ -1,7 +1,7 @@
 import numpy as np
 import pylab as pp
 
-Node = 5
+Node = 2
 Demand = np.zeros(5000)
 Demand[0:500] = 1.
 Demand[500:1000] = 2.
