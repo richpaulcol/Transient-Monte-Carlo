@@ -84,9 +84,11 @@ class Node:
 		for i in self.pipesOut:
 			i.TranH[-1,0] = self.NewH
 			i.TranQ[-1,0] = self.NewH / i.BMi - i.CMi / i.BMi
+		
 			
 		self.TranH.append(self.NewH)	
 		#if time % 100:
+		return self.NewH
 			
 	
 		

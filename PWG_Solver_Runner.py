@@ -1,13 +1,13 @@
 import pylab as pp
 import numpy as np
 from PWG_EPA_tools import *
+import wntr 
 
-#FileName = 'Trials/EPANet_Transient_Case_2.inp'
-#FileName = 'Trials/Net3.inp'
-#FileName = 'Trials/1Pipe.inp'
-FileName = 'Trials/hanoi2.inp'
-FileName = 'Trials/5Pipes.inp'
-Net = Import_EPANet_Geom(FileName)
+
+Directory = 'Projects/5_Pipes_Input_for_Kalman_Modelling/'
+
+FileName = '5PipesHW.inp'
+Net = Import_EPANet_Geom(Directory+FileName)
 #Net.geom_Plot(plot_Node_Names = True)
 Net.Import_EPANet_Results()
 Net.Constant_Wavespeed(300)
@@ -22,7 +22,7 @@ Net.MOC_Run(50)
 #Net.geom_Plot(plot_Node_Names = True)
 #Net.transient_Node_Plot(['6','10','13','16','21','24','31'])
 
-Net.transient_Node_Plot(['1','2','3','4','5','6'])
+#Net.transient_Node_Plot(['1','2','3','4','5','6'])
 
 #for Node in Net.nodes:
 #	np.save(Node.Name,Node.TranH)

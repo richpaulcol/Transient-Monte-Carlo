@@ -54,13 +54,13 @@ class Pipe:
 	def Friction(self):  ##Not sure if should use log or log10 EPANet looks like it uses log, although equations suggest log10
 		#self.friction = np.ones(self.Re.size)
 #		if self.FF_0 != None:
-		if self.Friction_Units == 'D-W':
+		#if self.Friction_Units == 'D-W':
 		
 		
-			self.friction = 0.25 / (np.log10((self.roughness/1000.) / (3.7*self.diameter) + 5.74/(self.Re**0.9))**2) 
+		self.friction = 0.25 / (np.log10((self.roughness/1000.) / (3.7*self.diameter) + 5.74/(self.Re**0.9))**2) 
 		
-		elif self.Friction_Units == 'H-W':
-			self.friction = 133.89 / (abs(self.V)**(4./27.) * self.roughness**(50./27.) * self.diameter**(1./16.)+10**-10)
+		#elif self.Friction_Units == 'H-W':
+		#	self.friction = 133.89 / (abs(self.V)**(4./27.) * self.roughness**(50./27.) * self.diameter**(1./16.)+10**-10)
 		
 		
 		self.frictionLam = 64./(self.Re+1)
@@ -135,18 +135,18 @@ class Pipe:
 		
 		
 		###  Calculating the Wall Friction at the pipe mid-length
-		Mid = self.NoTNodes/2
-		self.ReList.append(self.Re[Mid])
-		self.FrictionList.append(self.friction[Mid])
-		
-		self.Wall_Friction.append(self.friction[Mid]*abs(self.V[Mid])*self.V[Mid]*998./8.)
+#		Mid = self.NoTNodes/2
+#		self.ReList.append(self.Re[Mid])
+#		self.FrictionList.append(self.friction[Mid])
+#		
+#		self.Wall_Friction.append(self.friction[Mid]*abs(self.V[Mid])*self.V[Mid]*998./8.)
 		
 		
 		
 		
 		###	Calculating the Energy at the current Time
 		
-		self.PE.append(998. *self.area*9.81**2 / (2*self.c**2) * self.dx * np.sum((self.TranH[1,:] - self.TranH[0,:])**2 ))
-		self.KE.append(998. * self.area  / 2 * self.dx*( np.sum((self.TranQ[1,:]/self.area)**2,axis = 0)))
+#		self.PE.append(998. *self.area*9.81**2 / (2*self.c**2) * self.dx * np.sum((self.TranH[1,:] - self.TranH[0,:])**2 ))
+#		self.KE.append(998. * self.area  / 2 * self.dx*( np.sum((self.TranQ[1,:]/self.area)**2,axis = 0)))
 		
 		

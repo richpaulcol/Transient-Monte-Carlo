@@ -105,7 +105,8 @@ class Network(object):
 				self.link_idx[idx].FF_0 = float(2*9.81*(Headloss/1000.)*Diameter / (Length * V0**2))
 			except:
 				print 'Problem getting Flow or Velocity for link:', idx
-				continue	
+				continue
+			
 	######
 	##
 	##	Initialise all links with a constant wave speed
@@ -378,5 +379,70 @@ class Network(object):
 		pp.show()
 
 	def set_fixed_friction(self,value):
+		
 		for pipe in self.pipes:
 			pipe.FF_0 = value
+			
+
+	def open_epanet_file(self):
+		ret = epa.ENopen(self.filename,self.filename[:-3]+'rep',self.filename[:-3]+'out')
+	
+	def run_epanet_file(self):
+		####	Opening the hydraulics results
+		ret = epa.ENopenH()
+		print ret
+		ret = epa.ENinitH(0)
+		print ret
+		####	Running the Hydraulics Solver
+		epa.ENrunH()
+		
+	def read_results_from_epanet(self):
+		####	Returning the head solutions (for the first time step, the only one accessible at the moment)
+		ret,no_nodes=epa.ENgetcount(epa.EN_NODECOUNT)
+		print 'Number of NODES in results file', no_nodes
+		for index in range(1,no_nodes+1):
+			ret,idx=epa.ENgetnodeid(index)
+			ret,H0=epa.ENgetnodevalue(index, epa.EN_HEAD )
+			try:
+				#print Network.node_idx[idx].Name,idx
+				#if self.node_idx[idx].type == 'Node':
+				self.node_idx[idx].H_0 = float(H0)
+				self.node_idx[idx].TranH = [float(H0)]
+
+			except:
+				print 'Problem getting Head for Node:', idx
+				continue
+			
+		####	Returning the flow solutions (for the first time step, the only one accessible at the moment)
+		ret,no_links=epa.ENgetcount(epa.EN_LINKCOUNT)
+		print 'Number of LINKS in results file',no_links
+		for index in range(1,no_links+1):
+			ret,idx=epa.ENgetlinkid(index)
+			
+			ret,Q0=epa.ENgetlinkvalue(index, epa.EN_FLOW )
+			
+			ret,V0=epa.ENgetlinkvalue(index, epa.EN_VELOCITY )
+
+			ret,Headloss=epa.ENgetlinkvalue(index,epa.EN_HEADLOSS)
+			ret,Length=epa.ENgetlinkvalue(index,epa.EN_LENGTH)
+			ret,Diameter=epa.ENgetlinkvalue(index,epa.EN_DIAMETER)
+			#print Headloss,Length,Diameter,V0
+			#print 2*9.81*(Headloss/1000.)*Diameter / (Length * V0**2)
+			
+			try:
+			
+				self.link_idx[idx].Q_0 = float(Q0)/1000. #Convert to m^3/s
+				self.link_idx[idx].V_0 = float(V0)
+				self.link_idx[idx].FF_0 = float(2*9.81*(Headloss/1000.)*Diameter / (Length * V0**2))
+			except:
+				print 'Problem getting Flow or Velocity for link:', idx
+				continue
+				
+
+	def alter_epanet_friction(self,value):
+		ret,no_links=epa.ENgetcount(epa.EN_LINKCOUNT)
+		for index in range(1,no_links+1):
+			ret,epa.ENsetlinkvalue(index,epa.EN_ROUGHNESS,value)
+		
+	def close_epanet_file(self):
+		ret = epa.ENclose()

@@ -139,13 +139,14 @@ class Network(object):
 			i.length = float(i.length)
 			self.link_lengths.append(i.length)
 			i.dx = i.c*dt
+			
+			
 			self.link_dx.append(i.dx)
 			i.NoTNodes = int(i.length / i.dx)+1
 			self.link_length_error.append(100.*abs((i.NoTNodes-1)*i.dx - i.length)/i.length)
 			
 			
 			### Generating the transient constants
-			#i.B = np.ones(i.NoTNodes)*i.c/(9.81*i.area)
 			i.B = i.c/(9.81*i.area)
 			
 			### Generating the Transient Nodal positions
@@ -229,7 +230,14 @@ class Network(object):
 				print 'Time:',t,'Elapsed Time',time.time() - real_time
 				real_time = time.time()
 		print 'Time:',t,'Elapsed Time',time.time() - real_time	
-			
+		
+	def MOC_Single_Step_Run(self,t):
+		NodeHead = {}
+		for i in self.links:
+			i.MOC_iter(self.epsilon,t)
+		for i in self.nodes:
+			NodeHead[i.Name] = i.MOC_iter(self.epsilon,t,self.dt)	
+		return NodeHead
 	
 		
 	######
