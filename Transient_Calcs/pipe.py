@@ -140,18 +140,18 @@ class Pipe:
 		
 		
 		###  Calculating the Wall Friction at the pipe mid-length
-		Mid = self.NoTNodes/2
-		self.ReList.append(self.Re[Mid])
-		self.FrictionList.append(self.friction[Mid])
-		
-		self.Wall_Friction.append(self.friction[Mid]*abs(self.V[Mid])*self.V[Mid]*998./8.)
+#		Mid = self.NoTNodes/2
+#		self.ReList.append(self.Re[Mid])
+#		self.FrictionList.append(self.friction[Mid])
+#		
+#		self.Wall_Friction.append(self.friction[Mid]*abs(self.V[Mid])*self.V[Mid]*998./8.)
 		
 		
 		
 		
 		###	Calculating the Energy at the current Time
 		
-		self.PE.append(998. *self.area*9.81**2 / (2*self.c**2) * self.dx * np.sum((self.TranH[1,:] - self.TranH[0,:])**2 ))
-		self.KE.append(998. * self.area  / 2 * self.dx*( np.sum((self.TranQ[1,:]/self.area)**2,axis = 0)))
+#		self.PE.append(998. *self.area*9.81**2 / (2*self.c**2) * self.dx * np.sum((self.TranH[1,:] - self.TranH[0,:])**2 ))
+#		self.KE.append(998. * self.area  / 2 * self.dx*( np.sum((self.TranQ[1,:]/self.area)**2,axis = 0)))
 		
 		

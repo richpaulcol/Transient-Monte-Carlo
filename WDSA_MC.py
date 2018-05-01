@@ -23,29 +23,27 @@ Net = Import_EPANet_Geom(Directory+FileName)
 Net.open_epanet_file()
 
 
-#distribution = cp.J(cp.Normal(0.1,0.001))
+distribution = cp.J(cp.Normal(130,0.001))
 
-#Iterations = 2
-#samples = distribution.sample(Iterations)
+Wavespeed = 800.
+dt =0.001905	
+
+Iterations = 1
+samples = distribution.sample(Iterations)
 #Output = np.zeros((4637,Iterations))
 
-#for i in range(Iterations):
+for i in range(Iterations):
 #	#Net.geom_Plot(plot_Node_Names = True)
-#	Net.alter_epanet_friction(samples[i])
-#	Net.run_epanet_file()
-#	Net.read_results_from_epanet()
-#	Wavespeed = 1159.2
-#	Nodes = 20
-#	Net.Constant_Wavespeed(Wavespeed)
-#	dt = 50/(Wavespeed*Nodes)
-#	Net.MOC_Initialisation(dt)
+	#Net.alter_epanet_friction(samples[i])
+	Net.run_epanet_file()
+	Net.read_results_from_epanet()
+	Net.Assign_Emmiters_All()
+	Net.Constant_Wavespeed(Wavespeed)
 
+	Net.MOC_Initialisation(dt)
 
-#	#Net.Assign_Emmiters('Emitters.csv')
-
-##	Net.Control_Input('Trials/StochasticDemandsPWGInput.csv')
-#	Net.Control_Input(Directory+'Demands.csv')
-#	Net.MOC_Run(10)
+	Net.Control_Input(Directory+'Driving_Transient.csv')
+	Net.MOC_Run(10)
 #	Output[:,i] = Net.nodes[1].TranH
 ##	Output[0,i] = Net.nodes[1].H_0
 #	
@@ -60,4 +58,10 @@ Net.open_epanet_file()
 #deviation = cp.Std(foo_approx, distribution)
 
 #x,y = normal_dist(expected[-1],deviation[-1]**2)
-#x,y = normal_dist(expected,deviation**2)
+#x,y = normal_dist(expected,deviation**2
+
+#Net.geom_Plot()
+#pp.savefig(Directory + FileName[:-3] + '.png')
+
+
+

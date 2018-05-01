@@ -180,6 +180,7 @@ class Network(object):
 		except:
 			ControlNodes = 1
 			Control_Data.resize(Control_Data.shape[0],1)
+
 		for i in range(ControlNodes):
 			self.node_idx[str(int(Control_Data[0,i]))].Transient_Demands = Control_Data[1:,i] / 1000. 
 		
@@ -210,7 +211,16 @@ class Network(object):
 
 			else:
 				self.node_idx[str(int(Emitter_Nodes[i]))].CdA = float(CdAs[i])
-				
+	
+	### Function to ensure a proper pressure based solution at all nodes that have a Demand
+	### Sets an orifice at nodes with a demand with properties that match the SS demand.			
+	def Assign_Emmiters_All(self):
+		
+		for i in range(len(self.nodes)):
+			if self.nodes[i].demand != 0:
+				self.nodes[i].External_Flow = True
+				self.nodes[i].CdA = self.nodes[i].demand / np.sqrt(self.nodes[i].H_0)
+	
 
 	#####
 	##	Function to run the transient solution
@@ -249,7 +259,7 @@ class Network(object):
 				symbol = (5,2)
 				size = 20	
 				
-			pp.scatter([i.xPos],[i.yPos],marker = symbol,s = size)
+			pp.scatter([i.xPos],[i.yPos],marker = symbol,s = size,c='k')
 			if plot_Node_Names != 0:
 				pp.annotate(i.Name,(i.xPos,i.yPos))
 			
@@ -403,11 +413,13 @@ class Network(object):
 		for index in range(1,no_nodes+1):
 			ret,idx=epa.ENgetnodeid(index)
 			ret,H0=epa.ENgetnodevalue(index, epa.EN_HEAD )
+			ret,Demand = epa.ENgetnodevalue(index, epa.EN_DEMAND)
 			try:
 				#print Network.node_idx[idx].Name,idx
 				#if self.node_idx[idx].type == 'Node':
 				self.node_idx[idx].H_0 = float(H0)
 				self.node_idx[idx].TranH = [float(H0)]
+				self.node_idx[idx].demand = float(Demand)/1000.
 
 			except:
 				print 'Problem getting Head for Node:', idx

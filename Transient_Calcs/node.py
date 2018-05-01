@@ -61,7 +61,7 @@ class Node:
 		if self.External_Flow == True:
 			#print Dave
 			PressureFactor = (self.TranH[-1]/self.H_0) 
-			CdA = self.CdA * PressureFactor #+ np.random.normal(0,0.000001)
+			CdA = self.CdA# * PressureFactor #+ np.random.normal(0,0.000001)
 			tau = 1
 			s = np.sign(self.CC)		# Accounting for the non-linearity of the energy loss at the valve
 			m = 0.5*(tau * CdA)**2 * s * self.BC

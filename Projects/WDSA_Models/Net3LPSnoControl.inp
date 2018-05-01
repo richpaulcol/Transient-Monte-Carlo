@@ -12,7 +12,6 @@ system changes over time.
  40              	40.20312    	0           	                	;
  50              	35.5092     	0           	                	;
  60              	0           	0           	                	;
- 601             	0           	0           	                	;
  61              	0           	0           	                	;
  101             	12.8016     	11.98398    	                	;
  103             	13.1064     	8.403614    	                	;
@@ -49,7 +48,6 @@ system changes over time.
  169             	-1.524      	0           	                	;
  171             	-1.2192     	2.481968    	                	;
  173             	-1.2192     	0           	                	;
- 177             	2.4384      	3.669957    	                	;
  179             	2.4384      	0           	                	;
  181             	2.4384      	0           	                	;
  183             	3.3528      	0           	                	;
@@ -156,8 +154,6 @@ system changes over time.
  189             	171             	173             	15.24       	762         	141         	0           	Open  	;
  191             	271             	171             	231.648     	609.6       	130         	0           	Open  	;
  193             	35              	181             	9.144       	609.6       	130         	0           	Open  	;
- 195             	181             	177             	9.144       	304.8       	130         	0           	Open  	;
- 197             	177             	179             	9.144       	304.8       	130         	0           	Open  	;
  199             	179             	183             	64.008      	304.8       	130         	0           	Open  	;
  201             	40              	179             	362.712     	304.8       	130         	0           	Open  	;
  202             	185             	184             	30.44952    	203.2       	130         	0           	Open  	;
@@ -219,10 +215,9 @@ system changes over time.
  321             	163             	265             	365.76      	762         	141         	0           	Open  	;
  323             	201             	275             	91.44       	304.8       	130         	0           	Open  	;
  325             	269             	271             	393.192     	203.2       	130         	0           	Open  	;
- 329             	61              	123             	13868.4     	762         	140         	0           	Open  	;
- 330             	60              	601             	0.3048      	762         	140         	0           	Open  	;
- 333             	601             	61              	0.3048      	762         	140         	0           	Open  	;
+ 329             	61              	123             	1386.4      	762         	140         	0           	Open  	;
  1               	Lake            	10              	1000        	457         	110         	0           	Open  	;
+ 2               	61              	60              	1000        	762         	140         	0           	Open  	;
 
 [PUMPS]
 ;ID              	Node1           	Node2           	Parameters
@@ -268,11 +263,11 @@ system changes over time.
 
 [CURVES]
 ;ID              	X-Value     	Y-Value
-;PUMP: PUMP: PUMP: PUMP: PUMP: Pump Curve for Pump 10 (Lake Source)
+;PUMP: PUMP: PUMP: PUMP: PUMP: PUMP: Pump Curve for Pump 10 (Lake Source)
  1               	0           	31.6992     
  1               	126.1804    	28.0416     
  1               	252.3608    	19.2024     
-;PUMP: PUMP: PUMP: PUMP: PUMP: Pump Curve for Pump 335 (River Source)
+;PUMP: PUMP: PUMP: PUMP: PUMP: PUMP: Pump Curve for Pump 335 (River Source)
  2               	0           	60.96       
  2               	504.7216    	42.0624     
  2               	883.2628    	26.2128     
@@ -291,7 +286,9 @@ system changes over time.
 
 
 
+
 [RULES]
+
 
 
 
@@ -370,7 +367,6 @@ system changes over time.
  40              	27.02           	9.81            
  50              	33.01           	3.01            
  60              	23.90           	29.94           
- 601             	23.00           	29.49           
  61              	23.71           	29.03           
  101             	13.81           	22.94           
  103             	12.96           	21.31           
