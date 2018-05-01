@@ -8,6 +8,12 @@ from pump import *
 from network import *
 import csv
 
+def HW_DW(D,C): #Reference "Relationship between Hazen-William and Colebrook-White Roughness Values" Travis and May 2007
+	D = float(D)/1000.
+	C = float(C)
+	ks = D*(3.320 - 0.021 * C * D**0.01)**(2.173) * np.exp(-0.04125*C*D**0.01)
+	return round(ks*1000,3)
+
 #### This file contains a list of functions that allow interaction between EPANet and the PWG-Transient-Solver
 
 def Import_EPANet_Geom(inp_filename):
@@ -30,8 +36,8 @@ def Import_EPANet_Geom(inp_filename):
 			if line[0] == 'Headloss':
 				Units = line[1]
 			
-				if Units != 'D-W':
-					print 'Incorrect Headloss (only D-W currently implemented)'
+				if Units == 'C-W':
+					print 'Incorrect Headloss (only D-W and H-W currently implemented)'
 					break
 	
 	Nodes = []
@@ -126,21 +132,32 @@ def Import_EPANet_Geom(inp_filename):
             else: 
             	vals = line.split()	
                 if section == '[PIPES]':
+                	if Units == 'H-W':
+                		roughness = HW_DW(vals[4],vals[5])
+                		
+                	else:
+                		roughness = vals[5]
+                	
                 	try:
-		        	new_Pipe = Pipe(vals[0],Node_idx[vals[1]],Node_idx[vals[2]],vals[3],vals[4],vals[5])
+		        	new_Pipe = Pipe(vals[0],Node_idx[vals[1]],Node_idx[vals[2]],vals[3],vals[4],roughness)
 		        	Pipes.append(new_Pipe)
 		        	Pipe_idx[new_Pipe.Name] = new_Pipe
 		        except:
 		        	continue
                 elif section == '[VALVES]':
                 	#print vals
-                	new_Valve = Valve(vals[0], Node_idx[vals[1]], Node_idx[vals[2]], vals[3], vals[4], vals[5])
+                	if Units == 'H-W':
+                		roughness = HW_DW(vals[4],vals[5])
+                	else:
+                		roughness = vals[5]
+                	new_Valve = Valve(vals[0], Node_idx[vals[1]], Node_idx[vals[2]], vals[3], vals[4], roughness)
                 	
                     	Valves.append(new_Valve)
                     	Valve_idx[new_Valve.Name] = new_Valve
                     	
                 elif section == '[PUMPS]':
                 	#print vals
+                	
 			new_Pump = Pump(vals[0], Node_idx[vals[1]], Node_idx[vals[2]], vals[3])
 			Pumps.append(new_Pump)
                     	Pump_idx[new_Pump.Name] = new_Pump
@@ -256,3 +273,4 @@ def EPA_inp_writer(Filename,Title,Junctions,Reservoirs,Pipes,Nodes):
 #	Nodes = np.array([[1,0,0],[2,10,0],[3,20,0]])
 #	
 #	EPA_inp_writer(Filename,Title,Junctions,Reservoirs,Pipes,Nodes)
+

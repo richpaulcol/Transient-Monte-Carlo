@@ -15,9 +15,12 @@ def normal_dist(mean,variance):
 
 
 
-Directory = 'Projects/SinglePipeMC/'
+Directory = 'Projects/WDSA_Models/'
 FileName = 'SinglePipeTest.inp'
 Net = Import_EPANet_Geom(Directory+FileName)
+
+
+
 Net.open_epanet_file()
 
 
