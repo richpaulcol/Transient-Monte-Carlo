@@ -183,6 +183,7 @@ class Network(object):
 
 		for i in range(ControlNodes):
 			self.node_idx[str(int(Control_Data[0,i]))].Transient_Demands = Control_Data[1:,i] / 1000. 
+			self.node_idx[str(int(Control_Data[0,i]))].External_Flow = False ### Removes an emmiter from a control node, this is important otherwise you can't get flow rate control
 		
 			
 	

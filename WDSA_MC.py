@@ -17,8 +17,8 @@ def normal_dist(mean,variance):
 
 Directory = 'Projects/WDSA_Models/'
 FileName = '5Pipes.inp'
-FileName = 'hanoi3.inp'
-FileName = 'Net3LPSnoControl.inp'
+#FileName = 'hanoi3.inp'
+#FileName = 'Net3LPSnoControl.inp'
 Net = Import_EPANet_Geom(Directory+FileName)
 Net.open_epanet_file()
 
@@ -42,7 +42,7 @@ for i in range(Iterations):
 
 	Net.MOC_Initialisation(dt)
 
-	Net.Control_Input(Directory+'Driving_Transient.csv')
+	Net.Control_Input(Directory+'5_pipes_driving_transient.csv')
 	Net.MOC_Run(10)
 #	Output[:,i] = Net.nodes[1].TranH
 ##	Output[0,i] = Net.nodes[1].H_0
