@@ -53,21 +53,21 @@ class Pipe:
 		
 	def Friction(self):  ##Not sure if should use log or log10 EPANet looks like it uses log, although equations suggest log10
 
-		if self.FF_0 != None:
-			self.friction = np.ones(self.V.size)*self.FF_0
+#		if self.FF_0 != None:
+#			self.friction = np.ones(self.V.size)*self.FF_0
+#			
+#		else:
+		if self.Friction_Units == 'D-W':
 			
-		else:
-			if self.Friction_Units == 'D-W':
+			#print 'Used'
+			self.friction = 0.25 / (np.log10((self.roughness/1000.) / (3.7*self.diameter) + 5.74/(self.Re**0.9))**2) 
+			
+		elif self.Friction_Units == 'H-W':
+			self.friction = 133.89 / (abs(self.V)**(4./27.) * self.roughness**(50./27.) * self.diameter**(1./16.)+10**-10)
 			
 			
-				self.friction = 0.25 / (np.log10((self.roughness/1000.) / (3.7*self.diameter) + 5.74/(self.Re**0.9))**2) 
-			
-			elif self.Friction_Units == 'H-W':
-				self.friction = 133.89 / (abs(self.V)**(4./27.) * self.roughness**(50./27.) * self.diameter**(1./16.)+10**-10)
-			
-			
-			self.frictionLam = 64./(self.Re+1)
-			self.friction[self.Re<2000] = self.frictionLam[self.Re<2000]
+		self.frictionLam = 64./(self.Re+1)
+		self.friction[self.Re<2000] = self.frictionLam[self.Re<2000]
 
 		
 #		else:

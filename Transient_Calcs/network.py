@@ -218,9 +218,10 @@ class Network(object):
 	def Assign_Emmiters_All(self):
 		
 		for i in range(len(self.nodes)):
-			if self.nodes[i].demand != 0:
-				self.nodes[i].External_Flow = True
-				self.nodes[i].CdA = self.nodes[i].demand / np.sqrt(self.nodes[i].H_0)
+			if self.nodes[i].type == 'Node':
+				if self.nodes[i].demand != 0:				
+					self.nodes[i].External_Flow = True
+					self.nodes[i].CdA = self.nodes[i].demand / np.sqrt(self.nodes[i].H_0)
 	
 
 	#####
@@ -439,6 +440,7 @@ class Network(object):
 			ret,Headloss=epa.ENgetlinkvalue(index,epa.EN_HEADLOSS)
 			ret,Length=epa.ENgetlinkvalue(index,epa.EN_LENGTH)
 			ret,Diameter=epa.ENgetlinkvalue(index,epa.EN_DIAMETER)
+			ret,Roughness=epa.ENgetlinkvalue(index,epa.EN_ROUGHNESS)
 			#print Headloss,Length,Diameter,V0
 			#print 2*9.81*(Headloss/1000.)*Diameter / (Length * V0**2)
 			
@@ -447,6 +449,8 @@ class Network(object):
 				self.link_idx[idx].Q_0 = float(Q0)/1000. #Convert to m^3/s
 				self.link_idx[idx].V_0 = float(V0)
 				self.link_idx[idx].FF_0 = float(2*9.81*(Headloss/1000.)*Diameter / (Length * V0**2))
+				self.link_idx[idx].roughness = Roughness
+				self.link_idx[idx].headloss = Headloss
 			except:
 				print 'Problem getting Flow or Velocity for link:', idx
 				continue
@@ -455,7 +459,14 @@ class Network(object):
 	def alter_epanet_friction(self,value):
 		ret,no_links=epa.ENgetcount(epa.EN_LINKCOUNT)
 		for index in range(1,no_links+1):
-			ret,epa.ENsetlinkvalue(index,epa.EN_ROUGHNESS,value)
-		
+			ret,epa.ENsetlinkvalue(index,epa.EN_ROUGHNESS,value[index-1])
+
+	def alter_epanet_friction_all_same(self,value):
+		ret,no_links=epa.ENgetcount(epa.EN_LINKCOUNT)
+		for index in range(1,no_links+1):
+			ret,epa.ENsetlinkvalue(index,epa.EN_ROUGHNESS,value)	
+
+
+	
 	def close_epanet_file(self):
 		ret = epa.ENclose()
