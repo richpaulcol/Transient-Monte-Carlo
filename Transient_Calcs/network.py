@@ -466,7 +466,9 @@ class Network(object):
 		for index in range(1,no_links+1):
 			ret,epa.ENsetlinkvalue(index,epa.EN_ROUGHNESS,value)	
 
-
+	def alter_epanet_demand(self,node,value):
+		ret,index = epa.ENgetnodeindex(str(node))
+		ret = epa.ENsetnodevalue(index,epa.EN_BASEDEMAND,value)
 	
 	def close_epanet_file(self):
 		ret = epa.ENclose()

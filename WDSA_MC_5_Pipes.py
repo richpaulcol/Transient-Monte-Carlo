@@ -28,12 +28,18 @@ def demand_generator(filename,node,maxTime,dt,originalFlow,maxFlow,startTime,end
 	np.savetxt(filename,np.hstack((np.array(node),demands)),delimiter = ',')
 
 def output_plotter(times,Data):
-	pp.figure()
-	pp.plot(times,np.mean(Data,axis=1),'b')
-	pp.fill_between(times,np.mean(Data,axis=1)+2*np.std(Data,axis=1),np.mean(Data,axis=1)-2*np.std(Data,axis=1),alpha = 0.5,color='b')
+	pp.figure(figsize=(10,6))
+	pp.plot(times,np.mean(Data,axis=1),'k')
+	pp.fill_between(times,np.mean(Data,axis=1)+np.std(Data,axis=1),np.mean(Data,axis=1)-np.std(Data,axis=1),alpha = 0.5,color='k',linestyle = '--')
+#	pp.fill_between(times,np.percentile(Data,25,axis=1),np.percentile(Data,75,axis=1),alpha = 0.5,color='k',linestyle = '--')
+	pp.fill_between(times,np.percentile(Data,5,axis=1),np.percentile(Data,95,axis=1),alpha = 0.25,color='k',linestyle = ':')
+	pp.ylabel('Head (m)')
+	pp.xlabel('Time (s)')
+	pp.xlim(times[0],times[-1])
+	pp.tight_layout()
 	pp.show()
 
-
+dasdasdas
 Directory = 'Projects/WDSA_Models/'
 FileName = '5Pipes.inp'
 #FileName = 'hanoi3.inp'
@@ -44,11 +50,13 @@ Net.open_epanet_file()
 
 distribution = cp.J(cp.Normal(1,0.4))#,cp.Normal(1,0.4),cp.Normal(1,0.4),cp.Normal(1,0.4),cp.Normal(1,0.4))
 
+demand_distribution = cp.Exponential(1.)
 Wavespeed = 1000.
 dt =0.01	
 
-Iterations = 4000
-samples = distribution.sample(Iterations)
+Iterations = 1000
+#samples = distribution.sample(Iterations)
+samples = demand_distribution.sample(Iterations)
 #Output = np.zeros((4637,Iterations))
 maxTime = 30
 
@@ -61,8 +69,8 @@ for i in range(Iterations):
 	print i
 #	#Net.geom_Plot(plot_Node_Names = True)
 #	Net.alter_epanet_friction(samples[:,i])		## This function assigns a new friction value to the pipes on each iteration
-	Net.alter_epanet_friction_all_same(samples[i])
-#	Net.alter_epanet_demand(3,samples[:,i])
+#	Net.alter_epanet_friction_all_same(samples[i])
+	Net.alter_epanet_demand(3,samples[i])
 	Net.run_epanet_file()				## This function runs the SS EPAnet model	
 	Net.read_results_from_epanet()			## This function reads the SS EPAnet data into the transinet model
 	Net.Assign_Emmiters_All()			## This function assigns all the demands as emiters in the transient model (i.e. pressure based demands) with a CdA value chosen to match the EPAnet demand.
@@ -84,5 +92,5 @@ for i in range(Iterations):
 #np.save(Directory + '5_pipes_varying_demand.npy',Output)			# Saving the output data
 #np.save(Directory + '5_pipes_varying_demand_samples.npy',samples)
 
-np.save(Directory + '5_pipes_varying_friction_all_same.npy',Output)			## Saving the output data
-np.save(Directory + '5_pipes_varying_friction_all_same_samples.npy',samples)
+#np.save(Directory + '5_pipes_varying_friction_all_same.npy',Output)			## Saving the output data
+#np.save(Directory + '5_pipes_varying_friction_all_same_samples.npy',samples)
