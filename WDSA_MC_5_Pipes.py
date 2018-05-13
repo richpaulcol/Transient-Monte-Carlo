@@ -39,7 +39,7 @@ def output_plotter(times,Data):
 	pp.tight_layout()
 	pp.show()
 
-dasdasdas
+
 Directory = 'Projects/WDSA_Models/'
 FileName = '5Pipes.inp'
 #FileName = 'hanoi3.inp'
@@ -47,7 +47,7 @@ FileName = '5Pipes.inp'
 Net = Import_EPANet_Geom(Directory+FileName)
 Net.open_epanet_file()
 
-
+asdaSDAsd
 distribution = cp.J(cp.Normal(1,0.4))#,cp.Normal(1,0.4),cp.Normal(1,0.4),cp.Normal(1,0.4),cp.Normal(1,0.4))
 
 demand_distribution = cp.Exponential(1.)
