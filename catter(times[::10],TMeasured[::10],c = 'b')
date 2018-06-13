@@ -1,0 +1,106 @@
+[0;31mSignature:[0m [0mpp[0m[0;34m.[0m[0mscatter[0m[0;34m([0m[0mx[0m[0;34m,[0m [0my[0m[0;34m,[0m [0ms[0m[0;34m=[0m[0mNone[0m[0;34m,[0m [0mc[0m[0;34m=[0m[0mNone[0m[0;34m,[0m [0mmarker[0m[0;34m=[0m[0mNone[0m[0;34m,[0m [0mcmap[0m[0;34m=[0m[0mNone[0m[0;34m,[0m [0mnorm[0m[0;34m=[0m[0mNone[0m[0;34m,[0m [0mvmin[0m[0;34m=[0m[0mNone[0m[0;34m,[0m [0mvmax[0m[0;34m=[0m[0mNone[0m[0;34m,[0m [0malpha[0m[0;34m=[0m[0mNone[0m[0;34m,[0m [0mlinewidths[0m[0;34m=[0m[0mNone[0m[0;34m,[0m [0mverts[0m[0;34m=[0m[0mNone[0m[0;34m,[0m [0medgecolors[0m[0;34m=[0m[0mNone[0m[0;34m,[0m [0mhold[0m[0;34m=[0m[0mNone[0m[0;34m,[0m [0mdata[0m[0;34m=[0m[0mNone[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0m
+[0;31mDocstring:[0m
+Make a scatter plot of `x` vs `y`.
+
+Marker size is scaled by `s` and marker color is mapped to `c`.
+
+Parameters
+----------
+x, y : array_like, shape (n, )
+    Input data
+
+s : scalar or array_like, shape (n, ), optional
+    size in points^2.  Default is `rcParams['lines.markersize'] ** 2`.
+
+c : color, sequence, or sequence of color, optional, default: 'b'
+    `c` can be a single color format string, or a sequence of color
+    specifications of length `N`, or a sequence of `N` numbers to be
+    mapped to colors using the `cmap` and `norm` specified via kwargs
+    (see below). Note that `c` should not be a single numeric RGB or
+    RGBA sequence because that is indistinguishable from an array of
+    values to be colormapped.  `c` can be a 2-D array in which the
+    rows are RGB or RGBA, however, including the case of a single
+    row to specify the same color for all points.
+
+marker : `~matplotlib.markers.MarkerStyle`, optional, default: 'o'
+    See `~matplotlib.markers` for more information on the different
+    styles of markers scatter supports. `marker` can be either
+    an instance of the class or the text shorthand for a particular
+    marker.
+
+cmap : `~matplotlib.colors.Colormap`, optional, default: None
+    A `~matplotlib.colors.Colormap` instance or registered name.
+    `cmap` is only used if `c` is an array of floats. If None,
+    defaults to rc `image.cmap`.
+
+norm : `~matplotlib.colors.Normalize`, optional, default: None
+    A `~matplotlib.colors.Normalize` instance is used to scale
+    luminance data to 0, 1. `norm` is only used if `c` is an array of
+    floats. If `None`, use the default :func:`normalize`.
+
+vmin, vmax : scalar, optional, default: None
+    `vmin` and `vmax` are used in conjunction with `norm` to normalize
+    luminance data.  If either are `None`, the min and max of the
+    color array is used.  Note if you pass a `norm` instance, your
+    settings for `vmin` and `vmax` will be ignored.
+
+alpha : scalar, optional, default: None
+    The alpha blending value, between 0 (transparent) and 1 (opaque)
+
+linewidths : scalar or array_like, optional, default: None
+    If None, defaults to (lines.linewidth,).
+
+verts : sequence of (x, y), optional
+    If `marker` is None, these vertices will be used to
+    construct the marker.  The center of the marker is located
+    at (0,0) in normalized units.  The overall marker is rescaled
+    by ``s``.
+
+edgecolors : color or sequence of color, optional, default: None
+    If None, defaults to 'face'
+
+    If 'face', the edge color will always be the same as
+    the face color.
+
+    If it is 'none', the patch boundary will not
+    be drawn.
+
+    For non-filled markers, the `edgecolors` kwarg
+    is ignored and forced to 'face' internally.
+
+Returns
+-------
+paths : `~matplotlib.collections.PathCollection`
+
+Other Parameters
+----------------
+**kwargs : `~matplotlib.collections.Collection` properties
+
+See Also
+--------
+plot : to plot scatter plots when markers are identical in size and
+    color
+
+Notes
+-----
+
+* The `plot` function will be faster for scatterplots where markers
+  don't vary in size or color.
+
+* Any or all of `x`, `y`, `s`, and `c` may be masked arrays, in which
+  case all masks will be combined and only unmasked points will be
+  plotted.
+
+  Fundamentally, scatter works with 1-D arrays; `x`, `y`, `s`, and `c`
+  may be input as 2-D arrays, but within scatter they will be
+  flattened. The exception is `c`, which will be flattened only if its
+  size matches the size of `x` and `y`.
+
+.. note::
+    In addition to the above described arguments, this function can take a
+    **data** keyword argument. If such a **data** argument is given, the
+    following arguments are replaced by **data[<arg>]**:
+
+    * All arguments with the following names: 'c', 'color', 'edgecolors', 'facecolor', 'facecolors', 'linewidths', 's', 'x', 'y'.
+[0;31mFile:[0m      ~/Installed_Programmes/miniconda/lib/python2.7/site-packages/matplotlib/pyplot.py
+[0;31mType:[0m      function

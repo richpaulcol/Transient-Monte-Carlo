@@ -247,7 +247,7 @@ class Network(object):
 		
 	######
 	##	Plotting the network configuration
-	def geom_Plot(self,plot_Node_Names = 0):
+	def geom_Plot(self,plot_Node_Names = 0,Highlights = None):
 		pp.figure()
 		pp.title('Network Geometry')
 		for i in self.nodes:
@@ -260,8 +260,12 @@ class Network(object):
 			elif i.type == 'Tank':
 				symbol = (5,2)
 				size = 20	
+			c = 'k'
+			if i.Name in Highlights:
+				size = 40	
+				c = 'r'	
 				
-			pp.scatter([i.xPos],[i.yPos],marker = symbol,s = size,c='k')
+			pp.scatter([i.xPos],[i.yPos],marker = symbol,s = size,c=c)
 			if plot_Node_Names != 0:
 				pp.annotate(i.Name,(i.xPos,i.yPos))
 			
@@ -308,9 +312,9 @@ class Network(object):
 			Link_Colours = (Links_Data[:,2].astype('float') - Link_Range[0]) / (Link_Range[1] - Link_Range[0])	
 		
 		Link_Colours = Link_Colours.astype('float')
-	#	pp.scatter(Nodes_Data[:,0],Nodes_Data[:,1],c = Node_Colours)
-		for i in range(Links_Data.shape[1]):
-			pp.plot(Links_Data[i,0],Links_Data[i,1],color = Link_Colours[i])
+		pp.scatter(Nodes_Data[:,0],Nodes_Data[:,1],c = Node_Colours)
+	#	for i in range(Links_Data.shape[1]):
+	#		pp.plot(Links_Data[i,0],Links_Data[i,1],color = Link_Colours[i])
 		
 		pp.axis('equal')
 		pp.show()
@@ -415,11 +419,13 @@ class Network(object):
 		for index in range(1,no_nodes+1):
 			ret,idx=epa.ENgetnodeid(index)
 			ret,H0=epa.ENgetnodevalue(index, epa.EN_HEAD )
+			ret,P0 = epa.ENgetnodevalue(index,epa.EN_PRESSURE)
 			ret,Demand = epa.ENgetnodevalue(index, epa.EN_DEMAND)
 			try:
 				#print Network.node_idx[idx].Name,idx
 				#if self.node_idx[idx].type == 'Node':
 				self.node_idx[idx].H_0 = float(H0)
+				self.node_idx[idx].P_0 = float(P0)
 				self.node_idx[idx].TranH = [float(H0)]
 				self.node_idx[idx].demand = float(Demand)/1000.
 

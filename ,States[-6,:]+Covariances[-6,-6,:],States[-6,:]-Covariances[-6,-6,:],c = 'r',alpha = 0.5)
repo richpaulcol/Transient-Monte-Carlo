@@ -1,0 +1,92 @@
+[0;31mSignature:[0m [0mpp[0m[0;34m.[0m[0mfill_between[0m[0;34m([0m[0mx[0m[0;34m,[0m [0my1[0m[0;34m,[0m [0my2[0m[0;34m=[0m[0;36m0[0m[0;34m,[0m [0mwhere[0m[0;34m=[0m[0mNone[0m[0;34m,[0m [0minterpolate[0m[0;34m=[0m[0mFalse[0m[0;34m,[0m [0mstep[0m[0;34m=[0m[0mNone[0m[0;34m,[0m [0mhold[0m[0;34m=[0m[0mNone[0m[0;34m,[0m [0mdata[0m[0;34m=[0m[0mNone[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0m
+[0;31mDocstring:[0m
+Make filled polygons between two curves.
+
+
+Create a :class:`~matplotlib.collections.PolyCollection`
+filling the regions between *y1* and *y2* where
+``where==True``
+
+Parameters
+----------
+x : array
+    An N-length array of the x data
+
+y1 : array
+    An N-length array (or scalar) of the y data
+
+y2 : array
+    An N-length array (or scalar) of the y data
+
+where : array, optional
+    If `None`, default to fill between everywhere.  If not `None`,
+    it is an N-length numpy boolean array and the fill will
+    only happen over the regions where ``where==True``.
+
+interpolate : bool, optional
+    If `True`, interpolate between the two lines to find the
+    precise point of intersection.  Otherwise, the start and
+    end points of the filled region will only occur on explicit
+    values in the *x* array.
+
+step : {'pre', 'post', 'mid'}, optional
+    If not None, fill with step logic.
+
+
+Notes
+-----
+
+Additional Keyword args passed on to the
+:class:`~matplotlib.collections.PolyCollection`.
+
+kwargs control the :class:`~matplotlib.patches.Polygon` properties:
+
+  agg_filter: a filter function, which takes a (m, n, 3) float array and a dpi value, and returns a (m, n, 3) array 
+  alpha: float or None 
+  animated: bool 
+  antialiased or antialiaseds: Boolean or sequence of booleans 
+  array: ndarray
+  clim: a length 2 sequence of floats 
+  clip_box: a `~.Bbox` instance 
+  clip_on: bool 
+  clip_path: [(`~matplotlib.path.Path`, `~.Transform`) | `~.Patch` | None] 
+  cmap: a colormap or registered colormap name 
+  color: matplotlib color arg or sequence of rgba tuples
+  contains: a callable function 
+  edgecolor or edgecolors: matplotlib color spec or sequence of specs 
+  facecolor or facecolors: matplotlib color spec or sequence of specs 
+  figure: a `~.Figure` instance 
+  gid: an id string 
+  hatch: [ '/' | '\\' | '|' | '-' | '+' | 'x' | 'o' | 'O' | '.' | '*' ] 
+  label: object 
+  linestyle or dashes or linestyles: ['solid' | 'dashed', 'dashdot', 'dotted' | (offset, on-off-dash-seq) | ``'-'`` | ``'--'`` | ``'-.'`` | ``':'`` | ``'None'`` | ``' '`` | ``''``]
+  linewidth or linewidths or lw: float or sequence of floats 
+  norm: `~.Normalize`
+  offset_position: [ 'screen' | 'data' ] 
+  offsets: float or sequence of floats 
+  path_effects: `~.AbstractPathEffect` 
+  picker: [None | bool | float | callable] 
+  pickradius: float distance in points
+  rasterized: bool or None 
+  sketch_params: (scale: float, length: float, randomness: float) 
+  snap: bool or None 
+  transform: `~.Transform` 
+  url: a url string 
+  urls: List[str] or None 
+  visible: bool 
+  zorder: float 
+
+See Also
+--------
+
+    :meth:`fill_betweenx`
+        for filling between two sets of x-values
+
+.. note::
+    In addition to the above described arguments, this function can take a
+    **data** keyword argument. If such a **data** argument is given, the
+    following arguments are replaced by **data[<arg>]**:
+
+    * All arguments with the following names: 'where', 'x', 'y1', 'y2'.
+[0;31mFile:[0m      ~/Installed_Programmes/miniconda/lib/python2.7/site-packages/matplotlib/pyplot.py
+[0;31mType:[0m      function
