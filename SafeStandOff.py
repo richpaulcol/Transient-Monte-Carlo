@@ -1,9 +1,7 @@
 import pylab as pp
 import numpy as np
-import chaospy as cp
-import os
 from Transient_Calcs import *
-import operator
+#import operator
 
 
 def normal_dist(mean,variance):
@@ -65,15 +63,15 @@ Net.read_results_from_epanet()
 for pipe in Net.pipes:
 	PreFlows[pipe.Name] = abs(pipe.Q_0 * 0.06309 * 1000.)
 
-
+WSSCd = {}
 for node in Net.nodes:
 	Hs = []
 	Qs = []
 	Rbs = []
 	dOs = []
-	for dO in np.linspace(0,100,10000):
+	for dO in np.linspace(0,0.5,100):
 		AO = dO**2*np.pi/4
-		set_epanet_emitter(node.Name,Cd*AO*np.sqrt(2*9.81))
+		set_epanet_emitter(node.Name,1000*Cd*AO*np.sqrt(2*9.81))
 		Net.run_epanet_file()
 		Net.read_results_from_epanet()
 		H = node.P_0 
@@ -82,14 +80,16 @@ for node in Net.nodes:
 		Qs.append(Q)
 		Rbs.append(1.8 *(Q * H/(9.81**0.5 * Cd * dO**(7./2.)))**0.243 * dO)
 		dOs.append(dO)
+		if dO == 0:
+			WSSCd[node.Name] = (1/1.7)*(Cd**2*H)*(1-np.tan(np.radians(30)))
 		#print node.Name,node.P_0,get_epanet_final_demand(node.Name),Rb
 		
-	asad
+	
 	Heads[node.Name] = Hs[np.argmax(Rbs[1:])+1]
 	Flows[node.Name] = Qs[np.argmax(Rbs[1:])+1]
 	PitSize[node.Name] = Rbs[np.argmax(Rbs[1:])+1]
 	Orifice[node.Name] = dOs[np.argmax(Rbs[1:])+1]
-	set_epanet_emitter(node.Name,0)	
+	set_epanet_emitter(node.Name,0)	 
 	
 
 #Net.close_epanet_file()
@@ -112,13 +112,15 @@ pp.twinx()
 pp.bar(range(len(Flows)), list(Flows.values()), align='center',alpha = 0.5)
 pp.xticks(range(len(Flows)), list(Flows.keys()))
 pp.ylabel('Leak Flow (l/s)')
-#pp.ylim(800,0)
+pp.ylim(400,0)
 pp.xlabel('Node')
 pp.show()
 
 pp.figure()
 pp.bar(range(len(PitSize)), list(PitSize.values()), align='center',alpha = 0.5)
 pp.xticks(range(len(PitSize)), list(PitSize.keys()))
+pp.bar(range(len(WSSCd)), list(WSSCd.values()), align='center',alpha = 0.5)
+pp.xticks(range(len(WSSCd)), list(WSSCd.keys()))
 #pp.ylim(40,0)
 pp.ylabel('Pit Size (m)')
 pp.xlabel('Pipe')

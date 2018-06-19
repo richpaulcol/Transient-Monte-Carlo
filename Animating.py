@@ -31,7 +31,7 @@ class SubplotAnimation(animation.TimedAnimation):
 
 		ax1 = pp.subplot2grid((4, 3), (0, 0),colspan = 2,rowspan = 2)
 		ax1.plot(self.times,self.Q,'k--',label = 'Measured Flow')
-		ax1.set_ylabel('Flow (m3/s)')
+		ax1.set_ylabel('Applied Shear (Pa)')
 		self.line1 = Line2D([],[],color='red')
 		self.line1a = Line2D([],[],color='red',alpha = 0.5)
 		self.line1b = Line2D([],[],color='red',alpha = 0.5)
@@ -79,7 +79,7 @@ class SubplotAnimation(animation.TimedAnimation):
 		self.ax5.add_line(self.line5)
 
 		self.ax6 = pp.subplot2grid((4, 3), (3, 2))
-		self.ax6.plot([0.6,0.6],[0,100000000],'k--')
+		self.ax6.plot([0.2,0.2],[0,100000000],'k--')
 		self.ax6.set_xlabel('beta (1/s)')
 		self.line6 = Line2D([],[],color='red')
 		self.ax6.add_line(self.line6)
@@ -134,5 +134,5 @@ class SubplotAnimation(animation.TimedAnimation):
 		
                               
 ani = SubplotAnimation()
-#ani.save('OnlinePODDS.mp4')
+#ani.save('Alpha_Beta_Train_OnlinePODDS1.mp4')
 pp.show()

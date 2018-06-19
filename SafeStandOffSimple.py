@@ -20,5 +20,5 @@ pp.xlabel('Burst Area / Pipe Area')
 pp.ylabel('Burst Velocity (m/s) / (2 g dH)^0.5')
 
 
-#Rb = 1.8 *(Q * H/(g**0.5 * Cd * d0**(7/2)))**0.243
+Rb = 1.8 *(Q * H/(g**0.5 * Cd * d0**(7/2)))**0.243
 
