@@ -1,0 +1,3 @@
+To avoid unnecesarry correlation it will be better to use pressure based modelling rather than demand based modelling.
+
+Upstream Reservoir:  Mean value

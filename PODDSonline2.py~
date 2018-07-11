@@ -126,7 +126,7 @@ Std[-5] = 1e-20			#Initial Uncertainty in incomingTMass
 Std[-4] = 1e-2 		#Initial Uncertainty in tau_a
 Std[-3] = 1e-3			#Initial Uncertainty in tau_s
 Std[-2] = 1e1			#Initial Uncertainty in Alpha
-Std[-1] = 1e-0			#Initial Uncertainty in Beta
+Std[-1] = 1e-1			#Initial Uncertainty in Beta
 
 #Std = np.random.uniform(0,0.1,States.shape[0])
 
@@ -161,7 +161,13 @@ tau_Measured = tau_a+ np.random.normal(0,5e-3,times.size)
 MeasuringTimeInterval =5 #(s)
 MeasurementInterval = int(MeasuringTimeInterval/dt)
 
-
+MinorAdjustment = np.zeros(States.shape[0])
+MinorAdjustment[:-5] = 1e-1	#Initial Uncertainty in TMass along the pipe length
+MinorAdjustment[-5] = 1e-1			#Initial Uncertainty in incomingTMass
+MinorAdjustment[-4] = 1e-1 		#Initial Uncertainty in tau_a
+MinorAdjustment[-3] = 1e-1			#Initial Uncertainty in tau_s
+MinorAdjustment[-2] = 1e-1		#Initial Uncertainty in Alpha
+MinorAdjustment[-1] = 1e-1			#Initial Uncertainty in Beta
 
 for t in range(times.size)[1:]:
 	
