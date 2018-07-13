@@ -67,8 +67,6 @@ def Import_EPANet_Geom(inp_filename):
                 	## 	Create a new Node object with inputs (name, xPos, yPos)
                 	new_Node = Node(vals[0], float(vals[1]), float(vals[2]))
                 	new_Node.number = NodeCounter
-                	NodeCounter += 1
-                	
                 	
                 	##	Adding the new node to the Nodes list and the Directory of id's
                 	Nodes.append(new_Node)

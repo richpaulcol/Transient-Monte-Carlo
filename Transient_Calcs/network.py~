@@ -570,7 +570,7 @@ class Network(object):
 			#print i.type
 			Bc = 0
 			Qext = i.demand
-			print Qext,i.number
+			print Qext
 			for k in i.pipesOut:
 				#print 'pOut',k.B
 				Bc += 1./k.B

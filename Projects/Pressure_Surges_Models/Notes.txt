@@ -1,3 +1,7 @@
 To avoid unnecesarry correlation it will be better to use pressure based modelling rather than demand based modelling.
 
 Upstream Reservoir:  Mean value
+
+
+
+Individual MC simulatin takes 0.69 s 

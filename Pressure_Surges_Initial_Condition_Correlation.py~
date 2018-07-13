@@ -19,7 +19,7 @@ Outputs = np.load(Directory+'InitialConditions.npy')
 ### Plot of the correlation and covariance matrices
 
 COV = np.cov(Outputs.T)
-np.save(Directory+'InitialCOV.npy',COV)
+np.save(Dirctory+'InitialCOV.npy',COV)
 #COR = np.corrcoef(Outputs.T)
 
 #AxisLabels = ['Q1','Q2','Q3','Q4','Q5','H1','H2','H3','H4','H5','H6']
