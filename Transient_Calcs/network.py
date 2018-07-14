@@ -511,10 +511,10 @@ class Network(object):
 			i.R = i.friction*i.dx*abs(i.Q_0) / (2*9.81*i.diameter*i.area**2)	## This is the basic friction cal which we can use if we assume that it is fixed throughout the calcualtions
 			#i.R = i.R * i.dx
 			i.TranCPsX = np.linspace(0,i.length,i.NoCPs)	##	Generating the CPs
-			pipe_CP_index = np.ones(i.TranCPsX.size)*link_count
+			i.pipe_CP_index = (np.ones(i.TranCPsX.size)*link_count).astype('int')
 
 			self.CPs += (i.TranCPsX).size	##working out the number of CPs
-			self.pipes_State_Index = np.hstack((self.pipes_State_Index,pipe_CP_index))	##adding in the link to the state index
+			self.pipes_State_Index = np.hstack((self.pipes_State_Index,i.pipe_CP_index))	##adding in the link to the state index
 			
 			i.CP_Node1 = self.pipes_State_Index.size - (i.TranCPsX).size
 			i.CP_Node2 = self.pipes_State_Index.size -1
@@ -570,7 +570,7 @@ class Network(object):
 			#print i.type
 			Bc = 0
 			Qext = i.demand
-			print Qext,i.number
+			#print Qext,i.number
 			for k in i.pipesOut:
 				#print 'pOut',k.B
 				Bc += 1./k.B
