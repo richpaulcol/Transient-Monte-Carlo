@@ -4,7 +4,7 @@ import chaospy as cp
 import os
 from Transient_Calcs import *
 import pykalman as pk
-import seaborn as sns
+#import seaborn as sns
 
 def demand_generator(filename,node,maxTime,dt,originalFlow,maxFlow,startTime,endTime):
 	"""
@@ -58,7 +58,7 @@ Distributions = cp.J(Upstream,Downstream,Demand,Roughness)
 #Net.open_epanet_file()
 
 
-#Iterations = 1000
+#Iterations = 1
 #Output = np.zeros((Iterations,len(Net.nodes),Transient_Times.size))
 
 #ret,reservoir = epa.ENgetnodeindex(str(Net.nodes[-1].Name))
@@ -76,7 +76,7 @@ Distributions = cp.J(Upstream,Downstream,Demand,Roughness)
 #		
 #	Net.run_epanet_file()				## This function runs the SS EPAnet model	
 #	Net.read_results_from_epanet()			## This function reads the SS EPAnet data into the transinet model
-#	demand_generator(Directory+'5_pipes_driving_transient.csv',6,maxTime,dt,samples[1,i]*1000.,samples[1,i]*1000.,2,30)
+#	demand_generator(Directory+'5_pipes_driving_transient.csv',6,maxTime,dt,samples[1,i]*1000.,samples[1,i]*1000.+0.5,2,30)
 #	Net.Assign_Emmiters_All()
 #	Net.Constant_Wavespeed(Wavespeed)
 #	Net.MOC_Initialisation(dt)
@@ -90,9 +90,9 @@ Distributions = cp.J(Upstream,Downstream,Demand,Roughness)
 #		
 #np.save(Directory + '5_pipes_Monte_Carlo.npy',Output)
 
-#####		Linear Transient
-#
-#	Calculating the mean inputs
+######		Linear Transient
+##
+##	Calculating the mean inputs
 
 Net = Import_EPANet_Geom(Directory+FileName)
 Net.open_epanet_file()
@@ -115,12 +115,13 @@ Net.run_epanet_file()				## This function runs the SS EPAnet model
 Net.read_results_from_epanet()
 Net.Constant_Wavespeed(Wavespeed)
 Net.Initialise_Linear_Kalman(dt)
-
+Net.dx = Wavespeed*dt
 ####	Initialising the Covariance Matrices
 COV = np.load(Directory+'InitialCOV.npy')
 Var = np.diag(COV)
 
 Net.P_Matrix = Net.P_Matrix.todense()
+Net.Q_Matrix = Net.Q_Matrix.todense()
 for i in range(Net.pipes_State_Index.size):
 	for j in range(Net.pipes_State_Index.size):
 		k = Net.pipes_State_Index.astype('int')[i]
@@ -128,17 +129,17 @@ for i in range(Net.pipes_State_Index.size):
 #		Net.P_Matrix[Net.CPs+i,Net.CPs+j] = COV[k,l]
 #		Net.P_Matrix[i,j] = COV[k+len(Net.pipes),l+len(Net.pipes)]
 		
-		Net.P_Matrix[Net.CPs-1,Net.CPs-1] = 0.1**2  		#Variance in the upstream Head BC
+		Net.P_Matrix[Net.CPs-1,Net.CPs-1] = 0.1**2  		#Variance in the upstream Head BC#
 		Net.P_Matrix[2*Net.CPs+4,2*Net.CPs+4] = 0.0001**2	#Variance in the downstream flow#
 #		Net.P_Matrix[2*Net.CPs+1,2*Net.CPs+1] = 0.0005**2	#Variance in the node 3 demand
 		
-
+		Net.Q_Matrix[Net.CPs+i,Net.CPs+i] = 8 * Net.dx* Net.pipes[k].Q_0**2 / (9.81*Net.pipes[k].diameter * np.pi**2)*1.7337e-06
 #Net.initial_BC_Uncertainty_Head(0.1)
 kf = pk.KalmanFilter()
 
 kf.transition_matrices = Net.A_Matrix.todense()
 
-kf.transition_covariance = Net.Q_Matrix.todense()
+kf.transition_covariance = Net.Q_Matrix
 
 kf.initial_state_mean = Net.X_Vector
 kf.initial_state_covariance = Net.P_Matrix
@@ -147,8 +148,8 @@ kf.initial_state_covariance = Net.P_Matrix
 StateOutput = np.zeros((Net.X_Vector.size,Transient_Times.size))
 VarianceOutput = np.zeros((Net.X_Vector.size,Net.X_Vector.size,Transient_Times.size))
 for i in range(0,Transient_Times.size):
-	if i == int(2/dt):
-		Net.X_Vector[2*Net.CPs+Net.nodes[-2].number]+=0.0005
+	#if i == int(2/dt):
+	#	Net.X_Vector[2*Net.CPs+Net.nodes[-2].number]+=0.0005
 		
 	Net.X_Vector,Net.P_Matrix = kf.filter_update(Net.X_Vector,Net.P_Matrix)
 	StateOutput[:,i] = Net.X_Vector
