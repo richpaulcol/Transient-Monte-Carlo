@@ -17,7 +17,7 @@ Node = 1
 
 f,axs = pp.subplots(nrows = 2,ncols = 1)
 axs[0].plot(Transient_Times,Mean[Node,:],'b')
-axs[1].plot(Transient_Times,Std[Node,:],'b')
+axs[1].plot(Transient_Times,Std[Node,:]**2,'b')
 #pp.figure()
 #pp.plot(Transient_Times,Mean[Node,:],'b')
 #pp.fill_between(Transient_Times, Mean[Node,:]+Std[Node,:],Mean[Node,:]-Std[Node,:],color='b',alpha = 0.5)
