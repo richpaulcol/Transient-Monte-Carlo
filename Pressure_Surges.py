@@ -6,6 +6,59 @@ from Transient_Calcs import *
 import pykalman as pk
 #import seaborn as sns
 
+from numpy import linalg as la
+
+def nearestPD(A):
+    """Find the nearest positive-definite matrix to input
+
+    A Python/Numpy port of John D'Errico's `nearestSPD` MATLAB code [1], which
+    credits [2].
+
+    [1] https://www.mathworks.com/matlabcentral/fileexchange/42885-nearestspd
+
+    [2] N.J. Higham, "Computing a nearest symmetric positive semidefinite
+    matrix" (1988): https://doi.org/10.1016/0024-3795(88)90223-6
+    """
+
+    B = (A + A.T) / 2
+    _, s, V = la.svd(B)
+
+    H = np.dot(V.T, np.dot(np.diag(s), V))
+
+    A2 = (B + H) / 2
+
+    A3 = (A2 + A2.T) / 2
+
+    if isPD(A3):
+        return A3
+
+    spacing = np.spacing(la.norm(A))
+    # The above is different from [1]. It appears that MATLAB's `chol` Cholesky
+    # decomposition will accept matrixes with exactly 0-eigenvalue, whereas
+    # Numpy's will not. So where [1] uses `eps(mineig)` (where `eps` is Matlab
+    # for `np.spacing`), we use the above definition. CAVEAT: our `spacing`
+    # will be much larger than [1]'s `eps(mineig)`, since `mineig` is usually on
+    # the order of 1e-16, and `eps(1e-16)` is on the order of 1e-34, whereas
+    # `spacing` will, for Gaussian random matrixes of small dimension, be on
+    # othe order of 1e-16. In practice, both ways converge, as the unit test
+    # below suggests.
+    I = np.eye(A.shape[0])
+    k = 1
+    while not isPD(A3):
+        mineig = np.min(np.real(la.eigvals(A3)))
+        A3 += I * (-mineig * k**2 + spacing)
+        k += 1
+
+    return A3
+    
+def isPD(B):
+    """Returns true when input is positive-definite, via Cholesky"""
+    try:
+        _ = la.cholesky(B)
+        return True
+    except la.LinAlgError:
+        return False
+
 def rescaleCOV(COV,scale):
 	from scipy import interpolate
 	mymin,mymax = 0,COV.shape[0]-1
@@ -105,10 +158,131 @@ Distributions = cp.J(Upstream,Downstream,Demand,Roughness)
 ##
 ##	Calculating the mean inputs
 
+#Net = Import_EPANet_Geom(Directory+FileName)
+#Net.open_epanet_file()
+
+#####	Setting up the initial condition
+#ret,reservoir = epa.ENgetnodeindex(str(Net.nodes[-1].Name))
+#ret,demand = epa.ENgetnodeindex(str(Net.nodes[1].Name))
+#Net.nodes[1].demand = 0.0005
+#ret,downstream = epa.ENgetnodeindex(str(Net.nodes[-2].Name))
+#Net.nodes[-2].demand = 0.001
+#ret = epa.ENsetnodevalue(reservoir,epa.EN_ELEVATION,20)
+#ret = epa.ENsetnodevalue(downstream,epa.EN_BASEDEMAND,0.001*1000.)
+#ret = epa.ENsetnodevalue(demand,epa.EN_BASEDEMAND,0.0005*1000.)
+#for j in range(len(Net.pipes)):
+#	ret,index = epa.ENgetlinkindex(str(Net.pipes[j].Name))
+#	ret,epa.ENsetlinkvalue(index,epa.EN_ROUGHNESS,1)
+
+######	Running the initial steady state
+#Net.run_epanet_file()				## This function runs the SS EPAnet model	
+#Net.read_results_from_epanet()
+#Net.Constant_Wavespeed(Wavespeed)
+#Net.Initialise_Linear_Kalman(dt)
+#Net.Assign_Emmiters_All()
+#Net.dx = Wavespeed*dt
+#####	Initialising the Covariance Matrices
+#COV = np.load(Directory+'InitialCOV.npy')
+#Var = np.diag(COV)
+
+#Net.P_Matrix = Net.P_Matrix.todense()
+#Net.Q_Matrix = Net.Q_Matrix.todense()
+##for i in range(Net.pipes_State_Index.size):
+##	for j in range(Net.pipes_State_Index.size):
+##		k = Net.pipes_State_Index.astype('int')[i]
+##		l = Net.pipes_State_Index.astype('int')[j]
+##		Net.P_Matrix[Net.CPs+i,Net.CPs+j] = COV[k,l]
+##		Net.P_Matrix[i,j] = COV[k+len(Net.pipes),l+len(Net.pipes)]
+#		
+#		
+##Net.P_Matrix[:Net.CPs,:Net.CPs] = (np.ones((50,50))*0.15)
+##Net.P_Matrix[Net.CPs:2*Net.CPs,Net.CPs:2*Net.CPs] = (np.ones((50,50))*0.01)
+##Net.P_Matrix[Net.CPs:Net.CPs+20,Net.CPs:Net.CPs+20] = (np.ones((20,20))*0.26)
+#Net.P_Matrix[0,0] = 0.1**2  				#Variance in the upstream Head BC#  (i.e. std^2)
+#Net.P_Matrix[2*Net.CPs+4,2*Net.CPs+4] = 0.0001**2	#Variance in the downstream flow#
+#Net.P_Matrix[2*Net.CPs+1,2*Net.CPs+1] = 0.0005**2	#Variance in the node 3 demand
+
+#Net.P_Matrix[:Net.CPs,:Net.CPs] = rescaleCOV(COV[5:,5:],10)
+
+#Net.P_Matrix = np.load(Directory+'InitP.npy')
+##Net.Q_Matrix[0,0] = 0.1**2*Net.dt**2  		#Variance in the upstream Head BC#
+##Net.Q_Matrix[2*Net.CPs+4,2*Net.CPs+4] = Net.dt**2*0.0001**2	#Variance in the downstream flow#
+##Net.Q_Matrix[2*Net.CPs+1,2*Net.CPs+1] = Net.dt**2*0.0005**2	#Variance in the node 3 demand
+
+
+#sigma_lam = 0.00425
+
+
+##Net.Q_Matrix[Net.CPs:2*Net.CPs,Net.CPs:2*Net.CPs] = np.diag(8 * Net.dx* Net.X_Vector[Net.CPs:2*Net.CPs]**2 / (9.81*0.1**5 * np.pi**2)) * sigma_lam**2
+
+
+##Net.Q_Matrix[Net.CPs,Net.CPs] = (4*Net.dx)/(9.81*0.1**5*np.pi)*(-Net.X_Vector[Net.CPs+1]**2 + Net.X_Vector[Net.CPs]**2)*sigma_lam**2
+##Net.Q_Matrix[2*Net.CPs-1,2*Net.CPs-1] = (4*Net.dx)/(9.81*0.1**5*np.pi)*(-Net.X_Vector[2*Net.CPs-1]**2 + Net.X_Vector[2*Net.CPs-2]**2)*sigma_lam**2
+
+
+
+####### Adding the uncertainty to the head on the pipes due to friction 
+##Net.Q_Matrix[1:Net.CPs-1,1:Net.CPs-1] =  (4*Net.dx)/(9.81*0.1**5*np.pi)  *  (-Net.X_Vector[Net.CPs+2:2*Net.CPs]**2 + Net.X_Vector[Net.CPs:2*Net.CPs-2]**2)*sigma_lam**2* Net.dt/2.
+
+
+####### Adding the uncertainty to the flow on the pipes due to friction 
+##Net.Q_Matrix[Net.CPs+1:2*Net.CPs-1,Net.CPs+1:2*Net.CPs-1] = (Net.dx/(0.1**3 * np.pi*Wavespeed))  *  (+Net.X_Vector[Net.CPs+2:2*Net.CPs]**2 + Net.X_Vector[Net.CPs:2*Net.CPs-2]**2)  *sigma_lam**2 * Net.dt/2.
+
+##fsfsdfsfs
+
+#kf = pk.KalmanFilter()
+
+#kf.transition_matrices = Net.A_Matrix.todense()
+
+#kf.transition_covariance = Net.Q_Matrix
+
+#kf.initial_state_mean = Net.X_Vector
+#kf.initial_state_covariance = Net.P_Matrix
+#Simon = kf.transition_matrices
+#Dave = Net.regenerateA()
+#StateOutput = np.zeros((Net.X_Vector.size,Transient_Times.size))
+#VarianceOutput = np.zeros((Net.X_Vector.size,Net.X_Vector.size,Transient_Times.size))
+#for i in range(0,Transient_Times.size):
+#	if i == int(2/dt):
+#		Net.X_Vector[2*Net.CPs+Net.nodes[-2].number]+=0.0005
+#		#Net.P_Matrix[2*Net.CPs+4,2*Net.CPs+4] += 0.00001**2
+#		
+#	Net.X_Vector,Net.P_Matrix = kf.filter_update(Net.X_Vector,Net.P_Matrix)
+#	StateOutput[:,i] = Net.X_Vector
+#	VarianceOutput[:,:,i] = Net.P_Matrix 
+
+#	kf.transition_matrices = Net.regenerateA()
+##	Net.Q_Matrix[1:Net.CPs-1,1:Net.CPs-1] =  (4*Net.dx)/(9.81*0.1**5*np.pi)  *  (-Net.X_Vector[Net.CPs+2:2*Net.CPs]**2 + Net.X_Vector[Net.CPs:2*Net.CPs-2]**2)*sigma_lam**2* Net.dt/2.
+##	Net.Q_Matrix[Net.CPs+1:2*Net.CPs-1,Net.CPs+1:2*Net.CPs-1] = (Net.dx/(0.1**3 * np.pi*Wavespeed))  *  (+Net.X_Vector[Net.CPs+2:2*Net.CPs]**2 + Net.X_Vector[Net.CPs:2*Net.CPs-2]**2)  *sigma_lam**2 * Net.dt/2.
+
+##np.save(Directory+'KalmanStateOutput.npy',StateOutput)
+##np.save(Directory+'KalmanVarianceOutput.npy',VarianceOutput)
+
+#import Pressure_Surges_Monte_Plotter
+#f,axs = pp.subplots(nrows = 2,ncols = 1)
+#axs[0].plot(Transient_Times,StateOutput[Net.nodal_CPs['3'],:])
+#axs[1].plot(Transient_Times,VarianceOutput[Net.nodal_CPs['3'],Net.nodal_CPs['3'],:]*2)
+
+##f,axs = pp.subplots(nrows = 4,ncols = 2)
+##axs[0,0].imshow(Simon[:50,:50])
+##axs[0,1].imshow(kf.transition_matrices[:50,:50])
+
+##axs[1,0].imshow(Simon[50:,50:])
+##axs[1,1].imshow(kf.transition_matrices[50:,50:])
+
+##axs[2,0].imshow(Simon[:50,50:])
+##axs[2,1].imshow(kf.transition_matrices[:50,50:])
+
+##axs[3,0].imshow(Simon[50:,:50])
+##axs[3,1].imshow(kf.transition_matrices[50:,:50])
+
+#pp.show()
+
+
+#####	The Unscented Transform(dt**2)*1e-15
 Net = Import_EPANet_Geom(Directory+FileName)
 Net.open_epanet_file()
-
-####	Setting up the initial condition
+#####	Setting up the initial condition
 ret,reservoir = epa.ENgetnodeindex(str(Net.nodes[-1].Name))
 ret,demand = epa.ENgetnodeindex(str(Net.nodes[1].Name))
 Net.nodes[1].demand = 0.0005
@@ -121,109 +295,82 @@ for j in range(len(Net.pipes)):
 	ret,index = epa.ENgetlinkindex(str(Net.pipes[j].Name))
 	ret,epa.ENsetlinkvalue(index,epa.EN_ROUGHNESS,1)
 
-#####	Running the initial steady state
-Net.run_epanet_file()				## This function runs the SS EPAnet model	
+####	Running the initial steady state
+Net.run_epanet_file()				# This function runs the SS EPAnet model	
 Net.read_results_from_epanet()
 Net.Constant_Wavespeed(Wavespeed)
-Net.Initialise_Linear_Kalman(dt)
-Net.Assign_Emmiters_All()
-Net.dx = Wavespeed*dt
-####	Initialising the Covariance Matrices
-COV = np.load(Directory+'InitialCOV.npy')
-Var = np.diag(COV)
+Net.MOC_Initialisation(dt)
 
-Net.P_Matrix = Net.P_Matrix.todense()
-Net.Q_Matrix = Net.Q_Matrix.todense()
-#for i in range(Net.pipes_State_Index.size):
-#	for j in range(Net.pipes_State_Index.size):
-#		k = Net.pipes_State_Index.astype('int')[i]
-#		l = Net.pipes_State_Index.astype('int')[j]
-#		Net.P_Matrix[Net.CPs+i,Net.CPs+j] = COV[k,l]
-#		Net.P_Matrix[i,j] = COV[k+len(Net.pipes),l+len(Net.pipes)]
-		
-		
-#Net.P_Matrix[:Net.CPs,:Net.CPs] = (np.ones((50,50))*0.15)
-#Net.P_Matrix[Net.CPs:2*Net.CPs,Net.CPs:2*Net.CPs] = (np.ones((50,50))*0.01)
-#Net.P_Matrix[Net.CPs:Net.CPs+20,Net.CPs:Net.CPs+20] = (np.ones((20,20))*0.26)
-Net.P_Matrix[0,0] = 0.1**2  				#Variance in the upstream Head BC#  (i.e. std^2)
-Net.P_Matrix[2*Net.CPs+4,2*Net.CPs+4] = 0.0001**2	#Variance in the downstream flow#
-Net.P_Matrix[2*Net.CPs+1,2*Net.CPs+1] = 0.0005**2	#Variance in the node 3 demand
-
-Net.P_Matrix[:Net.CPs,:Net.CPs] = rescaleCOV(COV[5:,5:],10)
-
-Net.P_Matrix = np.load('InitP.npy')
-#Net.Q_Matrix[0,0] = 0.1**2*Net.dt**2  		#Variance in the upstream Head BC#
-#Net.Q_Matrix[2*Net.CPs+4,2*Net.CPs+4] = Net.dt**2*0.0001**2	#Variance in the downstream flow#
-#Net.Q_Matrix[2*Net.CPs+1,2*Net.CPs+1] = Net.dt**2*0.0005**2	#Variance in the node 3 demand
-
-
-sigma_lam = 0.00425
-
-
-#Net.Q_Matrix[Net.CPs:2*Net.CPs,Net.CPs:2*Net.CPs] = np.diag(8 * Net.dx* Net.X_Vector[Net.CPs:2*Net.CPs]**2 / (9.81*0.1**5 * np.pi**2)) * sigma_lam**2
-
-
-#Net.Q_Matrix[Net.CPs,Net.CPs] = (4*Net.dx)/(9.81*0.1**5*np.pi)*(-Net.X_Vector[Net.CPs+1]**2 + Net.X_Vector[Net.CPs]**2)*sigma_lam**2
-#Net.Q_Matrix[2*Net.CPs-1,2*Net.CPs-1] = (4*Net.dx)/(9.81*0.1**5*np.pi)*(-Net.X_Vector[2*Net.CPs-1]**2 + Net.X_Vector[2*Net.CPs-2]**2)*sigma_lam**2
+Net.UnscentedInitialise(dt,7)
+State = Net.MOCtoStateVector(Net.X_Vector)
+State[-7:] = 1
+State[-1] = 0.0005
+State[-2] = 0.001
 
 
 
-###### Adding the uncertainty to the head on the pipes due to friction 
-#Net.Q_Matrix[1:Net.CPs-1,1:Net.CPs-1] =  (4*Net.dx)/(9.81*0.1**5*np.pi)  *  (-Net.X_Vector[Net.CPs+2:2*Net.CPs]**2 + Net.X_Vector[Net.CPs:2*Net.CPs-2]**2)*sigma_lam**2* Net.dt/2.
+Trans_Variance = np.zeros(State.shape)
+Trans_Variance[:Net.CPs] = 1e-10**2
+Trans_Variance[Net.CPs:2*Net.CPs] = 1e-10**2
+Trans_Variance[0] = 1e-10**2
+Trans_Variance[-1] =1e-15
+Trans_Variance[-2] = 1e-13
+Trans_Variance[-3] = 1e-12
+Trans_Variance[-4] = 1e-14
+Trans_Variance[-5] = 1e-12
+Trans_Variance[-6] = 1e-14
+Trans_Variance[-7] = 1e-13
+Trans_Covariance = np.diag(Trans_Variance)
 
 
-###### Adding the uncertainty to the flow on the pipes due to friction 
-#Net.Q_Matrix[Net.CPs+1:2*Net.CPs-1,Net.CPs+1:2*Net.CPs-1] = (Net.dx/(0.1**3 * np.pi*Wavespeed))  *  (+Net.X_Vector[Net.CPs+2:2*Net.CPs]**2 + Net.X_Vector[Net.CPs:2*Net.CPs-2]**2)  *sigma_lam**2 * Net.dt/2.
+Trans_Covariance = np.identity(State.size)*1e-55
+#Trans_Covariance += np.random.normal(1e-4,1e-5,Trans_Covariance.shape)
 
-#fsfsdfsfs
+Trans_Covariance = nearestPD(Trans_Covariance)
 
-kf = pk.KalmanFilter()
+AUSKF = pk.UnscentedKalmanFilter(Net.UpdateState,transition_covariance =Trans_Covariance)
 
-kf.transition_matrices = Net.A_Matrix.todense()
+P = np.zeros(State.shape)
+#P[:Net.CPs] = 1e-10**2
+#P[Net.CPs:2*Net.CPs] = 0.00001**2
+P[0] = 0.1**2
+#P[-1] = 0.0005**2
+#P[-2] = 0.0001**2
+#P[-3] = 0.4 **2
+#P[-4] = 0.4 **2
+#P[-5] = 0.4 **2
+#P[-6] = 0.4 **2
+#P[-7] = 0.4 **2
+P = np.diag(P)#*1e-10
+#P = np.identity(State.size)*1e-15
+#P += np.random.normal(1e-3,1e-5,Trans_Covariance.shape)
 
-kf.transition_covariance = Net.Q_Matrix
+P = nearestPD(P)
 
-kf.initial_state_mean = Net.X_Vector
-kf.initial_state_covariance = Net.P_Matrix
-Simon = kf.transition_matrices
-Dave = Net.regenerateA()
-StateOutput = np.zeros((Net.X_Vector.size,Transient_Times.size))
-VarianceOutput = np.zeros((Net.X_Vector.size,Net.X_Vector.size,Transient_Times.size))
-for i in range(0,Transient_Times.size):
-	if i == int(2/dt):
-		Net.X_Vector[2*Net.CPs+Net.nodes[-2].number]+=0.0005
-		#Net.P_Matrix[2*Net.CPs+4,2*Net.CPs+4] += 0.00001**2
-		
-	Net.X_Vector,Net.P_Matrix = kf.filter_update(Net.X_Vector,Net.P_Matrix)
-	StateOutput[:,i] = Net.X_Vector
-	VarianceOutput[:,:,i] = Net.P_Matrix 
+Iterations = 300
 
-	kf.transition_matrices = Net.regenerateA()
-#	Net.Q_Matrix[1:Net.CPs-1,1:Net.CPs-1] =  (4*Net.dx)/(9.81*0.1**5*np.pi)  *  (-Net.X_Vector[Net.CPs+2:2*Net.CPs]**2 + Net.X_Vector[Net.CPs:2*Net.CPs-2]**2)*sigma_lam**2* Net.dt/2.
-#	Net.Q_Matrix[Net.CPs+1:2*Net.CPs-1,Net.CPs+1:2*Net.CPs-1] = (Net.dx/(0.1**3 * np.pi*Wavespeed))  *  (+Net.X_Vector[Net.CPs+2:2*Net.CPs]**2 + Net.X_Vector[Net.CPs:2*Net.CPs-2]**2)  *sigma_lam**2 * Net.dt/2.
+States = np.zeros((State.size,Iterations))
+Ps = np.zeros((State.size,State.size,Iterations))
+States[:,0] = State
 
-np.save(Directory+'KalmanStateOutput.npy',StateOutput)
-np.save(Directory+'KalmanVarianceOutput.npy',VarianceOutput)
+for i in range(1,Iterations):
+	print i
+	
+	if i == 100:
+		State[0] = 10
+	
+	State,P = AUSKF.filter_update(State,P)
+	P = nearestPD(P)
+	#State = Net.UpdateState(State,noise = 0)
+	States[:,i] = State
+	Ps[:,:,i] = P
+	
 
-import Pressure_Surges_Monte_Plotter
 f,axs = pp.subplots(nrows = 2,ncols = 1)
-axs[0].plot(Transient_Times,StateOutput[Net.nodal_CPs['3'],:])
-axs[1].plot(Transient_Times,VarianceOutput[Net.nodal_CPs['3'],Net.nodal_CPs['3'],:]*2)
-
-#f,axs = pp.subplots(nrows = 4,ncols = 2)
-#axs[0,0].imshow(Simon[:50,:50])
-#axs[0,1].imshow(kf.transition_matrices[:50,:50])
-
-#axs[1,0].imshow(Simon[50:,50:])
-#axs[1,1].imshow(kf.transition_matrices[50:,50:])
-
-#axs[2,0].imshow(Simon[:50,50:])
-#axs[2,1].imshow(kf.transition_matrices[:50,50:])
-
-#axs[3,0].imshow(Simon[50:,:50])
-#axs[3,1].imshow(kf.transition_matrices[50:,:50])
-
-
-
+axs[0].plot(States[19,:])
+axs[1].plot(Ps[19,19,:]*2)
+#demand_generator(Directory+'5_pipes_driving_transient.csv',6,maxTime,dt,samples[1,i]*1000.,samples[1,i]*1000.+0.5,2,30)
+#Net.Control_Input(Directory+'5_pipes_driving_transient.csv')
+#Net.MOC_Run(maxTime)
 
 pp.show()

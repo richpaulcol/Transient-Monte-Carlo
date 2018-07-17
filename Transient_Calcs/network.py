@@ -865,11 +865,82 @@ class Network(object):
 		return NewA_Matrix
 		
 		
-	def initial_BC_Uncertainty_Head(self,UC_percent):
-		## Currently this function adds a fixed uncertainty to the Reservoir BC's 
-		for i in self.nodes:
-			if i.type == 'Reservoir':
-				for k in i.pipesOut:
-					self.P_Matrix[k.CP_Node1,k.CP_Node1] = UC_percent**2
-				for k in i.pipesIn:
-					self.P_Matrix[k.CP_Node2,k.CP_Node2] = UC_percent**2
+	def UnscentedInitialise(self,dt,InputVariables):
+		self.dt = dt
+		self.link_lengths = []
+		self.link_dx = []
+		self.link_length_error = []
+		self.CPs = 0
+		self.pipes_State_Index = np.array([])
+		self.InputVariables = InputVariables
+
+		link_count = 0
+		for i in self.links:
+			try:
+				i.Q_0
+				
+			except:
+				print 'No steady-state data for link', i.Name
+				break
+
+			### Ensuring the friction calc is done
+			#i.LambdaCalc()		#Usng the Friciton model as calculated from EPANet manual
+			i.friction = i.FF_0 	#Using data back calculated from EPANet
+
+			self.link_lengths.append(float(i.length))	##Length of Link
+			i.dx = i.c*dt			
+			self.link_dx.append(i.c*dt)					##Nodal distance for link
+			i.NoCPs = int(round(i.length / i.dx)+1)			##Number of CPs for link
+			self.link_length_error.append(100.*abs((i.NoCPs-1)*i.dx - i.length)/i.length)	## Max discretisation error
+			i.B = i.c/(9.81*i.area)					## This is the basic calc constant 
+			i.R = i.friction*i.dx*abs(i.Q_0) / (2*9.81*i.diameter*i.area**2)	## This is the basic friction cal which we can use if we assume that it is fixed throughout the calcualtions
+			#i.R = i.R * i.dx
+			i.TranCPsX = np.linspace(0,i.length,i.NoCPs)	##	Generating the CPs
+			i.pipe_CP_index = (np.ones(i.TranCPsX.size)*link_count).astype('int')
+
+			self.CPs += (i.TranCPsX).size	##working out the number of CPs
+			self.pipes_State_Index = np.hstack((self.pipes_State_Index,i.pipe_CP_index))	##adding in the link to the state index
+			
+			i.CP_Node1 = self.pipes_State_Index.size - (i.TranCPsX).size
+			i.CP_Node2 = self.pipes_State_Index.size -1
+			i.link_number = link_count	##Adding in the link number to the link object
+			link_count +=1
+		
+		self.X_Vector = (np.zeros((2*self.CPs+InputVariables))).T 
+		
+	def MOCtoStateVector(self,State):
+		for i in range(len(self.pipes)):
+			State[:self.CPs][self.pipes_State_Index==i] = self.pipes[i].TranH[1,:]
+			State[self.CPs:2*self.CPs][self.pipes_State_Index==i] = self.pipes[i].TranQ[1,:]
+		return State
+	
+	
+	
+	def StateVectortoMOC(self,State):
+		### Need to put the info into the TranH and TranQ [0,:] vector
+		for i in range(len(self.pipes)):
+			self.pipes[i].TranH[0,:] = State[:self.CPs][self.pipes_State_Index==i]
+			self.pipes[i].TranQ[0,:] = State[self.CPs:2*self.CPs][self.pipes_State_Index==i]
+			self.pipes[i].roughness = np.abs(State[2*self.CPs+i])
+		
+		
+		self.nodes[-1].H_0  = State[0]
+		
+		self.nodes[1].demand = State[-1]
+		self.nodes[4].demand = State[-2]
+		#self.pipes[0].TranH[0,0] = State[-3]
+		
+		
+
+	
+	def UpdateState(self,State,noise = 0):
+		#print noise
+		self.StateVectortoMOC(State+noise)
+		t=0.
+		for i in self.links:
+			i.MOC_iter(self.epsilon,t)
+		for i in self.nodes:		
+			i.MOC_iter(self.epsilon,t,self.dt)		
+				
+		State = self.MOCtoStateVector(State)
+		return State
