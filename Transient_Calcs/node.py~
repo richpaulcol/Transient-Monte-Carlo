@@ -23,7 +23,7 @@ class Node:
 		self.pipesOut = []
 		self.External_Flow = False
 		#self.ResultsFile = open('Trials/Hanoi/'+self.Name +'.csv','wb')
-		self.CdA = 0
+		
 		
 
 	def initialise_Pressure_Dependent_Demands(self):
