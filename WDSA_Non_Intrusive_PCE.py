@@ -74,3 +74,6 @@ deviation = cp.Std(foo_approx, distribution)
 
 x,y = normal_dist(expected[-1],deviation[-1]**2)
 #x,y = normal_dist(expected,deviation**2)
+
+
+

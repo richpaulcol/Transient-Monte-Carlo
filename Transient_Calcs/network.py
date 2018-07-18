@@ -936,11 +936,11 @@ class Network(object):
 	def UpdateState(self,State,noise = 0):
 		#print noise
 		self.StateVectortoMOC(State+noise)
-		t=0.
+		
 		for i in self.links:
-			i.MOC_iter(self.epsilon,t)
+			i.MOC_iter(self.epsilon,self.time)
 		for i in self.nodes:		
-			i.MOC_iter(self.epsilon,t,self.dt)		
+			i.MOC_iter(self.epsilon,self.time,self.dt)		
 				
 		State = self.MOCtoStateVector(State)
 		return State

@@ -15,9 +15,15 @@ Transient_Times = np.arange(0,maxTime,dt)
 
 Node = 1
 
-f,axs = pp.subplots(nrows = 2,ncols = 1)
+f,axs = pp.subplots(figsize=(9, 6),nrows = 2,ncols = 1,sharex=True)
 axs[0].plot(Transient_Times,Mean[Node,:],'b')
 axs[1].plot(Transient_Times,Std[Node,:]**2,'b')
+
+axs[1].set_xlabel('Time (s)')
+axs[1].set_ylabel('Variance Head (m)')
+axs[0].set_ylabel('Head (m)')
+axs[0].set_title('Node 2')
+
 #pp.figure()
 #pp.plot(Transient_Times,Mean[Node,:],'b')
 #pp.fill_between(Transient_Times, Mean[Node,:]+Std[Node,:],Mean[Node,:]-Std[Node,:],color='b',alpha = 0.5)

@@ -921,7 +921,10 @@ class Network(object):
 		for i in range(len(self.pipes)):
 			self.pipes[i].TranH[0,:] = State[:self.CPs][self.pipes_State_Index==i]
 			self.pipes[i].TranQ[0,:] = State[self.CPs:2*self.CPs][self.pipes_State_Index==i]
-			self.pipes[i].roughness = np.abs(State[2*self.CPs+i])
+			#self.pipes[i].roughness = np.abs(State[2*self.CPs+i])
+		
+		
+		self.nodes[-1].H_0  = State[0]
 		
 		self.nodes[1].demand = State[-1]
 		self.nodes[4].demand = State[-2]
@@ -933,11 +936,11 @@ class Network(object):
 	def UpdateState(self,State,noise = 0):
 		#print noise
 		self.StateVectortoMOC(State+noise)
-		t=0.
+		
 		for i in self.links:
-			i.MOC_iter(self.epsilon,t)
+			i.MOC_iter(self.epsilon,self.time)
 		for i in self.nodes:		
-			i.MOC_iter(self.epsilon,t,self.dt)		
+			i.MOC_iter(self.epsilon,self.time,self.dt)		
 				
 		State = self.MOCtoStateVector(State)
 		return State
