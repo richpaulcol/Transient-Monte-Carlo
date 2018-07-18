@@ -116,7 +116,7 @@ Distributions = cp.J(Upstream,Downstream,Demand,Roughness)
 #
 #
 
-#samples = np.load(Directory+'Transient_MC_samples.npy')
+samples = np.load(Directory+'Transient_MC_samples.npy')
 
 #Net = Import_EPANet_Geom(Directory+FileName)
 #Net.open_epanet_file()
@@ -309,31 +309,31 @@ State[-2] = 0.001
 
 
 
-Trans_Variance = np.zeros(State.shape)
-Trans_Variance[:Net.CPs] = 1e-10**2
-Trans_Variance[Net.CPs:2*Net.CPs] = 1e-10**2
-Trans_Variance[0] = 1e-10**2
-Trans_Variance[-1] =1e-15
-Trans_Variance[-2] = 1e-13
-Trans_Variance[-3] = 1e-12
-Trans_Variance[-4] = 1e-14
-Trans_Variance[-5] = 1e-12
-Trans_Variance[-6] = 1e-14
-Trans_Variance[-7] = 1e-13
-Trans_Covariance = np.diag(Trans_Variance)
+#Trans_Variance = np.zeros(State.shape)
+#Trans_Variance[:Net.CPs] = 1e-10**2
+#Trans_Variance[Net.CPs:2*Net.CPs] = 1e-10**2
+#Trans_Variance[0] = 1e-10**2
+#Trans_Variance[-1] =1e-15
+#Trans_Variance[-2] = 1e-13
+#Trans_Variance[-3] = 1e-12
+#Trans_Variance[-4] = 1e-14
+#Trans_Variance[-5] = 1e-12
+#Trans_Variance[-6] = 1e-14
+#Trans_Variance[-7] = 1e-13
+#Trans_Covariance = np.diag(Trans_Variance)
 
 
-Trans_Covariance = np.identity(State.size)*1e-55
-#Trans_Covariance += np.random.normal(1e-4,1e-5,Trans_Covariance.shape)
+#Trans_Covariance = np.identity(State.size)
+##Trans_Covariance += np.random.normal(1e-4,1e-5,Trans_Covariance.shape)
 
-Trans_Covariance = nearestPD(Trans_Covariance)
+#Trans_Covariance = nearestPD(Trans_Covariance)
 
-AUSKF = pk.UnscentedKalmanFilter(Net.UpdateState,transition_covariance =Trans_Covariance)
+#AUSKF = pk.UnscentedKalmanFilter(Net.UpdateState,transition_covariance =Trans_Covariance)
 
-P = np.zeros(State.shape)
+P = np.zeros(State.shape)*1e-100
 #P[:Net.CPs] = 1e-10**2
 #P[Net.CPs:2*Net.CPs] = 0.00001**2
-P[0] = 0.1**2
+P[0] = 0.01**2
 #P[-1] = 0.0005**2
 #P[-2] = 0.0001**2
 #P[-3] = 0.4 **2
@@ -341,36 +341,87 @@ P[0] = 0.1**2
 #P[-5] = 0.4 **2
 #P[-6] = 0.4 **2
 #P[-7] = 0.4 **2
-P = np.diag(P)#*1e-10
-#P = np.identity(State.size)*1e-15
-#P += np.random.normal(1e-3,1e-5,Trans_Covariance.shape)
+P = np.diag(P)
+##P = np.identity(State.size)*1e-15
+#P += np.random.normal(1e-20,1e-22,P.shape)
 
-P = nearestPD(P)
+#P = nearestPD(P)
 
-Iterations = 300
+#Iterations = 2000
 
-States = np.zeros((State.size,Iterations))
-Ps = np.zeros((State.size,State.size,Iterations))
-States[:,0] = State
+#States = np.zeros((State.size,Iterations))
+#Ps = np.zeros((State.size,State.size,Iterations))
+#States[:,0] = State
 
-for i in range(1,Iterations):
+#for i in range(1,Iterations):
+###	print i
+###	
+#	if i == 20:
+#		State[-2] = np.random.normal(0.0015,0.0001)
+#		State[-1] = np.random.exponential(0.0005)
+#		State[-3] = np.random.normal(1,0.4)
+#		State[-4] = np.random.normal(1,0.4)
+#		State[-5] = np.random.normal(1,0.4)
+#		State[-6] = np.random.normal(1,0.4)
+#		State[-7] = np.random.normal(1,0.4)
+###	
+###	State,P = AUSKF.filter_update(State,P)
+###	P = nearestPD(P)
+#	State = Net.UpdateState(State,noise = 0)
+#	States[:,i] = State
+#	Ps[:,:,i] = P
+##	
+
+##f,axs = pp.subplots(nrows = 2,ncols = 1)
+##axs[0].plot(States[19,:])
+##axs[1].plot(Ps[19,19,:]*2)
+###demand_generator(Directory+'5_pipes_driving_transient.csv',6,maxTime,dt,samples[1,i]*1000.,samples[1,i]*1000.+0.5,2,30)
+###Net.Control_Input(Directory+'5_pipes_driving_transient.csv')
+###Net.MOC_Run(maxTime)
+
+#pp.show()
+
+from filterpy.kalman import unscented_transform, MerweScaledSigmaPoints, JulierSigmaPoints, JulierSigmaPoints
+import scipy.stats as stats
+#InitP = np.load(Directory+'UKFInitP.npy')
+#P[:2*Net.CPs,:2*Net.CPs] = InitP[:2*Net.CPs,:2*Net.CPs]
+
+ukf_mean = State
+ukf_cov = nearestPD(P)
+
+Iterations = 200
+points = MerweScaledSigmaPoints(n=State.size, alpha=1e-3, beta=2., kappa=3-State.size)
+points =  JulierSigmaPoints(n=State.size)
+sigmas = points.sigma_points(ukf_mean,ukf_cov)
+
+sigmas_f = np.empty((Iterations,sigmas.shape[0],sigmas.shape[1]))
+sigmas_f[0,:,:] = sigmas
+for i in range(sigmas.shape[0]):
 	print i
-	
-	if i == 100:
-		State[0] = 10
-	
-	State,P = AUSKF.filter_update(State,P)
-	P = nearestPD(P)
-	#State = Net.UpdateState(State,noise = 0)
-	States[:,i] = State
-	Ps[:,:,i] = P
-	
+	for j in range(1,Iterations):
+		if j == 20:
+			sigmas_f[j-1,i,-2]+=0.0005
+		sigmas_f[j,i,:] = Net.UpdateState(sigmas_f[j-1,i,:])
+		
+#wm,wc = points.weights()
+ukf_mean = np.empty((Iterations,State.size))
+ukf_cov = np.empty((Iterations,State.size,State.size))
+ukf_mean[0,:] = State
+ukf_cov[0,:,:] = P
+for j in range(1,Iterations):	
+	ukf_mean[j,:], ukf_cov[j,:,:] = unscented_transform(sigmas_f[j,:,:], points.Wm,points.Wc)
+	#ukf_cov = nearestPD(ukf_cov)
 
-f,axs = pp.subplots(nrows = 2,ncols = 1)
-axs[0].plot(States[19,:])
-axs[1].plot(Ps[19,19,:]*2)
-#demand_generator(Directory+'5_pipes_driving_transient.csv',6,maxTime,dt,samples[1,i]*1000.,samples[1,i]*1000.+0.5,2,30)
-#Net.Control_Input(Directory+'5_pipes_driving_transient.csv')
-#Net.MOC_Run(maxTime)
+#ukf_mean = State
+#ukf_cov = nearestPD(P)
+#points = MerweScaledSigmaPoints(n=State.size, alpha=1e-2, beta=2., kappa=0)
+##points = JulierSigmaPoints(n=State.size,kappa=3-State.size)
+#points =  JulierSigmaPoints(n=State.size)
+#for i in range(10):
+#	sigmas = points.sigma_points(ukf_mean,ukf_cov)
+#	sigmas_f = np.empty(sigmas.shape)
+#	for i in range(sigmas.shape[0]):
+#		sigmas_f[i] = Net.UpdateState(sigmas[i])
+#	ukf_mean, ukf_cov = unscented_transform(sigmas_f, points.Wm,points.Wc)	
+#	ukf_cov = nearestPD(ukf_cov)
 
-pp.show()
