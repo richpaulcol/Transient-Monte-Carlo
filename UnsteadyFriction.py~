@@ -225,7 +225,7 @@ for i in range(iters):
 			QNew[0] = Q[1] + Cmm[0] * H[1] - R[0]*dT*Q[1]*abs(Q[1]) + Cmm[0]*H0
 					
 			QNew[-1] = QBC#(Cp - H[-1]) / Bp
-			HNew[-1] = (QBC - Q[-2] + Cpp[-1] * H[-2] - R[-1]*dT*Q[-2]*abs(Q[-2]))/(-Cpp[-1])
+			HNew[-1] = (QBC - Q[-2] + Cpp[-1] * H[-2] - R[-1]*dT*[Q-2]*abs(Q[-2]))/(-Cpp[-1])
 		
 		H = np.copy(HNew)
 		Q = np.copy(QNew)
