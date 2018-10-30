@@ -49,6 +49,7 @@ def Import_EPANet_Geom(inp_filename):
 	Valve_idx = {}
 	Pump_idx = {}
 	NodeCounter = 0
+	LinkCounter = 0
 	
 	#####
 	##	Running through the input file to input the Node Coordinates
@@ -146,6 +147,8 @@ def Import_EPANet_Geom(inp_filename):
                 	
                 	try:
 		        	new_Pipe = Pipe(vals[0],Node_idx[vals[1]],Node_idx[vals[2]],vals[3],vals[4],roughness)
+		        	new_Pipe.number = LinkCounter
+		        	LinkCounter+=1
 		        	Pipes.append(new_Pipe)
 		        	Pipe_idx[new_Pipe.Name] = new_Pipe
 		        except:
@@ -157,7 +160,8 @@ def Import_EPANet_Geom(inp_filename):
                 	else:
                 		roughness = vals[5]
                 	new_Valve = Valve(vals[0], Node_idx[vals[1]], Node_idx[vals[2]], vals[3], vals[4], roughness)
-                	
+                	new_Valve.number = LinkCounter
+		        LinkCounter+=1
                     	Valves.append(new_Valve)
                     	Valve_idx[new_Valve.Name] = new_Valve
                     	
@@ -165,6 +169,8 @@ def Import_EPANet_Geom(inp_filename):
                 	#print vals
                 	
 			new_Pump = Pump(vals[0], Node_idx[vals[1]], Node_idx[vals[2]], vals[3])
+			new_Pump.number = LinkCounter
+		        LinkCounter+=1
 			Pumps.append(new_Pump)
                     	Pump_idx[new_Pump.Name] = new_Pump
                     	

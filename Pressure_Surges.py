@@ -230,38 +230,38 @@ sigma_lam = 0.00425
 
 #fsfsdfsfs
 
-kf = pk.KalmanFilter()
+#kf = pk.KalmanFilter()
 
-kf.transition_matrices = Net.A_Matrix.todense()
+#kf.transition_matrices = Net.A_Matrix.todense()
 
-kf.transition_covariance = Net.Q_Matrix
+#kf.transition_covariance = Net.Q_Matrix
 
-kf.initial_state_mean = Net.X_Vector
-kf.initial_state_covariance = Net.P_Matrix
-Simon = kf.transition_matrices
-Dave = Net.regenerateA()
-StateOutput = np.zeros((Net.X_Vector.size,Transient_Times.size))
-VarianceOutput = np.zeros((Net.X_Vector.size,Net.X_Vector.size,Transient_Times.size))
-for i in range(0,Transient_Times.size):
-	if i == int(2/dt):
-		Net.X_Vector[2*Net.CPs+Net.nodes[-2].number]+=0.0005
-		#Net.P_Matrix[2*Net.CPs+4,2*Net.CPs+4] += 0.00001**2
-		
-	Net.X_Vector,Net.P_Matrix = kf.filter_update(Net.X_Vector,Net.P_Matrix)
-	StateOutput[:,i] = Net.X_Vector
-	VarianceOutput[:,:,i] = Net.P_Matrix 
+#kf.initial_state_mean = Net.X_Vector
+#kf.initial_state_covariance = Net.P_Matrix
+#Simon = kf.transition_matrices
+#Dave = Net.regenerateA()
+#StateOutput = np.zeros((Net.X_Vector.size,Transient_Times.size))
+#VarianceOutput = np.zeros((Net.X_Vector.size,Net.X_Vector.size,Transient_Times.size))
+#for i in range(0,Transient_Times.size):
+#	if i == int(2/dt):
+#		Net.X_Vector[2*Net.CPs+Net.nodes[-2].number]+=0.0005
+#		#Net.P_Matrix[2*Net.CPs+4,2*Net.CPs+4] += 0.00001**2
+#		
+#	Net.X_Vector,Net.P_Matrix = kf.filter_update(Net.X_Vector,Net.P_Matrix)
+#	StateOutput[:,i] = Net.X_Vector
+#	VarianceOutput[:,:,i] = Net.P_Matrix 
 
-	kf.transition_matrices = Net.regenerateA()
-#	Net.Q_Matrix[1:Net.CPs-1,1:Net.CPs-1] =  (4*Net.dx)/(9.81*0.1**5*np.pi)  *  (-Net.X_Vector[Net.CPs+2:2*Net.CPs]**2 + Net.X_Vector[Net.CPs:2*Net.CPs-2]**2)*sigma_lam**2* Net.dt/2.
-#	Net.Q_Matrix[Net.CPs+1:2*Net.CPs-1,Net.CPs+1:2*Net.CPs-1] = (Net.dx/(0.1**3 * np.pi*Wavespeed))  *  (+Net.X_Vector[Net.CPs+2:2*Net.CPs]**2 + Net.X_Vector[Net.CPs:2*Net.CPs-2]**2)  *sigma_lam**2 * Net.dt/2.
+#	kf.transition_matrices = Net.regenerateA()
+##	Net.Q_Matrix[1:Net.CPs-1,1:Net.CPs-1] =  (4*Net.dx)/(9.81*0.1**5*np.pi)  *  (-Net.X_Vector[Net.CPs+2:2*Net.CPs]**2 + Net.X_Vector[Net.CPs:2*Net.CPs-2]**2)*sigma_lam**2* Net.dt/2.
+##	Net.Q_Matrix[Net.CPs+1:2*Net.CPs-1,Net.CPs+1:2*Net.CPs-1] = (Net.dx/(0.1**3 * np.pi*Wavespeed))  *  (+Net.X_Vector[Net.CPs+2:2*Net.CPs]**2 + Net.X_Vector[Net.CPs:2*Net.CPs-2]**2)  *sigma_lam**2 * Net.dt/2.
 
-np.save(Directory+'KalmanStateOutput.npy',StateOutput)
-np.save(Directory+'KalmanVarianceOutput.npy',VarianceOutput)
+#np.save(Directory+'KalmanStateOutput.npy',StateOutput)
+#np.save(Directory+'KalmanVarianceOutput.npy',VarianceOutput)
 
-import Pressure_Surges_Monte_Plotter
-#f,axs = pp.subplots(nrows = 2,ncols = 1)
-axs[0].plot(Transient_Times,StateOutput[Net.nodal_CPs['3'],:])
-axs[1].plot(Transient_Times,VarianceOutput[Net.nodal_CPs['3'],Net.nodal_CPs['3'],:]*2)
+#import Pressure_Surges_Monte_Plotter
+##f,axs = pp.subplots(nrows = 2,ncols = 1)
+#axs[0].plot(Transient_Times,StateOutput[Net.nodal_CPs['3'],:])
+#axs[1].plot(Transient_Times,VarianceOutput[Net.nodal_CPs['3'],Net.nodal_CPs['3'],:]*2)
 
 #f,axs = pp.subplots(nrows = 4,ncols = 2)
 #axs[0,0].imshow(Simon[:50,:50])
@@ -479,7 +479,7 @@ pp.show()
 
 #samples = np.load(Directory+'Transient_MC_samples.npy')
 
-#Output = np.load(Directory +'5_pipes_Monte_Carlo_non_pressure_dependent_Keep.npy',mmap_mode='r')
+Output = np.load(Directory +'5_pipes_Monte_Carlo_non_pressure_dependent_Keep.npy',mmap_mode='r')
 #Mean = np.load(Directory + '5_pipes_Monte_Carlo_non_pressure_dependent_Mean.npy')
 #Std = np.load(Directory + '5_pipes_Monte_Carlo_non_pressure_dependent_Std.npy')
 
@@ -511,15 +511,26 @@ pp.show()
 
 #pp.tight_layout()
 #pp.show()
+Node = 0
+f,axs = pp.subplots(nrows = 1,ncols = 1)
+A = axs.hist(Output[:10000,Node,-1],100,density=True,alpha = 0.5)
 
-#f,axs = pp.subplots(nrows = 1,ncols = 1)
-#A = axs.hist(Output[:10000,Node,-1],100,density=True,alpha = 0.5)
+Mean = np.mean(Output[:10000,Node,-1])
+StdDev = np.std(Output[:10000,Node,-1])
+def normal_dist(mean,variance):
+	stddev = np.sqrt(variance)
+	x = np.linspace(mean-3*stddev,mean+3*stddev,100)
+	y = 1./(np.sqrt(2 * np.pi * variance)) * np.exp(- (x-mean)**2 / (2*variance))
+	return x,y
+
+
+x,y = normal_dist(Mean-0.05,StdDev**2)
 #x = np.linspace(A[1][0],A[1][-1],100)
 #y = coefs_kernal.pdf(x)
-#axs.plot(x,y)
-#axs.set_xlabel('Head (m)')
-#axs.set_ylabel('Probability')
-#axs.set_title('Node:' + str(Node+2))
-##pp.savefig(Directory+'Monte_PCE_NoSamples'+str(NoSamples)+'_Node'+str(Node+2)+'_dist')
-#pp.show()
+axs.plot(x,y)
+axs.set_xlabel('Head (m)')
+axs.set_ylabel('Probability')
+axs.set_title('Node:' + str(Node+2))
+#pp.savefig(Directory+'Monte_PCE_NoSamples'+str(NoSamples)+'_Node'+str(Node+2)+'_dist')
+pp.show()
 

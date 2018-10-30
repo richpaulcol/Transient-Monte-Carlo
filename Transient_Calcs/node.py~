@@ -73,7 +73,7 @@ class Node:
 		if self.type == 'Reservoir':
 			self.NewH = self.H_0 #+np.random.normal(0,0.1)
 			
-			self.NewH = self.pipesOut[0].TranH[0,1]
+	#		self.NewH = self.pipesOut[0].TranH[0,1]
 #			print 'Done',self.pipesOut[0].TranH[0,1],self.pipesOut[0].TranH[0,0]
 		else:
 			self.NewH = self.CC - self.BC*demand

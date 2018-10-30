@@ -44,14 +44,14 @@ class Node:
 		self.BC = 0.
 		self.CC = 0.
 		for i in self.pipesIn:
-			i.BPi = i.B + epsilon*i.R[-1]*abs(i.TranQ[-2,-2])
-			i.CPi = i.TranH[-2,-2] + i.TranQ[-2,-2]*(i.B - i.R[-1]*abs(i.TranQ[-2,-2])*(1-epsilon))
+			i.BPi = i.B + epsilon*i.Rp[-1]*abs(i.TranQ[-2,-2])
+			i.CPi = i.TranH[-2,-2] + i.TranQ[-2,-2]*(i.B - i.Rp[-1]*abs(i.TranQ[-2,-2])*(1-epsilon))
 			self.BC += 1./i.BPi
 			self.CC += i.CPi / i.BPi
 		
 		for i in self.pipesOut:
-			i.BMi = i.B + epsilon*i.R[0]*abs(i.TranQ[-2,1])
-			i.CMi =  i.TranH[-2,1] - i.TranQ[-2,1]*(i.B - i.R[0]*abs(i.TranQ[-2,1])*(1-epsilon))
+			i.BMi = i.B + epsilon*i.Rm[0]*abs(i.TranQ[-2,1])
+			i.CMi =  i.TranH[-2,1] - i.TranQ[-2,1]*(i.B - i.Rm[0]*abs(i.TranQ[-2,1])*(1-epsilon))
 			self.BC += 1./i.BMi
 			self.CC += i.CMi / i.BMi
 			
