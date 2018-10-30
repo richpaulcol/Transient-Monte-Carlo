@@ -158,98 +158,100 @@ samples = np.load(Directory+'Transient_MC_samples.npy')
 ##
 ##	Calculating the mean inputs
 
-Net = Import_EPANet_Geom(Directory+FileName)
-Net.open_epanet_file()
+#Net = Import_EPANet_Geom(Directory+FileName)
+#Net.open_epanet_file()
 
-####	Setting up the initial condition
-ret,reservoir = epa.ENgetnodeindex(str(Net.nodes[-1].Name))
-ret,demand = epa.ENgetnodeindex(str(Net.nodes[1].Name))
-Net.nodes[1].demand = 0.0005
-ret,downstream = epa.ENgetnodeindex(str(Net.nodes[-2].Name))
-Net.nodes[-2].demand = 0.001
-ret = epa.ENsetnodevalue(reservoir,epa.EN_ELEVATION,20)
-ret = epa.ENsetnodevalue(downstream,epa.EN_BASEDEMAND,0.001*1000.)
-ret = epa.ENsetnodevalue(demand,epa.EN_BASEDEMAND,0.0005*1000.)
-for j in range(len(Net.pipes)):
-	ret,index = epa.ENgetlinkindex(str(Net.pipes[j].Name))
-	ret,epa.ENsetlinkvalue(index,epa.EN_ROUGHNESS,1)
+#####	Setting up the initial condition
+#ret,reservoir = epa.ENgetnodeindex(str(Net.nodes[-1].Name))
+#ret,demand = epa.ENgetnodeindex(str(Net.nodes[1].Name))
+#Net.nodes[1].demand = 0.0005
+#ret,downstream = epa.ENgetnodeindex(str(Net.nodes[-2].Name))
+#Net.nodes[-2].demand = 0.001
+#ret = epa.ENsetnodevalue(reservoir,epa.EN_ELEVATION,20)
+#ret = epa.ENsetnodevalue(downstream,epa.EN_BASEDEMAND,0.001*1000.)
+#ret = epa.ENsetnodevalue(demand,epa.EN_BASEDEMAND,0.0005*1000.)
+#for j in range(len(Net.pipes)):
+#	ret,index = epa.ENgetlinkindex(str(Net.pipes[j].Name))
+#	ret,epa.ENsetlinkvalue(index,epa.EN_ROUGHNESS,1)
 
-#####	Running the initial steady state
-Net.run_epanet_file()				## This function runs the SS EPAnet model	
-Net.read_results_from_epanet()
-Net.Constant_Wavespeed(Wavespeed)
-Net.Initialise_Linear_Kalman(dt)
-Net.Assign_Emmiters_All()
-Net.dx = Wavespeed*dt
-####	Initialising the Covariance Matrices
-COV = np.load(Directory+'InitialCOV.npy')
-Var = np.diag(COV)
+######	Running the initial steady state
+#Net.run_epanet_file()				## This function runs the SS EPAnet model	
+#Net.read_results_from_epanet()
+#Net.Constant_Wavespeed(Wavespeed)
+#Net.Initialise_Linear_Kalman(dt)
+#Net.Assign_Emmiters_All()
+#Net.dx = Wavespeed*dt
+#####	Initialising the Covariance Matrices
+#COV = np.load(Directory+'InitialCOV.npy')
+#Var = np.diag(COV)
 
-Net.P_Matrix = Net.P_Matrix.todense()
-Net.Q_Matrix = Net.Q_Matrix.todense()
-#for i in range(Net.pipes_State_Index.size):
-#	for j in range(Net.pipes_State_Index.size):
-#		k = Net.pipes_State_Index.astype('int')[i]
-#		l = Net.pipes_State_Index.astype('int')[j]
-#		Net.P_Matrix[Net.CPs+i,Net.CPs+j] = COV[k,l]
-#		Net.P_Matrix[i,j] = COV[k+len(Net.pipes),l+len(Net.pipes)]
-		
-		
-#Net.P_Matrix[:Net.CPs,:Net.CPs] = (np.ones((50,50))*0.15)
-#Net.P_Matrix[Net.CPs:2*Net.CPs,Net.CPs:2*Net.CPs] = (np.ones((50,50))*0.01)
-#Net.P_Matrix[Net.CPs:Net.CPs+20,Net.CPs:Net.CPs+20] = (np.ones((20,20))*0.26)
-Net.P_Matrix[0,0] = 0.1**2  				#Variance in the upstream Head BC#  (i.e. std^2)
-Net.P_Matrix[2*Net.CPs+4,2*Net.CPs+4] = 0.0001**2	#Variance in the downstream flow#
-Net.P_Matrix[2*Net.CPs+1,2*Net.CPs+1] = 0.0005**2	#Variance in the node 3 demand
-
-Net.P_Matrix[:Net.CPs,:Net.CPs] = rescaleCOV(COV[5:,5:],10)
-
-Net.P_Matrix = np.load(Directory+'InitP.npy')
-#Net.Q_Matrix[0,0] = 0.1**2*Net.dt**2  		#Variance in the upstream Head BC#
-#Net.Q_Matrix[2*Net.CPs+4,2*Net.CPs+4] = Net.dt**2*0.0001**2	#Variance in the downstream flow#
-#Net.Q_Matrix[2*Net.CPs+1,2*Net.CPs+1] = Net.dt**2*0.0005**2	#Variance in the node 3 demand
-
-
-sigma_lam = 0.00425
-
-
-#Net.Q_Matrix[Net.CPs:2*Net.CPs,Net.CPs:2*Net.CPs] = np.diag(8 * Net.dx* Net.X_Vector[Net.CPs:2*Net.CPs]**2 / (9.81*0.1**5 * np.pi**2)) * sigma_lam**2
-
-
-#Net.Q_Matrix[Net.CPs,Net.CPs] = (4*Net.dx)/(9.81*0.1**5*np.pi)*(-Net.X_Vector[Net.CPs+1]**2 + Net.X_Vector[Net.CPs]**2)*sigma_lam**2
-#Net.Q_Matrix[2*Net.CPs-1,2*Net.CPs-1] = (4*Net.dx)/(9.81*0.1**5*np.pi)*(-Net.X_Vector[2*Net.CPs-1]**2 + Net.X_Vector[2*Net.CPs-2]**2)*sigma_lam**2
-
-
-
-###### Adding the uncertainty to the head on the pipes due to friction 
-#Net.Q_Matrix[1:Net.CPs-1,1:Net.CPs-1] =  (4*Net.dx)/(9.81*0.1**5*np.pi)  *  (-Net.X_Vector[Net.CPs+2:2*Net.CPs]**2 + Net.X_Vector[Net.CPs:2*Net.CPs-2]**2)*sigma_lam**2* Net.dt/2.
-
-
-###### Adding the uncertainty to the flow on the pipes due to friction 
-#Net.Q_Matrix[Net.CPs+1:2*Net.CPs-1,Net.CPs+1:2*Net.CPs-1] = (Net.dx/(0.1**3 * np.pi*Wavespeed))  *  (+Net.X_Vector[Net.CPs+2:2*Net.CPs]**2 + Net.X_Vector[Net.CPs:2*Net.CPs-2]**2)  *sigma_lam**2 * Net.dt/2.
-
-#fsfsdfsfs
-
-#kf = pk.KalmanFilter()
-
-#kf.transition_matrices = Net.A_Matrix.todense()
-
-#kf.transition_covariance = Net.Q_Matrix
-
-#kf.initial_state_mean = Net.X_Vector
-#kf.initial_state_covariance = Net.P_Matrix
-#Simon = kf.transition_matrices
-#Dave = Net.regenerateA()
-#StateOutput = np.zeros((Net.X_Vector.size,Transient_Times.size))
-#VarianceOutput = np.zeros((Net.X_Vector.size,Net.X_Vector.size,Transient_Times.size))
-#for i in range(0,Transient_Times.size):
-#	if i == int(2/dt):
-#		Net.X_Vector[2*Net.CPs+Net.nodes[-2].number]+=0.0005
-#		#Net.P_Matrix[2*Net.CPs+4,2*Net.CPs+4] += 0.00001**2
+#Net.P_Matrix = Net.P_Matrix.todense()
+#Net.Q_Matrix = Net.Q_Matrix.todense()
+##for i in range(Net.pipes_State_Index.size):
+##	for j in range(Net.pipes_State_Index.size):
+##		k = Net.pipes_State_Index.astype('int')[i]
+##		l = Net.pipes_State_Index.astype('int')[j]
+##		Net.P_Matrix[Net.CPs+i,Net.CPs+j] = COV[k,l]
+##		Net.P_Matrix[i,j] = COV[k+len(Net.pipes),l+len(Net.pipes)]
 #		
-#	Net.X_Vector,Net.P_Matrix = kf.filter_update(Net.X_Vector,Net.P_Matrix)
-#	StateOutput[:,i] = Net.X_Vector
-#	VarianceOutput[:,:,i] = Net.P_Matrix 
+#		
+##Net.P_Matrix[:Net.CPs,:Net.CPs] = (np.ones((50,50))*0.15)
+##Net.P_Matrix[Net.CPs:2*Net.CPs,Net.CPs:2*Net.CPs] = (np.ones((50,50))*0.01)
+##Net.P_Matrix[Net.CPs:Net.CPs+20,Net.CPs:Net.CPs+20] = (np.ones((20,20))*0.26)
+#Net.P_Matrix[0,0] = 0.1**2  				#Variance in the upstream Head BC#  (i.e. std^2)
+#Net.P_Matrix[2*Net.CPs+4,2*Net.CPs+4] = 0.0001**2	#Variance in the downstream flow#
+#Net.P_Matrix[2*Net.CPs+1,2*Net.CPs+1] = 0.0005**2	#Variance in the node 3 demand
+
+#Net.P_Matrix[:Net.CPs,:Net.CPs] = rescaleCOV(COV[5:,5:],10)
+
+#Net.P_Matrix = np.load(Directory+'InitP.npy')
+##Net.Q_Matrix[0,0] = 0.1**2*Net.dt**2  		#Variance in the upstream Head BC#
+##Net.Q_Matrix[2*Net.CPs+4,2*Net.CPs+4] = Net.dt**2*0.0001**2	#Variance in the downstream flow#
+##Net.Q_Matrix[2*Net.CPs+1,2*Net.CPs+1] = Net.dt**2*0.0005**2	#Variance in the node 3 demand
+
+
+#sigma_lam = 0.00425
+
+
+##Net.Q_Matrix[Net.CPs:2*Net.CPs,Net.CPs:2*Net.CPs] = np.diag(8 * Net.dx* Net.X_Vector[Net.CPs:2*Net.CPs]**2 / (9.81*0.1**5 * np.pi**2)) * sigma_lam**2
+
+
+##Net.Q_Matrix[Net.CPs,Net.CPs] = (4*Net.dx)/(9.81*0.1**5*np.pi)*(-Net.X_Vector[Net.CPs+1]**2 + Net.X_Vector[Net.CPs]**2)*sigma_lam**2
+##Net.Q_Matrix[2*Net.CPs-1,2*Net.CPs-1] = (4*Net.dx)/(9.81*0.1**5*np.pi)*(-Net.X_Vector[2*Net.CPs-1]**2 + Net.X_Vector[2*Net.CPs-2]**2)*sigma_lam**2
+
+
+
+####### Adding the uncertainty to the head on the pipes due to friction 
+##Net.Q_Matrix[1:Net.CPs-1,1:Net.CPs-1] =  (4*Net.dx)/(9.81*0.1**5*np.pi)  *  (-Net.X_Vector[Net.CPs+2:2*Net.CPs]**2 + Net.X_Vector[Net.CPs:2*Net.CPs-2]**2)*sigma_lam**2* Net.dt/2.
+
+
+####### Adding the uncertainty to the flow on the pipes due to friction 
+##Net.Q_Matrix[Net.CPs+1:2*Net.CPs-1,Net.CPs+1:2*Net.CPs-1] = (Net.dx/(0.1**3 * np.pi*Wavespeed))  *  (+Net.X_Vector[Net.CPs+2:2*Net.CPs]**2 + Net.X_Vector[Net.CPs:2*Net.CPs-2]**2)  *sigma_lam**2 * Net.dt/2.
+
+##fsfsdfsfs
+
+==== BASE ====
+kf = pk.KalmanFilter()
+
+kf.transition_matrices = Net.A_Matrix.todense()
+
+kf.transition_covariance = Net.Q_Matrix
+
+kf.initial_state_mean = Net.X_Vector
+kf.initial_state_covariance = Net.P_Matrix
+Simon = kf.transition_matrices
+Dave = Net.regenerateA()
+StateOutput = np.zeros((Net.X_Vector.size,Transient_Times.size))
+VarianceOutput = np.zeros((Net.X_Vector.size,Net.X_Vector.size,Transient_Times.size))
+for i in range(0,Transient_Times.size):
+	if i == int(2/dt):
+		Net.X_Vector[2*Net.CPs+Net.nodes[-2].number]+=0.0005
+		#Net.P_Matrix[2*Net.CPs+4,2*Net.CPs+4] += 0.00001**2
+		
+	Net.X_Vector,Net.P_Matrix = kf.filter_update(Net.X_Vector,Net.P_Matrix)
+	StateOutput[:,i] = Net.X_Vector
+	VarianceOutput[:,:,i] = Net.P_Matrix 
+==== BASE ====
 
 #	kf.transition_matrices = Net.regenerateA()
 ##	Net.Q_Matrix[1:Net.CPs-1,1:Net.CPs-1] =  (4*Net.dx)/(9.81*0.1**5*np.pi)  *  (-Net.X_Vector[Net.CPs+2:2*Net.CPs]**2 + Net.X_Vector[Net.CPs:2*Net.CPs-2]**2)*sigma_lam**2* Net.dt/2.
@@ -477,56 +479,46 @@ pp.show()
 ##
 #
 
-#samples = np.load(Directory+'Transient_MC_samples.npy')
+samples = np.load(Directory+'Transient_MC_samples.npy')
 
-Output = np.load(Directory +'5_pipes_Monte_Carlo_non_pressure_dependent_Keep.npy',mmap_mode='r')
+MCDirectory = '/media/dickie/Seagate Expansion Drive/Transient-Monte-Carlo/Projects/Pressure_Surges_Models/'
+Output = np.load(MCDirectory +'5_pipes_Monte_Carlo_non_pressure_dependent_Keep.npy',mmap_mode='r')
 #Mean = np.load(Directory + '5_pipes_Monte_Carlo_non_pressure_dependent_Mean.npy')
 #Std = np.load(Directory + '5_pipes_Monte_Carlo_non_pressure_dependent_Std.npy')
 
 
-#Node = 0
-#Order = 3
-#NoSamples = 200
-#polynomial_expansion = cp.orth_ttr(Order, Distributions)
-#foo_approx = cp.fit_regression(polynomial_expansion, samples[:,:NoSamples], Output[:NoSamples,Node,:])
-#expected = cp.E(foo_approx, Distributions)
-#deviation = cp.Std(foo_approx, Distributions)
-#coefs_kernal = cp.descriptives.misc.QoI_Dist(foo_approx[-1],Distributions)
-
-#f,axs = pp.subplots(figsize=(9, 6),nrows = 2,ncols = 1,sharex=True)
-#axs[0].plot(Transient_Times,expected,'k')
-#axs[1].plot(Transient_Times,deviation**2,'k')
-
-#axs[0].plot(Transient_Times,Mean[Node,:],'b')
-#axs[1].plot(Transient_Times,Std[Node,:]**2,'b')
-
-
-
-#axs[1].set_xlabel('Time (s)')
-#axs[1].set_ylabel('Variance Head (m)')
-#axs[0].set_ylabel('Head (m)')
-#axs[0].set_title('Node:' + str(Node+2))
-
-##pp.savefig(Directory+'Monte_PCE_NoSamples'+str(NoSamples)+'_Node'+str(Node+2))
-
-#pp.tight_layout()
-#pp.show()
 Node = 0
+Order = 3
+NoSamples = 200
+polynomial_expansion = cp.orth_ttr(Order, Distributions)
+foo_approx = cp.fit_regression(polynomial_expansion, samples[:,:NoSamples], Output[:NoSamples,Node,:])
+expected = cp.E(foo_approx, Distributions)
+deviation = cp.Std(foo_approx, Distributions)
+coefs_kernal = cp.descriptives.misc.QoI_Dist(foo_approx[-1],Distributions)
+
+f,axs = pp.subplots(figsize=(9, 6),nrows = 2,ncols = 1,sharex=True)
+axs[0].plot(Transient_Times,expected,'k')
+axs[1].plot(Transient_Times,deviation**2,'k')
+
+axs[0].plot(Transient_Times,Mean[Node,:],'b')
+axs[1].plot(Transient_Times,Std[Node,:]**2,'b')
+
+
+
+axs[1].set_xlabel('Time (s)')
+axs[1].set_ylabel('Variance Head (m)')
+axs[0].set_ylabel('Head (m)')
+axs[0].set_title('Node:' + str(Node+2))
+
+#pp.savefig(Directory+'Monte_PCE_NoSamples'+str(NoSamples)+'_Node'+str(Node+2))
+
+pp.tight_layout()
+pp.show()
+
 f,axs = pp.subplots(nrows = 1,ncols = 1)
 A = axs.hist(Output[:10000,Node,-1],100,density=True,alpha = 0.5)
-
-Mean = np.mean(Output[:10000,Node,-1])
-StdDev = np.std(Output[:10000,Node,-1])
-def normal_dist(mean,variance):
-	stddev = np.sqrt(variance)
-	x = np.linspace(mean-3*stddev,mean+3*stddev,100)
-	y = 1./(np.sqrt(2 * np.pi * variance)) * np.exp(- (x-mean)**2 / (2*variance))
-	return x,y
-
-
-x,y = normal_dist(Mean-0.05,StdDev**2)
-#x = np.linspace(A[1][0],A[1][-1],100)
-#y = coefs_kernal.pdf(x)
+x = np.linspace(A[1][0],A[1][-1],100)
+y = coefs_kernal.pdf(x)
 axs.plot(x,y)
 axs.set_xlabel('Head (m)')
 axs.set_ylabel('Probability')
