@@ -101,12 +101,12 @@ Transient_Times = np.arange(0,maxTime,dt)
 #	Demand at node3 = Exp(0.0005)
 #	Roughness = N(1,0.4)
 
-Upstream = cp.Normal(20,0.1)
-Downstream = cp.Normal(0.001,0.0001)
-Demand = cp.Exponential(0.0005)
-Roughness = cp.J(cp.Normal(1,0.4),cp.Normal(1,0.4),cp.Normal(1,0.4),cp.Normal(1,0.4),cp.Normal(1,0.4))
+#Upstream = cp.Normal(20,0.1)
+#Downstream = cp.Normal(0.001,0.0001)
+#Demand = cp.Exponential(0.0005)
+#Roughness = cp.J(cp.Normal(1,0.4),cp.Normal(1,0.4),cp.Normal(1,0.4),cp.Normal(1,0.4),cp.Normal(1,0.4))
 
-Distributions = cp.J(Upstream,Downstream,Demand,Roughness)
+#Distributions = cp.J(Upstream,Downstream,Demand,Roughness)
 #samples = Distributions.sample(100000,'S')
 #np.save(Directory+'Transient_MC_samples.npy',samples)
 
@@ -116,7 +116,7 @@ Distributions = cp.J(Upstream,Downstream,Demand,Roughness)
 #
 #
 
-samples = np.load(Directory+'Transient_MC_samples.npy')
+#samples = np.load(Directory+'Transient_MC_samples.npy')
 
 #Net = Import_EPANet_Geom(Directory+FileName)
 #Net.open_epanet_file()
@@ -276,54 +276,54 @@ samples = np.load(Directory+'Transient_MC_samples.npy')
 #axs[3,0].imshow(Simon[50:,:50])
 #axs[3,1].imshow(kf.transition_matrices[50:,:50])
 
-pp.show()
+#pp.show()
 
 
 #####	The Unscented Transform
 ##
 #
 
-#Net = Import_EPANet_Geom(Directory+FileName)
-#Net.open_epanet_file()
-######	Setting up the initial condition
-#ret,reservoir = epa.ENgetnodeindex(str(Net.nodes[-1].Name))
-#ret,demand = epa.ENgetnodeindex(str(Net.nodes[1].Name))
-#Net.nodes[1].demand = 0.0005
-#ret,downstream = epa.ENgetnodeindex(str(Net.nodes[-2].Name))
-#Net.nodes[-2].demand = 0.001
-#ret = epa.ENsetnodevalue(reservoir,epa.EN_ELEVATION,20)
-#ret = epa.ENsetnodevalue(downstream,epa.EN_BASEDEMAND,0.001*1000.)
-#ret = epa.ENsetnodevalue(demand,epa.EN_BASEDEMAND,0.0005*1000.)
-#for j in range(len(Net.pipes)):
-#	ret,index = epa.ENgetlinkindex(str(Net.pipes[j].Name))
-#	ret,epa.ENsetlinkvalue(index,epa.EN_ROUGHNESS,1)
+Net = Import_EPANet_Geom(Directory+FileName)
+Net.open_epanet_file()
+#####	Setting up the initial condition
+ret,reservoir = epa.ENgetnodeindex(str(Net.nodes[-1].Name))
+ret,demand = epa.ENgetnodeindex(str(Net.nodes[1].Name))
+Net.nodes[1].demand = 0.0005
+ret,downstream = epa.ENgetnodeindex(str(Net.nodes[-2].Name))
+Net.nodes[-2].demand = 0.001
+ret = epa.ENsetnodevalue(reservoir,epa.EN_ELEVATION,20)
+ret = epa.ENsetnodevalue(downstream,epa.EN_BASEDEMAND,0.001*1000.)
+ret = epa.ENsetnodevalue(demand,epa.EN_BASEDEMAND,0.0005*1000.)
+for j in range(len(Net.pipes)):
+	ret,index = epa.ENgetlinkindex(str(Net.pipes[j].Name))
+	ret,epa.ENsetlinkvalue(index,epa.EN_ROUGHNESS,1)
 
-#####	Running the initial steady state
-#Net.run_epanet_file()				# This function runs the SS EPAnet model	
-#Net.read_results_from_epanet()
-#Net.Constant_Wavespeed(Wavespeed)
-#Net.MOC_Initialisation(dt)
+####	Running the initial steady state
+Net.run_epanet_file()				# This function runs the SS EPAnet model	
+Net.read_results_from_epanet()
+Net.Constant_Wavespeed(Wavespeed)
+Net.MOC_Initialisation(dt)
 
-#Net.UnscentedInitialise(dt,7)
-#State = Net.MOCtoStateVector(Net.X_Vector)
-#State[-7:] = 1
-#State[-1] = 0.0005
-#State[-2] = 0.001
-#Net.dx = Wavespeed*dt
+Net.UnscentedInitialise(dt,7)
+State = Net.MOCtoStateVector(Net.X_Vector)
+State[-7:] = 1
+State[-1] = 0.0005
+State[-2] = 0.001
+Net.dx = Wavespeed*dt
 
 
-##Trans_Variance = np.zeros(State.shape)
-##Trans_Variance[:Net.CPs] = 1e-10**2
-##Trans_Variance[Net.CPs:2*Net.CPs] = 1e-10**2
-##Trans_Variance[0] = 1e-10**2
-##Trans_Variance[-1] =1e-15
-##Trans_Variance[-2] = 1e-13
-##Trans_Variance[-3] = 1e-12
-##Trans_Variance[-4] = 1e-14
-##Trans_Variance[-5] = 1e-12
-##Trans_Variance[-6] = 1e-14
-##Trans_Variance[-7] = 1e-13
-##Trans_Covariance = np.diag(Trans_Variance)
+Trans_Variance = np.zeros(State.shape)
+Trans_Variance[:Net.CPs] = 1e-10**2
+Trans_Variance[Net.CPs:2*Net.CPs] = 1e-10**2
+Trans_Variance[0] = 1e-10**2
+Trans_Variance[-1] =1e-15
+Trans_Variance[-2] = 1e-13
+Trans_Variance[-3] = 1e-12
+Trans_Variance[-4] = 1e-14
+Trans_Variance[-5] = 1e-12
+Trans_Variance[-6] = 1e-14
+Trans_Variance[-7] = 1e-13
+Trans_Covariance = np.diag(Trans_Variance)
 
 
 ##Trans_Covariance = np.identity(State.size)
@@ -331,21 +331,21 @@ pp.show()
 
 ##Trans_Covariance = nearestPD(Trans_Covariance)
 
-#AUSKF = pk.UnscentedKalmanFilter(Net.UpdateState,transition_covariance =Trans_Covariance)
+AUSKF = pk.UnscentedKalmanFilter(Net.UpdateState,transition_covariance =Trans_Covariance)
 
-#P = np.ones(State.shape)*1e-100
+P = np.ones(State.shape)*1e-100
 
 ##P[:Net.CPs] = 1e-10**2
 ##P[Net.CPs:2*Net.CPs] = 0.00001**2
-#P[0] = 0.1**2
-#P[-1] = 0.0005**2/1.6
-#P[-2] = 0.0001**2
-#P[-3] = 0.4 **2
-#P[-4] = 0.4 **2
-#P[-5] = 0.4 **2
-#P[-6] = 0.4 **2
-#P[-7] = 0.4 **2
-#P = np.diag(P)
+P[0] = 0.1**2
+P[-1] = 0.0005**2/1.6
+P[-2] = 0.0001**2
+P[-3] = 0.4 **2
+P[-4] = 0.4 **2
+P[-5] = 0.4 **2
+P[-6] = 0.4 **2
+P[-7] = 0.4 **2
+P = np.diag(P)
 ###P = np.identity(State.size)*1e-15
 ##P += np.random.normal(1e-20,1e-22,P.shape)
 
@@ -367,24 +367,26 @@ pp.show()
 ##Ps = np.zeros((State.size,State.size,Iterations))
 ##States[:,0] = State
 
-##for i in range(1,Iterations):
-####	print i
-####	
-##	if i == 20:
-##		State[-2] = np.random.normal(0.0015,0.0001)
-##		State[-1] = np.random.exponential(0.0005)
-##		State[-3] = np.random.normal(1,0.4)
-##		State[-4] = np.random.normal(1,0.4)
-##		State[-5] = np.random.normal(1,0.4)
-##		State[-6] = np.random.normal(1,0.4)
-##		State[-7] = np.random.normal(1,0.4)
-####	
-####	State,P = AUSKF.filter_update(State,P)
-####	P = nearestPD(P)
-##	State = Net.UpdateState(State,noise = 0)
-##	States[:,i] = State
-##	Ps[:,:,i] = P
+#Iterations = 3
+
+#for i in range(1,Iterations):
+###	print i
 ###	
+#	if i == 20:
+#		State[-2] = np.random.normal(0.0015,0.0001)
+#		State[-1] = np.random.exponential(0.0005)
+#		State[-3] = np.random.normal(1,0.4)
+#		State[-4] = np.random.normal(1,0.4)
+#		State[-5] = np.random.normal(1,0.4)
+#		State[-6] = np.random.normal(1,0.4)
+#		State[-7] = np.random.normal(1,0.4)
+###	
+###	State,P = AUSKF.filter_update(State,P)
+###	P = nearestPD(P)
+#	State = Net.UpdateState(State,noise = 0)
+#	States[:,i] = State
+#	Ps[:,:,i] = P
+#	
 
 ###f,axs = pp.subplots(nrows = 2,ncols = 1)
 ###axs[0].plot(States[19,:])
@@ -395,53 +397,53 @@ pp.show()
 
 ##pp.show()
 
-#from filterpy.kalman import unscented_transform, MerweScaledSigmaPoints, JulierSigmaPoints, JulierSigmaPoints
-#import scipy.stats as stats
-##InitP = np.load(Directory+'UKFInitP.npy')
-##P[:2*Net.CPs,:2*Net.CPs] = InitP[:2*Net.CPs,:2*Net.CPs]
+from filterpy.kalman import unscented_transform, MerweScaledSigmaPoints, JulierSigmaPoints, JulierSigmaPoints
+import scipy.stats as stats
+#InitP = np.load(Directory+'UKFInitP.npy')
+#P[:2*Net.CPs,:2*Net.CPs] = InitP[:2*Net.CPs,:2*Net.CPs]
 
-#ukf_mean = State
-#ukf_cov = nearestPD(P)
+ukf_mean = State
+ukf_cov = nearestPD(P)
 
-#Iterations = 3000
-#points = MerweScaledSigmaPoints(n=State.size, alpha=1e-3, beta=2., kappa=3-State.size)
-#points =  JulierSigmaPoints(n=State.size)
-#sigmas = points.sigma_points(ukf_mean,ukf_cov)
+Iterations = 3000
+points = MerweScaledSigmaPoints(n=State.size, alpha=1e-3, beta=2., kappa=3-State.size)
+points =  JulierSigmaPoints(n=State.size,kappa = 0)
+sigmas = points.sigma_points(ukf_mean,ukf_cov)
 
-#sigmas_f = np.empty((Iterations,sigmas.shape[0],sigmas.shape[1]))
-#sigmas_f[0,:,:] = sigmas
-#for i in range(sigmas.shape[0]):
-#	print i
-#	
-#	#print s
-#	ret,reservoir = epa.ENgetnodeindex(str(Net.nodes[-1].Name))
-#	ret,demand = epa.ENgetnodeindex(str(Net.nodes[1].Name))
-#	Net.nodes[1].demand = sigmas_f[0,i,-1]
-#	ret,downstream = epa.ENgetnodeindex(str(Net.nodes[-2].Name))
-#	Net.nodes[-2].demand = sigmas_f[0,i,-2]
-#	#demand_generator(Directory+'5_pipes_driving_transient.csv',6,maxTime,dt,sigmas_f[0,i,-2]*1000.,sigmas_f[0,i,-2]*1000.+0.5,2,30)https://www.sheffield.ac.uk/
-#	#Net.Control_Input(Directory+'5_pipes_driving_transient.csv')
-#	
-#	ret = epa.ENsetnodevalue(reservoir,epa.EN_ELEVATION,sigmas_f[0,i,0])
-#	ret = epa.ENsetnodevalue(downstream,epa.EN_BASEDEMAND,sigmas_f[0,i,-2]*1000.)
-#	ret = epa.ENsetnodevalue(demand,epa.EN_BASEDEMAND,sigmas_f[0,i,-1]*1000.)
-#	
-#	for j in range(len(Net.pipes)):
-#		ret,index = epa.ENgetlinkindex(str(Net.pipes[j].Name))
-#		ret,epa.ENsetlinkvalue(index,epa.EN_ROUGHNESS,sigmas_f[0,i,2*Net.CPs+j])
-#		
-#	Net.run_epanet_file()				# This function runs the SS EPAnet model	
-#	Net.read_results_from_epanet()
-#	Net.Constant_Wavespeed(Wavespeed)
-#	Net.MOC_Initialisation(dt)
-#	Net.UnscentedInitialise(dt,7)
-#	Net.time = 0
-#	for j in range(1,Iterations):
-#		if j == 200:
-#			sigmas_f[j-1,i,-2]+=0.0005
-#		Net.time  += Net.dt
-#		sigmas_f[j,i,:] = Net.UpdateState(sigmas_f[j-1,i,:])
-#		
+sigmas_f = np.empty((Iterations,sigmas.shape[0],sigmas.shape[1]))
+sigmas_f[0,:,:] = sigmas
+for i in range(sigmas.shape[0]):
+	print i
+	
+	#print s
+	ret,reservoir = epa.ENgetnodeindex(str(Net.nodes[-1].Name))
+	ret,demand = epa.ENgetnodeindex(str(Net.nodes[1].Name))
+	Net.nodes[1].demand = sigmas_f[0,i,-1]
+	ret,downstream = epa.ENgetnodeindex(str(Net.nodes[-2].Name))
+	Net.nodes[-2].demand = sigmas_f[0,i,-2]
+	#demand_generator(Directory+'5_pipes_driving_transient.csv',6,maxTime,dt,sigmas_f[0,i,-2]*1000.,sigmas_f[0,i,-2]*1000.+0.5,2,30)
+	#Net.Control_Input(Directory+'5_pipes_driving_transient.csv')
+	
+	ret = epa.ENsetnodevalue(reservoir,epa.EN_ELEVATION,sigmas_f[0,i,0])
+	ret = epa.ENsetnodevalue(downstream,epa.EN_BASEDEMAND,sigmas_f[0,i,-2]*1000.)
+	ret = epa.ENsetnodevalue(demand,epa.EN_BASEDEMAND,sigmas_f[0,i,-1]*1000.)
+	
+	for j in range(len(Net.pipes)):
+		ret,index = epa.ENgetlinkindex(str(Net.pipes[j].Name))
+		ret,epa.ENsetlinkvalue(index,epa.EN_ROUGHNESS,sigmas_f[0,i,2*Net.CPs+j])
+		
+	Net.run_epanet_file()				# This function runs the SS EPAnet model	
+	Net.read_results_from_epanet()
+	Net.Constant_Wavespeed(Wavespeed)
+	Net.MOC_Initialisation(dt)
+	Net.UnscentedInitialise(dt,7)
+	Net.time = 0
+	for j in range(1,Iterations):
+		if j == 200:
+			sigmas_f[j-1,i,-2]+=0.0005
+		Net.time  += Net.dt
+		sigmas_f[j,i,:] = Net.UpdateState(sigmas_f[j-1,i,:])
+		
 ##wm,wc = points.weights()
 #ukf_mean = np.empty((Iterations,State.size))
 #ukf_cov = np.empty((Iterations,State.size,State.size))
@@ -477,50 +479,50 @@ pp.show()
 ##
 #
 
-samples = np.load(Directory+'Transient_MC_samples.npy')
+#samples = np.load(Directory+'Transient_MC_samples.npy')
 
-MCDirectory = '/media/dickie/Seagate Expansion Drive/Transient-Monte-Carlo/Projects/Pressure_Surges_Models/'
-Output = np.load(MCDirectory +'5_pipes_Monte_Carlo_non_pressure_dependent_Keep.npy',mmap_mode='r')
-#Mean = np.load(Directory + '5_pipes_Monte_Carlo_non_pressure_dependent_Mean.npy')
-#Std = np.load(Directory + '5_pipes_Monte_Carlo_non_pressure_dependent_Std.npy')
-
-
-Node = 0
-Order = 3
-NoSamples = 200
-polynomial_expansion = cp.orth_ttr(Order, Distributions)
-foo_approx = cp.fit_regression(polynomial_expansion, samples[:,:NoSamples], Output[:NoSamples,Node,:])
-expected = cp.E(foo_approx, Distributions)
-deviation = cp.Std(foo_approx, Distributions)
-coefs_kernal = cp.descriptives.misc.QoI_Dist(foo_approx[-1],Distributions)
-
-f,axs = pp.subplots(figsize=(9, 6),nrows = 2,ncols = 1,sharex=True)
-axs[0].plot(Transient_Times,expected,'k')
-axs[1].plot(Transient_Times,deviation**2,'k')
-
-axs[0].plot(Transient_Times,Mean[Node,:],'b')
-axs[1].plot(Transient_Times,Std[Node,:]**2,'b')
+#MCDirectory = '/media/dickie/Seagate Expansion Drive/Transient-Monte-Carlo/Projects/Pressure_Surges_Models/'
+#Output = np.load(MCDirectory +'5_pipes_Monte_Carlo_non_pressure_dependent_Keep.npy',mmap_mode='r')
+##Mean = np.load(Directory + '5_pipes_Monte_Carlo_non_pressure_dependent_Mean.npy')
+##Std = np.load(Directory + '5_pipes_Monte_Carlo_non_pressure_dependent_Std.npy')
 
 
+#Node = 0
+#Order = 3
+#NoSamples = 200
+#polynomial_expansion = cp.orth_ttr(Order, Distributions)
+#foo_approx = cp.fit_regression(polynomial_expansion, samples[:,:NoSamples], Output[:NoSamples,Node,:])
+#expected = cp.E(foo_approx, Distributions)
+#deviation = cp.Std(foo_approx, Distributions)
+#coefs_kernal = cp.descriptives.misc.QoI_Dist(foo_approx[-1],Distributions)
 
-axs[1].set_xlabel('Time (s)')
-axs[1].set_ylabel('Variance Head (m)')
-axs[0].set_ylabel('Head (m)')
-axs[0].set_title('Node:' + str(Node+2))
+#f,axs = pp.subplots(figsize=(9, 6),nrows = 2,ncols = 1,sharex=True)
+#axs[0].plot(Transient_Times,expected,'k')
+#axs[1].plot(Transient_Times,deviation**2,'k')
 
-#pp.savefig(Directory+'Monte_PCE_NoSamples'+str(NoSamples)+'_Node'+str(Node+2))
+#axs[0].plot(Transient_Times,Mean[Node,:],'b')
+#axs[1].plot(Transient_Times,Std[Node,:]**2,'b')
 
-pp.tight_layout()
-pp.show()
 
-f,axs = pp.subplots(nrows = 1,ncols = 1)
-A = axs.hist(Output[:10000,Node,-1],100,density=True,alpha = 0.5)
-x = np.linspace(A[1][0],A[1][-1],100)
-y = coefs_kernal.pdf(x)
-axs.plot(x,y)
-axs.set_xlabel('Head (m)')
-axs.set_ylabel('Probability')
-axs.set_title('Node:' + str(Node+2))
-#pp.savefig(Directory+'Monte_PCE_NoSamples'+str(NoSamples)+'_Node'+str(Node+2)+'_dist')
-pp.show()
+
+#axs[1].set_xlabel('Time (s)')
+#axs[1].set_ylabel('Variance Head (m)')
+#axs[0].set_ylabel('Head (m)')
+#axs[0].set_title('Node:' + str(Node+2))
+
+##pp.savefig(Directory+'Monte_PCE_NoSamples'+str(NoSamples)+'_Node'+str(Node+2))
+
+#pp.tight_layout()
+#pp.show()
+
+#f,axs = pp.subplots(nrows = 1,ncols = 1)
+#A = axs.hist(Output[:10000,Node,-1],100,density=True,alpha = 0.5)
+#x = np.linspace(A[1][0],A[1][-1],100)
+#y = coefs_kernal.pdf(x)
+#axs.plot(x,y)
+#axs.set_xlabel('Head (m)')
+#axs.set_ylabel('Probability')
+#axs.set_title('Node:' + str(Node+2))
+##pp.savefig(Directory+'Monte_PCE_NoSamples'+str(NoSamples)+'_Node'+str(Node+2)+'_dist')
+#pp.show()
 
