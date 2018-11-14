@@ -30,7 +30,7 @@ dX = xPos[1]-xPos[0]
 Friction  = 'Collins'
 Friction  = 'Linear'
 #Friction  = 'Collins'
-#Friction  = '1Coeff'
+Friction  = '1Coeff'
 
 hList = []
 #pp.figure()

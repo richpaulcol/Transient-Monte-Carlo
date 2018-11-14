@@ -230,26 +230,28 @@ Transient_Times = np.arange(0,maxTime,dt)
 
 ##fsfsdfsfs
 
-#kf = pk.KalmanFilter()
+==== BASE ====
+kf = pk.KalmanFilter()
 
-#kf.transition_matrices = Net.A_Matrix.todense()
+kf.transition_matrices = Net.A_Matrix.todense()
 
-#kf.transition_covariance = Net.Q_Matrix
+kf.transition_covariance = Net.Q_Matrix
 
-#kf.initial_state_mean = Net.X_Vector
-#kf.initial_state_covariance = Net.P_Matrix
-#Simon = kf.transition_matrices
-#Dave = Net.regenerateA()
-#StateOutput = np.zeros((Net.X_Vector.size,Transient_Times.size))
-#VarianceOutput = np.zeros((Net.X_Vector.size,Net.X_Vector.size,Transient_Times.size))
-#for i in range(0,Transient_Times.size):
-#	if i == int(2/dt):
-#		Net.X_Vector[2*Net.CPs+Net.nodes[-2].number]+=0.0005
-#		#Net.P_Matrix[2*Net.CPs+4,2*Net.CPs+4] += 0.00001**2
-#		
-#	Net.X_Vector,Net.P_Matrix = kf.filter_update(Net.X_Vector,Net.P_Matrix)
-#	StateOutput[:,i] = Net.X_Vector
-#	VarianceOutput[:,:,i] = Net.P_Matrix 
+kf.initial_state_mean = Net.X_Vector
+kf.initial_state_covariance = Net.P_Matrix
+Simon = kf.transition_matrices
+Dave = Net.regenerateA()
+StateOutput = np.zeros((Net.X_Vector.size,Transient_Times.size))
+VarianceOutput = np.zeros((Net.X_Vector.size,Net.X_Vector.size,Transient_Times.size))
+for i in range(0,Transient_Times.size):
+	if i == int(2/dt):
+		Net.X_Vector[2*Net.CPs+Net.nodes[-2].number]+=0.0005
+		#Net.P_Matrix[2*Net.CPs+4,2*Net.CPs+4] += 0.00001**2
+		
+	Net.X_Vector,Net.P_Matrix = kf.filter_update(Net.X_Vector,Net.P_Matrix)
+	StateOutput[:,i] = Net.X_Vector
+	VarianceOutput[:,:,i] = Net.P_Matrix 
+==== BASE ====
 
 #	kf.transition_matrices = Net.regenerateA()
 ##	Net.Q_Matrix[1:Net.CPs-1,1:Net.CPs-1] =  (4*Net.dx)/(9.81*0.1**5*np.pi)  *  (-Net.X_Vector[Net.CPs+2:2*Net.CPs]**2 + Net.X_Vector[Net.CPs:2*Net.CPs-2]**2)*sigma_lam**2* Net.dt/2.

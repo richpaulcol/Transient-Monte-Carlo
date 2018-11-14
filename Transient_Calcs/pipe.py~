@@ -122,9 +122,8 @@ class Pipe:
 		
 		
 		if self.Friction_Model == 'Modified_Brunone':
-			self.US_friction_p = k2/(self.area *g)*((self.TranQ[-1,:-2] - self.TranQ[-2,:-2])/self.dt + k3* self.wavespeed * np.sign(self.TranQ[-1,:-2])*(self.TranQ[-1,1:]-self.TranQ[-1,:-2])/self.dx)
-			self.US_friction_m = k2/(self.area *g)*((self.TranQ[-1,2:] - self.TranQ[-2,2:])/self.dt + k3* self.wavespeed * np.sign(self.TranQ[-1,2:])*(self.TranQ[-1,2:]-self.TranQ[-1,1:-2])/self.dx)
-			
+			self.US_friction_p = k2/(self.area *g)*((self.TranQ[-1,:-2] - self.TranQ[-2,:-2])/self.dt + k3* self.wavespeed * np.sign(self.TranQ[-1,:-2])*(self.TranQ[-1,1:]-self.,self.dx))
+			self.US_friction_m = 
 			self.Rp = ((self.friction+self.US_friction_p)*self.dx / (2*9.81 * self.diameter *self.area**2))
 			self.Rm = ((self.friction+self.US_friction_m)*self.dx / (2*9.81 * self.diameter *self.area**2))
 			
