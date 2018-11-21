@@ -55,8 +55,8 @@ def create_Jacobian_submatrix(Net):
 			Net.D[i,i] = n * K * abs(Net.Q[i])**(n-1)
 	
 
-Directory = 'Projects/Real_Networks/'
-FileName = 'ExampleNetwork1.inp'
+Directory = 'Projects/5_Pipes/'
+FileName = '5_Pipes.inp'
 
 Net = Import_EPANet_Geom(Directory+FileName)
 Net.open_epanet_file()

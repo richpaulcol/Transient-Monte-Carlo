@@ -23,8 +23,9 @@ def PODDS_Advect(State):
 
 	#tau_a = pyhyd.shear_stress(D, Q, PipeRoughness, T=10.0, den=1000.0, force_turb_flow=False)
 	#if tau_s<tau_a:
+	dN = alpha * beta *(tau_a - tau_s)
 	tau_s = tau_s + dt * beta*(tau_a - tau_s)
-	dN = alpha * beta *(tau_a - tau_s)	
+		
 	#else:
 	#tau_s = tau_s + dt * beta*(tau_a - tau_s) / 1000.
 	#dN = alpha * beta *(tau_a - tau_s)	
@@ -158,7 +159,7 @@ Mask = np.ones(times.size)
 TMeasured = T+ np.random.normal(0,1e-2,times.size)
 T2Measured = T2 + np.random.normal(0,1e-2,times.size)
 tau_Measured = tau_a+ np.random.normal(0,5e-3,times.size)
-MeasuringTimeInterval =5 #(s)
+MeasuringTimeInterval =1 #(s)
 MeasurementInterval = int(MeasuringTimeInterval/dt)
 
 
@@ -179,8 +180,8 @@ for t in range(times.size)[1:]:
 
 pp.figure()
 pp.subplot(511)
-pp.plot(times,T,'k')
-pp.plot(times,T2,'g')
+#pp.plot(times,T,'k')
+#pp.plot(times,T2,'g')
 pp.scatter(times[::MeasurementInterval],TMeasured[::MeasurementInterval],c = 'k')
 pp.scatter(times[::MeasurementInterval],T2Measured[::MeasurementInterval],c = 'g')
 pp.plot(times,States[-6,:],'r')
