@@ -1,6 +1,7 @@
 import numpy as np
 import pylab as pp 
 from scipy.interpolate import interp1d
+import chaospy as cp
 
 
 NoNodes = 101
@@ -9,6 +10,7 @@ a0 = 500.		#Wave speed
 asigma = a0/200.
 g = 9.81		#gravity
 d0 = 0.05		#mean diameter
+A = d0**2*np.pi/4
 dsigma = d0/200.	#std dev diameter
 #f = 0.2			#friction
 f0 = 0.02
@@ -16,9 +18,18 @@ fsigma = f0/200.
 Q0 = 0.0005		#initial flow
 H0 = 10.		#upstream boundary
 maxT = 60.0		#max time in seconds
-iters = 1
+iters = 99
 epsilon = 1.0
 
+
+Alpha = cp.Normal(1,0.1)
+Beta = cp.Normal(0.1,0.01)
+F = cp.Normal(0.02,0.001)
+K = cp.Uniform(0.01,0.05)
+Distributions = cp.J(Alpha,Beta,F,K)
+
+samples = Distributions.sample(100,'L')
+#adasda
 #Unsteady Friction Coeffs
 #Kut = 0.
 #Kux = 1.
@@ -30,12 +41,14 @@ dX = xPos[1]-xPos[0]
 Friction  = 'Collins'
 Friction  = 'Linear'
 #Friction  = 'Collins'
-#Friction  = '1Coeff'
+Friction  = '1Coeff'
 
 hList = []
 #pp.figure()
 QData = []
 HData = []
+ShearData = []
+TurbData = []
 for i in range(iters):
 	print i
 	#### setting out the size of the arrays for the pipe properties
@@ -43,6 +56,10 @@ for i in range(iters):
 	f = np.zeros(len(xPos)-1)
 	a = np.zeros(len(xPos)-1)
 	
+	alpha =samples[0,i]
+	beta = samples[1,i]
+	f0 = samples[2,i]
+	k = samples[3,i]
 	### adding a random element to the pipe properties
 	#for i in range(0,len(pipeD)/SectionL):
 		#pipeD[i*SectionL:i*SectionL+SectionL] = pp.normal(d0,dsigma)
@@ -93,7 +110,7 @@ for i in range(iters):
 			QBC = Q0
 		if t>0.5 and t<5.0:
 			QBC = QBC + 0.0005 * dT / 4.5
-			#QBC = 0.001
+			QBC = 0.001
 		if t>= 5.0:
 	#		if QBC > 0:
 	#			QBC = 0.0005
@@ -389,43 +406,92 @@ for i in range(iters):
 	HArray = np.array(HList)
 	QData.append(QArray)
 	HData.append(HArray)
-	StressArray = np.array(StressList)
+	Shear = np.array(StressList)
+	
+	
+#	alpha = 1.			#Initial Guess of amount fo material per m ^2
+#	beta = .1
+	TMass = np.zeros(NoNodes)
+	TMass_list = []
+	tau_s = Shear[0]
+	for t in range(1,len(time)):
+		tau_s = tau_s + dT * beta*(Shear[t] - tau_s)*((Shear[t] - tau_s)>0)
+		dN = alpha * beta *(Shear[t] - tau_s)*((Shear[t] - tau_s)>0)
+		#dN2 = signal.resample(dN, int(100/dX2))
+		
+		PODDSMass = np.pi*d0*dX*dN
+		
+		TMassNew = np.zeros(TMass.shape)
+	#	if t%1 ==0:
+		lam = ( QArray[t]/A)*dT / dX
+		TMassNew[1:] = lam[:-1]*TMass[:-1] + (1-lam[1:])*TMass[1:] + PODDSMass[1:]
+		TMass_list.append(TMassNew)
+		TMass = TMassNew
+#	else: 
+#		TMassNew = TMass+PODDSMass
 	#hList.append(H)
+	
+	TMassA = np.array(TMass_list)
+	
+	QData.append(QArray)
+	HData.append(HArray)
+	ShearData.append(Shear)
+	TurbData.append(TMassA)
+	
 #	pp.plot(time,HArray[:,0])
 #	pp.plot(time,HArray[:,NoNodes/10])
-	f,axs = pp.subplots(3,1,sharex=True)
-	axs[0].plot(time,HArray[:,NoNodes/2])
-	axs[1].plot(time,QArray[:,NoNodes/2])
-	axs[2].plot(time,StressArray[:,NoNodes/2])
-	
-	if Friction == 'Linear':
-		Directory = 'Projects/UncertainShear/'
-#		np.save(Directory+'LinearHeadFast.npy',HArray)
-#		np.save(Directory+'LinearFlowFast.npy',QArray)
-#		np.save(Directory+'LinearShearFast.npy',StressArray)
-		
-		np.save(Directory+'LinearHeadSlow.npy',HArray)
-		np.save(Directory+'LinearFlowSlow.npy',QArray)
-		np.save(Directory+'LinearShearSlow.npy',StressArray)
-		
-	if Friction == '1Coeff':
-		Directory = 'Projects/UncertainShear/'
-#		np.save(Directory+'USHeadFast.npy',HArray)
-#		np.save(Directory+'USFlowFast.npy',QArray)
-#		np.save(Directory+'USShearFast.npy',StressArray)
-		
-		np.save(Directory+'USHeadSlow.npy',HArray)
-		np.save(Directory+'USFlowSlow.npy',QArray)
-		np.save(Directory+'USShearSlow.npy',StressArray)
+#	f,axs = pp.subplots(4,1,sharex=True)
+#	axs[0].plot(time,HArray[:,NoNodes/2])
+#	axs[1].plot(time,QArray[:,NoNodes/2])
+#	axs[2].plot(time,Shear[:,NoNodes/2])
+#	axs[3].plot(time[1:],TMassA[:,-1],)
+#	
+#	if Friction == 'Linear':
+#		Directory = 'Projects/UncertainShear/'
+##		np.save(Directory+'LinearHeadFast.npy',HArray)
+##		np.save(Directory+'LinearFlowFast.npy',QArray)
+##		np.save(Directory+'LinearShearFast.npy',StressArray)
+#		
+#		np.save(Directory+'LinearHeadSlow.npy',HArray)
+#		np.save(Directory+'LinearFlowSlow.npy',QArray)
+#		np.save(Directory+'LinearShearSlow.npy',StressArray)
+#		
+#	if Friction == '1Coeff':
+#		Directory = 'Projects/UncertainShear/'
+##		np.save(Directory+'USHeadFast.npy',HArray)
+##		np.save(Directory+'USFlowFast.npy',QArray)
+##		np.save(Directory+'USShearFast.npy',StressArray)
+#		
+#		np.save(Directory+'USHeadSlow.npy',HArray)
+#		np.save(Directory+'USFlowSlow.npy',QArray)
+#		np.save(Directory+'USShearSlow.npy',StressArray)
 #	pp.plot(time,HArray[:,-1])
-pp.show()	
-#QData = np.array(QData)
+#pp.show()	
+QData = np.array(QData)
 HData = np.array(HData)
-
+ShearData = np.array(ShearData)
+TurbData = np.array(TurbData)
 #np.save('Flow SectionL ' + str(SectionL) + ' Iters ' + str(iters),QData)
 #np.save('Head SectionL ' + str(SectionL) + ' Iters ' + str(iters),HData)
+Directory = 'Projects/UncertainShear/'
+np.save(Directory+'PCQData.npy',QData)
+np.save(Directory+'PCHData.npy',HData)
+np.save(Directory+'PCShearData.npy',ShearData)
+np.save(Directory+'PCTurbData.npy',TurbData)
+np.save(Directory+'PCSamples.npy',samples)
 
+Output = TurbData[:NoSamples,:,-1]
+Order = 3
+NoSamples = 20
+Output = TurbData[:NoSamples,:,-1]
+polynomial_expansion = cp.orth_ttr(Order, Distributions)
+foo_approx = cp.fit_regression(polynomial_expansion, samples[:,:NoSamples], Output[:NoSamples,Node,:])
+expected = cp.E(foo_approx, Distributions)
+deviation = cp.Std(foo_approx, Distributions)
 
+f,axs = pp.subplots(figsize=(9, 6),nrows = 2,ncols = 1,sharex=True)
+axs[0].plot(Transient_Times,expected,'k')
+axs[1].plot(Transient_Times,deviation**2,'k')
 
 
 pp.show()
