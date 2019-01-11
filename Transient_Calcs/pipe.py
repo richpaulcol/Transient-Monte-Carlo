@@ -38,6 +38,7 @@ class Pipe:
 		self.z2 = self.node2.zPos
 
 		self.FF_0 = None
+		self.Friction_Model = 'Linear'
 		
 		if Length == '':
 			self.length = np.sqrt((self.x2-self.x1)**2+(self.y2-self.y1)**2+(self.z2-self.z1)**2)
@@ -125,8 +126,12 @@ class Pipe:
 			self.US_friction_p = k2/(self.area *g)*((self.TranQ[-1,:-2] - self.TranQ[-2,:-2])/self.dt + k3* self.wavespeed * np.sign(self.TranQ[-1,:-2])*(self.TranQ[-1,1:]-self.TranQ[-1,:-2])/self.dx)
 			self.US_friction_m = k2/(self.area *g)*((self.TranQ[-1,2:] - self.TranQ[-2,2:])/self.dt + k3* self.wavespeed * np.sign(self.TranQ[-1,2:])*(self.TranQ[-1,2:]-self.TranQ[-1,1:-2])/self.dx)
 			
-			self.Rp = ((self.friction+self.US_friction_p)*self.dx / (2*9.81 * self.diameter *self.area**2))
-			self.Rm = ((self.friction+self.US_friction_m)*self.dx / (2*9.81 * self.diameter *self.area**2))
+		else:
+			self.US_friction_p = 0
+			self.US_friction_m = 0
+			
+		self.Rp = ((self.friction+self.US_friction_p)*self.dx / (2*9.81 * self.diameter *self.area**2))
+		self.Rm = ((self.friction+self.US_friction_m)*self.dx / (2*9.81 * self.diameter *self.area**2))
 			
 		
 		
@@ -137,6 +142,8 @@ class Pipe:
 		
 		BpList = self.B + epsilon*self.Rp[:-2]*abs(self.TranQ[-1,:-2])
 		BmList = self.B + epsilon*self.Rm[2:]*abs(self.TranQ[-1,2:])
+		
+		
 		
 		self.NewQ[1:-1] = (CpList - CmList)/(BpList + BmList)
 		self.NewH[1:-1] = (CmList*BpList + BmList*CpList)/(BpList+BmList)		

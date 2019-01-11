@@ -138,7 +138,7 @@ Net.run_epanet_file()				## This function runs the SS EPAnet model
 Net.read_results_from_epanet()			## Reads the EPAnet data
 Net.Constant_Wavespeed(Wavespeed)		## Sets all pipes with the same wavespeed
 Net.Initialise_Linear_Kalman(dt)		## Descritises the model and sets up all the matrices
-#Net.Assign_Emmiters_All()			## Sets all SS outputs to be emmiters rather than constant flow
+Net.Assign_Emmiters_All()			## Sets all SS outputs to be emmiters rather than constant flow
 Net.dx = Wavespeed*dt				## Calculates a 
 #####	Initialising the Covariance Matrices
 #COV = np.load(Directory+'InitialCOV.npy')
