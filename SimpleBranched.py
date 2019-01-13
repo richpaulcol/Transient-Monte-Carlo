@@ -89,7 +89,7 @@ def demand_generator(filename,node,maxTime,dt,originalFlow,maxFlow,startTime,end
 
 Directory = 'Projects/SimpleBranched/'
 FileName = 'SimpleBranchedTrue.inp'
-maxTime = 60
+maxTime = 100
 dt =0.01
 Wavespeed = 1000.
 Transient_Times = np.arange(0,maxTime,dt)
