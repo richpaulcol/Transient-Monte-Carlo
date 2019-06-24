@@ -1,8 +1,9 @@
 import numpy as np
 import pylab as pp
 from epanettools import epanet2 as epa
+import epanettools.epanettools as ept
 import time
-#import networkx as nx
+import networkx as nx
 import scipy.sparse as ss
 import pyhyd
 
@@ -15,6 +16,10 @@ Currently only Nodal Pressures are being saved
 
 """
 
+###### The reading section needs to be rewritten using the proper toolkit methods provided
+###	i.e. es. 
+###	from epanettools import 
+###	
 
 
 
@@ -60,6 +65,8 @@ class Network(object):
 	
 	def Import_EPANet_Results(self):	
 		ret = epa.ENopen(self.filename,self.filename[:-3]+'rep',self.filename[:-3]+'out')
+		
+		
 		print ret
 		####	Opening the hydraulics results
 		ret = epa.ENopenH()
@@ -68,6 +75,7 @@ class Network(object):
 		print ret
 		####	Running the Hydraulics Solver
 		epa.ENrunH()
+		
 		
 		####	Returning the head solutions (for the first time step, the only one accessible at the moment)
 		##	Only need to do this for the node elements at the moment as reservoirs don't change
@@ -91,26 +99,103 @@ class Network(object):
 		print 'Number of LINKS in results file',no_links
 		for index in range(1,no_links+1):
 			ret,idx=epa.ENgetlinkid(index)
-			
+			if ret != 0:
+				print ret,idx
 			ret,Q0=epa.ENgetlinkvalue(index, epa.EN_FLOW )
-			
+			if ret != 0:
+				print ret,Q0
 			ret,V0=epa.ENgetlinkvalue(index, epa.EN_VELOCITY )
-
+			if ret != 0:
+				print ret,V0
 			ret,Headloss=epa.ENgetlinkvalue(index,epa.EN_HEADLOSS)
+			if ret != 0:
+				print ret,Headloss
 			ret,Length=epa.ENgetlinkvalue(index,epa.EN_LENGTH)
+			if ret != 0:
+				print ret,Length
 			ret,Diameter=epa.ENgetlinkvalue(index,epa.EN_DIAMETER)
+			if ret != 0:
+				print ret,Diameter
 			#print Headloss,Length,Diameter,V0
 			#print 2*9.81*(Headloss/1000.)*Diameter / (Length * V0**2)
+			
+			
+			
 			
 			try:
 			
 				self.link_idx[idx].Q_0 = float(Q0)/1000. #Convert to m^3/s
 				self.link_idx[idx].V_0 = float(V0)
-				self.link_idx[idx].FF_0 = float(2*9.81*(Headloss/1000.)*Diameter / (Length * V0**2))
+				if Length == 0:
+					self.link_idx[idx].FF_0 = 0
+				else:
+					self.link_idx[idx].FF_0 = float(2*9.81*(Headloss/1000.)*Diameter / (Length * V0**2))
+				
+				self.link_idx[idx].Headloss = float(Headloss)
 			except:
 				print 'Problem getting Flow or Velocity for link:', idx
 				continue
+	######
+	##
+	##
+	def Run_EPAnet(self):
+		self.es=ept.EPANetSimulation(self.filename)
+		self.es.run()
+		self.EPS_times = np.array(self.es.network.time).astype('int')
+		return self.EPS_times
+		
+	def Read_EPAnet_results(self,time):
+		Truth = np.isin(self.EPS_times,time)
+		if Truth.any() == False:
+			print "The specified time hasn't been calculated"
+			return 'err'
+		else:
+			Results_time = np.argmax(Truth)
+			#print Results_time
+			for i in range(1,len(self.es.network.nodes)+1):
+				idx = self.es.network.nodes[i].id
+				H0 = self.es.network.nodes[i].results[10][Results_time]
+				#ret,idx=epa.ENgetnodeid(index)
+				#ret,H0=epa.ENgetnodevalue(index, epa.EN_HEAD )
+				try:
+					#print Network.node_idx[idx].Name,idx
+					if self.node_idx[idx].type == 'Node':
+						self.node_idx[idx].H_0 = float(H0)
+						self.node_idx[idx].TranH = [float(H0)]
+
+				except:
+					print 'Problem getting Head for Node:', idx
+					continue
 			
+			####	Returning the flow solutions 
+			for i in range(1,len(self.es.network.links)+1):
+				idx=self.es.network.links[i].id
+				Q0=self.es.network.links[i].results[8][Results_time]
+				V0=self.es.network.links[i].results[9][Results_time]
+				Headloss=self.es.network.links[i].results[10][Results_time]
+				Length=self.es.network.links[i].results[1][0]
+				Diameter=self.es.network.links[i].results[0][0]
+				#print Headloss,Length,Diameter,V0
+				#print 2*9.81*(Headloss/1000.)*Diameter / (Length * V0**2)
+			
+				
+			
+			
+				try:
+			
+					self.link_idx[idx].Q_0 = float(Q0)/1000. #Convert to m^3/s
+					self.link_idx[idx].V_0 = float(V0)
+					if Length == 0:
+						self.link_idx[idx].FF_0 = 0
+					else:
+						self.link_idx[idx].FF_0 = float(2*9.81*(Headloss/1000.)*Diameter / (Length * V0**2))
+					self.link_idx[idx].Headloss = float(Headloss)
+				except:
+					print 'Problem getting Flow or Velocity for link:', idx
+					continue
+		
+		
+		
 	######
 	##
 	##	Initialise all links with a constant wave speed
@@ -331,6 +416,39 @@ class Network(object):
 		pp.tight_layout()
 		
 		
+	def node_attentuation_plot(self,AttenuationArray,Sensor):
+		pp.figure()
+		MinValues = min(AttenuationArray.values)
+		MaxValues = max(AttenuationArray.values)
+		
+		for i in self.nodes:
+			if i.type == 'Node':
+				symbol = 'o'
+				size = 10
+			elif i.type == 'Reservoir':
+				symbol = 's'
+				size = 20
+			elif i.type == 'Tank':
+				symbol = (5,2)
+				size = 20	
+			c = 'k'
+			if i.Name in Highlights:
+				size = 40	
+				c = 'r'	
+				
+			pp.scatter([i.xPos],[i.yPos],marker = symbol,s = size,c=[AttenuationArray[(i,Sensor)]])
+			
+			
+		for i in self.pipes:
+			pp.plot([i.x1,i.x2],[i.y1,i.y2],'k')
+			
+		for i in self.valves:
+			pp.plot([i.x1,i.x2],[i.y1,i.y2],'k')
+			
+		for i in self.pumps:
+			pp.plot([i.x1,i.x2],[i.y1,i.y2],'k')
+		pp.axis('equal')
+		pp.show()
 	####
 	##	Function to plot the transient solution at the network nodes.  If no additional argument is passed then all nodes are plotted.  The additional argument should consist of a list of node_ids
 	def transient_Node_Plot(self, node_ids = 0):
@@ -349,60 +467,99 @@ class Network(object):
 		pp.show()
 		pp.tight_layout()	
 				
-#	def best_Logger_Location(self,plot_Node_Names = 0,No_to_highlight = 0,No_Repeat_Length = 0):
-#		locationMetrics = []
-#		for i in self.nodes:
-#			locationMetrics.append([i,i.locationMetric])
-#		locationMetrics = np.array(locationMetrics)
-#		#print locationMetrics
-#		#locationMetrics.append(min(locationMetrics)/1.25)
-#		pp.figure()
-#		pp.title('Best Logger Locations')
-#		for i in self.nodes:
-#			if i.type == 'Node':
-#				symbol = 'o'
-#				size = 100
-#			elif i.type == 'Reservoir':
-#				symbol = 's'
-#				size = 200
-#			elif i.type == 'Tank':
-#				symbol = (5,2)
-#				size = 200	
-#				
-#			colour = (i.locationMetric - min(locationMetrics[:,1]))/( max(locationMetrics[:,1]) - min(locationMetrics[:,1]))
-##			print colour
-#			pp.scatter([i.xPos],[i.yPos],marker = symbol,s = size,c = 'r',alpha = colour)
-#			if plot_Node_Names != 0:
-#				pp.annotate(i.Name,(i.xPos,i.yPos))
-#			
-#		for i in self.pipes:
-#			pp.plot([i.x1,i.x2],[i.y1,i.y2],'k')
-#			
-#		for i in self.valves:
-#			pp.plot([i.x1,i.x2],[i.y1,i.y2],'r')
-#			
-#		for i in self.pumps:
-#			pp.plot([i.x1,i.x2],[i.y1,i.y2],'g')
-#		#print locationMetrics
-#		Sorted = locationMetrics[locationMetrics.argsort(axis=0)[:,1],:]
-#		#print Sorted
-#		ShortestPathLengths = nx.shortest_path_length(self.Graph,weight = 'length')	
-#		pp.scatter([Sorted[-1][0].xPos],[Sorted[-1][0].yPos],s=200, facecolors='none', edgecolors='k',linewidth = 4)
-#		#print Sorted[-1][0].Name
-#		for k in range(1,No_to_highlight):
-#			#print Sorted[-k-1][0].Name
-#			pp.scatter([Sorted[-k-1][0].xPos],[Sorted[-k-1][0].yPos],s=200, facecolors='none', edgecolors='k',linewidth = 4)
-#			
-#			
-#			
-#			#pp.annotate(str(k+1),(Sorted[-k-1][0].xPos,Sorted[-k-1][0].yPos))
-#			
-#		#if No_to_highlight >0:
-#		#	self.Graph
-#		
-#			
-#		pp.axis('equal')
-#		pp.show()
+	def best_Logger_Location(self,plot_Node_Names = 0,No_to_highlight = 0,No_Repeat_Length = 0):
+		locationMetrics = []
+		for i in self.nodes:
+			locationMetrics.append([i,i.locationMetric])
+		locationMetrics = np.array(locationMetrics)
+		#print locationMetrics
+		#locationMetrics.append(min(locationMetrics)/1.25)
+		pp.figure()
+		pp.title('Best Logger Locations')
+		for i in self.nodes:
+			if i.type == 'Node':
+				symbol = 'o'
+				size = 100
+			elif i.type == 'Reservoir':
+				symbol = 's'
+				size = 200
+			elif i.type == 'Tank':
+				symbol = (5,2)
+				size = 200	
+				
+			colour = (i.locationMetric - min(locationMetrics[:,1]))/( max(locationMetrics[:,1]) - min(locationMetrics[:,1]))
+#			print colour
+			pp.scatter([i.xPos],[i.yPos],marker = symbol,s = size,c = 'r',alpha = colour)
+			if plot_Node_Names != 0:
+				pp.annotate(i.Name,(i.xPos,i.yPos))
+			
+		for i in self.pipes:
+			pp.plot([i.x1,i.x2],[i.y1,i.y2],'k')
+			
+		for i in self.valves:
+			pp.plot([i.x1,i.x2],[i.y1,i.y2],'r')
+			
+		for i in self.pumps:
+			pp.plot([i.x1,i.x2],[i.y1,i.y2],'g')
+		#print locationMetrics
+		Sorted = locationMetrics[locationMetrics.argsort(axis=0)[:,1],:]
+		#print Sorted
+		ShortestPathLengths = nx.shortest_path_length(self.Graph,weight = 'length')	
+		pp.scatter([Sorted[-1][0].xPos],[Sorted[-1][0].yPos],s=200, facecolors='none', edgecolors='k',linewidth = 4)
+		#print Sorted[-1][0].Name
+		for k in range(1,No_to_highlight):
+			#print Sorted[-k-1][0].Name
+			pp.scatter([Sorted[-k-1][0].xPos],[Sorted[-k-1][0].yPos],s=200, facecolors='none', edgecolors='k',linewidth = 4)
+			
+			
+			
+			#pp.annotate(str(k+1),(Sorted[-k-1][0].xPos,Sorted[-k-1][0].yPos))
+			
+		#if No_to_highlight >0:
+		#	self.Graph
+		
+			
+		pp.axis('equal')
+		pp.show()
+		
+		
+	def highlight_nodes(self,plot_Node_Names = 0,nodes_highlighted =[]):
+		locationMetrics = []
+		for i in self.nodes:
+			locationMetrics.append([i,i.locationMetric])
+		locationMetrics = np.array(locationMetrics)
+		#print locationMetrics
+		#locationMetrics.append(min(locationMetrics)/1.25)
+		pp.figure()
+		pp.title('Best Logger Locations')
+		for i in self.nodes:
+			if i.type == 'Node':
+				symbol = 'o'
+				size = 100
+			elif i.type == 'Reservoir':
+				symbol = 's'
+				size = 200
+			elif i.type == 'Tank':
+				symbol = (5,2)
+				size = 200	
+				
+			colour = (i.locationMetric - min(locationMetrics[:,1]))/( max(locationMetrics[:,1]) - min(locationMetrics[:,1]))
+#			print colour
+			pp.scatter([i.xPos],[i.yPos],marker = symbol,s = size,c = 'r',alpha = colour)
+			if plot_Node_Names != 0:
+				pp.annotate(i.Name,(i.xPos,i.yPos))
+			
+		for i in self.pipes:
+			pp.plot([i.x1,i.x2],[i.y1,i.y2],'k')
+			
+		for i in self.valves:
+			pp.plot([i.x1,i.x2],[i.y1,i.y2],'r')
+			
+		for i in self.pumps:
+			pp.plot([i.x1,i.x2],[i.y1,i.y2],'g')
+			
+		for k in nodes_highlighted:
+			pp.scatter([k.xPos],[k.yPos],s=200, facecolors='none', edgecolors='k',linewidth = 4)
 
 	def set_fixed_friction(self,value):
 		
