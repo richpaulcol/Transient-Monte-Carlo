@@ -2,7 +2,7 @@ import numpy as np
 import pylab as pp
 from epanettools import epanet2 as epa
 import time
-import networkx as nx
+#import networkx as nx
 import scipy.sparse as ss
 import pyhyd
 
@@ -145,7 +145,7 @@ class Network(object):
 			self.link_lengths.append(i.length)
 			i.dx = i.c*dt
 			self.link_dx.append(i.dx)
-			i.NoTNodes = int(i.length / i.dx)+1
+			i.NoTNodes = int(round(i.length / i.dx)+1)
 			self.link_length_error.append(100.*abs((i.NoTNodes-1)*i.dx - i.length)/i.length)
 			
 			
@@ -227,7 +227,9 @@ class Network(object):
 					self.nodes[i].External_Flow = True
 					self.nodes[i].CdA = self.nodes[i].demand / np.sqrt(self.nodes[i].H_0)
 				
-
+	def Assign_Random_Demands(self):
+		for node in self.nodes:
+			node.Random_Demand = True
 	#####
 	##	Function to run the transient solution
 	##		
@@ -245,7 +247,11 @@ class Network(object):
 			if t % 100*self.dt == 0:
 				print 'Time:',t,'Elapsed Time',time.time() - real_time
 				real_time = time.time()
-		print 'Time:',t,'Elapsed Time',time.time() - real_time	
+		
+		try:
+			print 'Time:',t,'Elapsed Time',time.time() - real_time	
+		except:	
+			print 'No Time'
 			
 	
 		
@@ -343,60 +349,60 @@ class Network(object):
 		pp.show()
 		pp.tight_layout()	
 				
-	def best_Logger_Location(self,plot_Node_Names = 0,No_to_highlight = 0,No_Repeat_Length = 0):
-		locationMetrics = []
-		for i in self.nodes:
-			locationMetrics.append([i,i.locationMetric])
-		locationMetrics = np.array(locationMetrics)
-		#print locationMetrics
-		#locationMetrics.append(min(locationMetrics)/1.25)
-		pp.figure()
-		pp.title('Best Logger Locations')
-		for i in self.nodes:
-			if i.type == 'Node':
-				symbol = 'o'
-				size = 100
-			elif i.type == 'Reservoir':
-				symbol = 's'
-				size = 200
-			elif i.type == 'Tank':
-				symbol = (5,2)
-				size = 200	
-				
-			colour = (i.locationMetric - min(locationMetrics[:,1]))/( max(locationMetrics[:,1]) - min(locationMetrics[:,1]))
-#			print colour
-			pp.scatter([i.xPos],[i.yPos],marker = symbol,s = size,c = 'r',alpha = colour)
-			if plot_Node_Names != 0:
-				pp.annotate(i.Name,(i.xPos,i.yPos))
-			
-		for i in self.pipes:
-			pp.plot([i.x1,i.x2],[i.y1,i.y2],'k')
-			
-		for i in self.valves:
-			pp.plot([i.x1,i.x2],[i.y1,i.y2],'r')
-			
-		for i in self.pumps:
-			pp.plot([i.x1,i.x2],[i.y1,i.y2],'g')
-		#print locationMetrics
-		Sorted = locationMetrics[locationMetrics.argsort(axis=0)[:,1],:]
-		#print Sorted
-		ShortestPathLengths = nx.shortest_path_length(self.Graph,weight = 'length')	
-		pp.scatter([Sorted[-1][0].xPos],[Sorted[-1][0].yPos],s=200, facecolors='none', edgecolors='k',linewidth = 4)
-		#print Sorted[-1][0].Name
-		for k in range(1,No_to_highlight):
-			#print Sorted[-k-1][0].Name
-			pp.scatter([Sorted[-k-1][0].xPos],[Sorted[-k-1][0].yPos],s=200, facecolors='none', edgecolors='k',linewidth = 4)
-			
-			
-			
-			#pp.annotate(str(k+1),(Sorted[-k-1][0].xPos,Sorted[-k-1][0].yPos))
-			
-		#if No_to_highlight >0:
-		#	self.Graph
-		
-			
-		pp.axis('equal')
-		pp.show()
+#	def best_Logger_Location(self,plot_Node_Names = 0,No_to_highlight = 0,No_Repeat_Length = 0):
+#		locationMetrics = []
+#		for i in self.nodes:
+#			locationMetrics.append([i,i.locationMetric])
+#		locationMetrics = np.array(locationMetrics)
+#		#print locationMetrics
+#		#locationMetrics.append(min(locationMetrics)/1.25)
+#		pp.figure()
+#		pp.title('Best Logger Locations')
+#		for i in self.nodes:
+#			if i.type == 'Node':
+#				symbol = 'o'
+#				size = 100
+#			elif i.type == 'Reservoir':
+#				symbol = 's'
+#				size = 200
+#			elif i.type == 'Tank':
+#				symbol = (5,2)
+#				size = 200	
+#				
+#			colour = (i.locationMetric - min(locationMetrics[:,1]))/( max(locationMetrics[:,1]) - min(locationMetrics[:,1]))
+##			print colour
+#			pp.scatter([i.xPos],[i.yPos],marker = symbol,s = size,c = 'r',alpha = colour)
+#			if plot_Node_Names != 0:
+#				pp.annotate(i.Name,(i.xPos,i.yPos))
+#			
+#		for i in self.pipes:
+#			pp.plot([i.x1,i.x2],[i.y1,i.y2],'k')
+#			
+#		for i in self.valves:
+#			pp.plot([i.x1,i.x2],[i.y1,i.y2],'r')
+#			
+#		for i in self.pumps:
+#			pp.plot([i.x1,i.x2],[i.y1,i.y2],'g')
+#		#print locationMetrics
+#		Sorted = locationMetrics[locationMetrics.argsort(axis=0)[:,1],:]
+#		#print Sorted
+#		ShortestPathLengths = nx.shortest_path_length(self.Graph,weight = 'length')	
+#		pp.scatter([Sorted[-1][0].xPos],[Sorted[-1][0].yPos],s=200, facecolors='none', edgecolors='k',linewidth = 4)
+#		#print Sorted[-1][0].Name
+#		for k in range(1,No_to_highlight):
+#			#print Sorted[-k-1][0].Name
+#			pp.scatter([Sorted[-k-1][0].xPos],[Sorted[-k-1][0].yPos],s=200, facecolors='none', edgecolors='k',linewidth = 4)
+#			
+#			
+#			
+#			#pp.annotate(str(k+1),(Sorted[-k-1][0].xPos,Sorted[-k-1][0].yPos))
+#			
+#		#if No_to_highlight >0:
+#		#	self.Graph
+#		
+#			
+#		pp.axis('equal')
+#		pp.show()
 
 	def set_fixed_friction(self,value):
 		
@@ -891,7 +897,9 @@ class Network(object):
 			i.dx = i.c*dt			
 			self.link_dx.append(i.c*dt)					##Nodal distance for link
 			i.NoCPs = int(round(i.length / i.dx)+1)			##Number of CPs for link
+			
 			self.link_length_error.append(100.*abs((i.NoCPs-1)*i.dx - i.length)/i.length)	## Max discretisation error
+
 			i.B = i.c/(9.81*i.area)					## This is the basic calc constant 
 			i.R = i.friction*i.dx*abs(i.Q_0) / (2*9.81*i.diameter*i.area**2)	## This is the basic friction cal which we can use if we assume that it is fixed throughout the calcualtions
 			#i.R = i.R * i.dx

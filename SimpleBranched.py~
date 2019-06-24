@@ -89,7 +89,7 @@ def demand_generator(filename,node,maxTime,dt,originalFlow,maxFlow,startTime,end
 
 Directory = 'Projects/SimpleBranched/'
 FileName = 'SimpleBranchedTrue.inp'
-maxTime = 60
+maxTime = 100
 dt =0.01
 Wavespeed = 1000.
 Transient_Times = np.arange(0,maxTime,dt)
@@ -121,17 +121,17 @@ Net = Import_EPANet_Geom(Directory+FileName)
 Net.open_epanet_file()
 
 #####	Setting up the initial condition
-ret,reservoir = epa.ENgetnodeindex(str(Net.nodes[-1].Name))
-ret,demand = epa.ENgetnodeindex(str(Net.nodes[1].Name))
-Net.nodes[1].demand = 0.0005
-ret,downstream = epa.ENgetnodeindex(str(Net.nodes[-2].Name))
-Net.nodes[-2].demand = 0.001
-ret = epa.ENsetnodevalue(reservoir,epa.EN_ELEVATION,20)
-ret = epa.ENsetnodevalue(downstream,epa.EN_BASEDEMAND,0.001*1000.)
-ret = epa.ENsetnodevalue(demand,epa.EN_BASEDEMAND,0.0005*1000.)
-for j in range(len(Net.pipes)):
-	ret,index = epa.ENgetlinkindex(str(Net.pipes[j].Name))
-	ret,epa.ENsetlinkvalue(index,epa.EN_ROUGHNESS,1)
+#ret,reservoir = epa.ENgetnodeindex(str(Net.nodes[-1].Name))
+#ret,demand = epa.ENgetnodeindex(str(Net.nodes[1].Name))
+#Net.nodes[1].demand = 0.0005
+#ret,downstream = epa.ENgetnodeindex(str(Net.nodes[-2].Name))
+##Net.nodes[-2].demand = 0.001
+##ret = epa.ENsetnodevalue(reservoir,epa.EN_ELEVATION,20)
+##ret = epa.ENsetnodevalue(downstream,epa.EN_BASEDEMAND,0.001*1000.)
+##ret = epa.ENsetnodevalue(demand,epa.EN_BASEDEMAND,0.0005*1000.)
+#for j in range(len(Net.pipes)):
+#	ret,index = epa.ENgetlinkindex(str(Net.pipes[j].Name))
+#	ret,epa.ENsetlinkvalue(index,epa.EN_ROUGHNESS,1)
 
 ######	Running the initial steady state
 Net.run_epanet_file()				## This function runs the SS EPAnet model	
@@ -150,6 +150,7 @@ for i in Net.nodes:
 	print i.Name
 	print len(i.TranH)
 	np.save(Directory+'Node_Head_'+i.Name,np.array(i.TranH))
+	np.save(Directory+'Node_Demand_'+i.Name,np.array(i.TranD))
 
 
 

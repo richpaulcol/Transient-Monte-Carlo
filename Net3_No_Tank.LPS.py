@@ -87,11 +87,13 @@ def demand_generator(filename,node,maxTime,dt,originalFlow,maxFlow,startTime,end
 	demands[int(startTime/dt):int(endTime/dt)] = maxFlow
 	np.savetxt(filename,np.hstack((np.array(node),demands)),delimiter = ',')
 
-Directory = 'Projects/SimpleBranched/'
-FileName = 'SimpleBranchedTrue.inp'
+Directory = 'Projects/Water_Seminar/'
+FileName = 'Net3b_no_Tank.LPS.inp'
 maxTime = 100
-dt =0.01
-Wavespeed = 1000.
+dx = 15.24
+Wavespeed = 100.
+dt =dx/Wavespeed
+
 Transient_Times = np.arange(0,maxTime,dt)
 
 #####
@@ -139,7 +141,9 @@ Net.read_results_from_epanet()			## Reads the EPAnet data
 Net.Constant_Wavespeed(Wavespeed)		## Sets all pipes with the same wavespeed
 
 Net.Assign_Emmiters_All()			## Sets all SS outputs to be emmiters rather than constant flow
-Net.Control_Input(Directory+'SimpleBranched2.csv')
+#Net.Control_Input(Directory+'SimpleBranched2.csv')
+Net.Assign_Random_Demands()
+
 
 Net.dx = Wavespeed*dt				## Calculates a 
 Net.MOC_Initialisation(dt)

@@ -22,6 +22,8 @@ class Node:
 		self.pipesIn = []
 		self.pipesOut = []
 		self.External_Flow = False
+		self.TranD = []
+		self.TranQ = []
 		#self.ResultsFile = open('Trials/Hanoi/'+self.Name +'.csv','wb')
 		self.CdA = 0
 		
@@ -37,21 +39,32 @@ class Node:
 			demand = self.demand
 		else:
 			demand = self.Transient_Demands[int(time/dt)]
+				
+			
 			#print time/dt, demand
-		
+		if self.Random_Demand == True:
+				k = 0.075		### The base poisson coefficient
+				sigma = 1	### The standard deviation of the delta demand
+				mu = -1.75
+				demand = self.demand + np.random.poisson(k*dt)*np.random.normal(mu,sigma)
+				if demand >0:
+					demand = demand
+				else:
+					demand = 0
+				self.demand = demand
 		self.NewH = 0.
 		
 		self.BC = 0.
 		self.CC = 0.
 		for i in self.pipesIn:
-			i.BPi = i.B + epsilon*i.R[-1]*abs(i.TranQ[-2,-2])
-			i.CPi = i.TranH[-2,-2] + i.TranQ[-2,-2]*(i.B - i.R[-1]*abs(i.TranQ[-2,-2])*(1-epsilon))
+			i.BPi = i.B + epsilon*i.Rp[-1]*abs(i.TranQ[-2,-2])
+			i.CPi = i.TranH[-2,-2] + i.TranQ[-2,-2]*(i.B - i.Rp[-1]*abs(i.TranQ[-2,-2])*(1-epsilon))
 			self.BC += 1./i.BPi
 			self.CC += i.CPi / i.BPi
 		
 		for i in self.pipesOut:
-			i.BMi = i.B + epsilon*i.R[0]*abs(i.TranQ[-2,1])
-			i.CMi =  i.TranH[-2,1] - i.TranQ[-2,1]*(i.B - i.R[0]*abs(i.TranQ[-2,1])*(1-epsilon))
+			i.BMi = i.B + epsilon*i.Rm[0]*abs(i.TranQ[-2,1])
+			i.CMi =  i.TranH[-2,1] - i.TranQ[-2,1]*(i.B - i.Rm[0]*abs(i.TranQ[-2,1])*(1-epsilon))
 			self.BC += 1./i.BMi
 			self.CC += i.CMi / i.BMi
 			
@@ -79,9 +92,11 @@ class Node:
 			self.NewH = self.CC - self.BC*demand
 		
 		
+		flowIn = 0
 		for i in self.pipesIn:
 			i.TranH[-1,-1] = self.NewH
 			i.TranQ[-1,-1] = -self.NewH / i.BPi + i.CPi / i.BPi
+			flowIn = -self.NewH / i.BPi + i.CPi / i.BPi
 			
 		
 		for i in self.pipesOut:
@@ -89,6 +104,8 @@ class Node:
 			i.TranQ[-1,0] = self.NewH / i.BMi - i.CMi / i.BMi
 			
 		self.TranH.append(self.NewH)	
+		self.TranQ.append(flowIn)
+		self.TranD.append(demand)
 		#if time % 100:
 			
 	
