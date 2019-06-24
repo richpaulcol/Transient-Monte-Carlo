@@ -66,6 +66,7 @@ def Import_EPANet_Geom(inp_filename):
                 vals = line.split()
                 if section == '[COORDINATES]':          
                 	## 	Create a new Node object with inputs (name, xPos, yPos)
+                	#print vals
                 	new_Node = Node(vals[0], float(vals[1]), float(vals[2]))
                 	new_Node.number = NodeCounter
                 	NodeCounter += 1
