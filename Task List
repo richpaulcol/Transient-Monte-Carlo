@@ -1,3 +1,9 @@
 This file contains the current list of tasks todo
 
 Setup the monte-carlo
+
+I need to reorganise the program to correctly use the epanettools files
+
+I also need to integrate the two versions of the transient calc codes that I have in simultaneous development
+
+

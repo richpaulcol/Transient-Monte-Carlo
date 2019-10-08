@@ -1,0 +1,13 @@
+  Page 1                                    Tue Sep 10 15:19:22 2019
+
+  ******************************************************************
+  *                           E P A N E T                          *
+  *                   Hydraulic and Water Quality                  *
+  *                   Analysis for Pipe Networks                   *
+  *                         Version 2.00.12                        *
+  ******************************************************************
+  
+  Input Error 201: syntax error in following line of [Options] section:
+   Temperature        	8
+
+  Input Error 200: one or more errors in input file.

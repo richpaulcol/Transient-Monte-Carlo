@@ -1,8 +1,9 @@
-import numpy as np
-import pylab as pp
+#import numpy as np
+#import pylab as pp
+from numpy import zeros, savetxt
 
 Node = 5
-Demand = np.zeros(5000)
+Demand = zeros(5000)
 Demand[0:500] = 1.
 Demand[500:1000] = 2.
 Demand[1000:1500] = 3.
@@ -14,4 +15,4 @@ Demand[3500:4000] = 2.
 Demand[4000:4500] = 1.
 Demand[4500:5000] = 0.
 
-np.savetxt('Demands.csv',Demand,delimiter = ',')
+savetxt('Demands.csv',Demand,delimiter = ',')

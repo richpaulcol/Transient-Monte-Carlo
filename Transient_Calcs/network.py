@@ -127,9 +127,9 @@ class Network(object):
 				self.link_idx[idx].Q_0 = float(Q0)/1000. #Convert to m^3/s
 				self.link_idx[idx].V_0 = float(V0)
 				if Length == 0:
-					self.link_idx[idx].FF_0 = 0
-				else:
-					self.link_idx[idx].FF_0 = float(2*9.81*(Headloss/1000.)*Diameter / (Length * V0**2))
+					Length = self.link_idx[idx].length
+				
+				self.link_idx[idx].FF_0 = float(2*9.81*(Headloss/1000.)*Diameter / (Length * V0**2))
 				
 				self.link_idx[idx].Headloss = float(Headloss)
 			except:
@@ -186,7 +186,7 @@ class Network(object):
 					self.link_idx[idx].Q_0 = float(Q0)/1000. #Convert to m^3/s
 					self.link_idx[idx].V_0 = float(V0)
 					if Length == 0:
-						self.link_idx[idx].FF_0 = 0
+						self.link_idx[idx].FF_0 = 0.01
 					else:
 						self.link_idx[idx].FF_0 = float(2*9.81*(Headloss/1000.)*Diameter / (Length * V0**2))
 					self.link_idx[idx].Headloss = float(Headloss)
