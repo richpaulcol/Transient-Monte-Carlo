@@ -39,6 +39,8 @@ class Pipe:
 
 		self.FF_0 = None
 		self.Friction_Model = 'Linear'
+
+		self.MOC_initialised = False
 		
 		if Length == '':
 			self.length = np.sqrt((self.x2-self.x1)**2+(self.y2-self.y1)**2+(self.z2-self.z1)**2)
@@ -68,7 +70,12 @@ class Pipe:
 			
 			
 		self.frictionLam = 64./(self.Re+1)
-		self.friction[self.Re<2000] = self.frictionLam[self.Re<2000]
+
+		if self.MOC_initialised == True:
+			self.friction[self.Re<2000] = self.frictionLam[self.Re<2000]
+		else:
+			if self.Re<2000:
+				self.friction = self.frictionLam
 
 		
 #		else:
