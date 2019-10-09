@@ -88,6 +88,9 @@ def create_M(Net):
 		Net.M[i,i] = Net.links[i].length / (9.81 * Net.links[i].area) + Net.D[i,i]
 		Net.M_1[i,i] = 1./Net.M[i,i]
 
+def RWC_iteration(Net,Q,H,q,dt):
+
+
 Directory = 'Projects/Water_Seminar/'
 FileName = 'Net3b_no_Tank.LPS.inp'
 
@@ -151,11 +154,11 @@ qs = []
 # axs[1].plot(Hs)
 # pp.show()
 
-I = np.identity(len(Net.links))
-R = multi_dot((Net.A1,Net.InvL,Net.A1.T))
-InvR = np.linalg.inv(R)
-S = multi_dot((Net.A1.T,InvR,Net.A1,Net.InvL))
-W = multi_dot((Net.InvL,(I - S)))
+Net.I = np.identity(len(Net.links))
+Net.R = multi_dot((Net.A1,Net.InvL,Net.A1.T))
+Net.InvR = np.linalg.inv(Net.R)
+Net.S = multi_dot((Net.A1.T,Net.InvR,Net.A1,Net.InvL))
+Net.W = multi_dot((Net.InvL,(Net.I - Net.S)))
 
 dt = 1./200.
 maxt = 200
@@ -170,6 +173,8 @@ Control[start_Iter:] = (0.6+0.4*np.cos(times[:-start_Iter]))*Net.q1[ControlNode]
 
 Control2 = np.zeros(times.shape)
 Control2[start_Iter:] = 0.001
+
+
 
 for time in times:
 
