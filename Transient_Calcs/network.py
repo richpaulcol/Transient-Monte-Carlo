@@ -219,6 +219,7 @@ class Network(object):
 		self.link_lengths = []
 		self.link_dx = []
 		self.link_length_error = []
+		self.MOC_initialised = True
 		for i in self.links:
 			try:
 				i.Q_0
@@ -255,7 +256,8 @@ class Network(object):
 			if self.Pressure_Dependent == 1:
 				for i in self.nodes:
 					i.initialise_Pressure_Dependent_Demands()
-					
+
+			i.MOC_initialised = True
 		print 'Maximum length error =', max(self.link_length_error)
 			
 	#####
