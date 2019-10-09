@@ -1,8 +1,8 @@
-import numpy as np
-import pylab as pp
+#import numpy as np
+#import pylab as pp
 
 #import wntr as wntr
-import networkx as nx
+#import networkx as nx
 from Transient_Calcs import *
 from numpy.linalg import multi_dot
 
@@ -17,15 +17,15 @@ def create_Incidence_Matrix(Net):
 		else:
 			Net.Type1.append(i.number)
 
-	Net.A = np.zeros((NodesNum,LinksNum))
-	Net.A0 = np.zeros((len(Net.Type0),LinksNum))
-	Net.A1 = np.zeros((len(Net.Type1),LinksNum))
+	Net.A = np.zeros((NodesNum, LinksNum))
+	Net.A0 = np.zeros((len(Net.Type0), LinksNum))
+	Net.A1 = np.zeros((len(Net.Type1), LinksNum))
 	for i in Net.links:
 		LinkNumber = i.number
 		LinkStart = i.node1.number
 		LinkEnd = i.node2.number
-		Net.A[LinkStart,LinkNumber]=1
-		Net.A[LinkEnd,LinkNumber] = -1
+		Net.A[LinkStart, LinkNumber] = 1
+		Net.A[LinkEnd, LinkNumber] = -1
 
 	count = 0
 	for i in Net.Type0:
@@ -88,7 +88,8 @@ def create_M(Net):
 		Net.M[i,i] = Net.links[i].length / (9.81 * Net.links[i].area) + Net.D[i,i]
 		Net.M_1[i,i] = 1./Net.M[i,i]
 
-def RWC_iteration(Net,Q,H,q,dt):
+def rwc_iteration(Net,Q,H,q,dt):
+	print 'Dave'
 
 
 Directory = 'Projects/Water_Seminar/'
@@ -193,12 +194,12 @@ for time in times:
 	#Net.q1 = Net.q1 + Net.dq1
 
 	calc_F_submatrix(Net)
-	T = multi_dot((Net.InvL, Net.A1.T, InvR, Net.dq1))
-	dQ = multi_dot((-W, Net.F)) + multi_dot((W, Net.A0.T, Net.H0))-T
+	T = multi_dot((Net.InvL, Net.A1.T, Net.InvR, Net.dq1))
+	dQ = multi_dot((-Net.W, Net.F)) + multi_dot((Net.W, Net.A0.T, Net.H0))-T
 	Net.OldQ = Net.Q
 	Net.Oldq1 = Net.q1
 	Net.Q = Net.Q + dt * dQ
-	Net.H1 =multi_dot((InvR,multi_dot((Net.A1,Net.InvL,(Net.F - multi_dot((Net.A0.T,Net.H0))))) - Net.dq1))
+	Net.H1 =multi_dot((Net.InvR,multi_dot((Net.A1,Net.InvL,(Net.F - multi_dot((Net.A0.T,Net.H0))))) - Net.dq1))
 	#Net.newq1 =
 	#Net.dq1 = (Net.newq1-Net.q1)/dt
 	Net.q1 = multi_dot((Net.A1,Net.Q))
