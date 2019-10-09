@@ -3,6 +3,16 @@
 
 #import wntr as wntr
 #import networkx as nx
+
+""" This file at the moment implements the explicit incidence method for rwc calculations from Shimada 1989.
+
+It currently doesn't have pressure dependent demands, or a true non-linear friction model, nor does it allow for tanks.
+
+I am also using the notation from Nault (Thesis) 2016.
+
+TODO I need to explore the stability of the code and when the explicit formulation will break down,
+but for now it is easier to code and understand."""
+
 from Transient_Calcs import *
 from numpy.linalg import multi_dot
 
@@ -89,6 +99,7 @@ def create_M(Net):
 		Net.M_1[i,i] = 1./Net.M[i,i]
 
 def rwc_iteration(Net,Q,H,q,dt):
+	#Todo Produce a vectorised function here for a RWC iteration.
 	print 'Dave'
 
 
@@ -223,4 +234,5 @@ axs[2].plot(times,qs)
 pp.show()
 
 
-
+#Todo: I need to recreate this file run in the standard MOC and see how closely the two results are.
+#Todo: Implement this RWC in a unscented Kalman filter
