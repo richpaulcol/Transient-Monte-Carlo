@@ -4,3 +4,6 @@
 >>>>>>> origin/master
 # Default ignored files
 /workspace.xml
+
+.py~
+.npy

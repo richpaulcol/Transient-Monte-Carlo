@@ -1,8 +1,18 @@
-import numpy as np
-import pylab as pp
+#import numpy as np
+#import pylab as pp
 
 #import wntr as wntr
-import networkx as nx
+#import networkx as nx
+
+""" This file at the moment implements the explicit incidence method for rwc calculations from Shimada 1989.
+
+It currently doesn't have pressure dependent demands, or a true non-linear friction model, nor does it allow for tanks.
+
+I am also using the notation from Nault (Thesis) 2016.
+
+TODO I need to explore the stability of the code and when the explicit formulation will break down,
+but for now it is easier to code and understand."""
+
 from Transient_Calcs import *
 from numpy.linalg import multi_dot
 
@@ -17,15 +27,15 @@ def create_Incidence_Matrix(Net):
 		else:
 			Net.Type1.append(i.number)
 
-	Net.A = np.zeros((NodesNum,LinksNum))
-	Net.A0 = np.zeros((len(Net.Type0),LinksNum))
-	Net.A1 = np.zeros((len(Net.Type1),LinksNum))
+	Net.A = np.zeros((NodesNum, LinksNum))
+	Net.A0 = np.zeros((len(Net.Type0), LinksNum))
+	Net.A1 = np.zeros((len(Net.Type1), LinksNum))
 	for i in Net.links:
 		LinkNumber = i.number
 		LinkStart = i.node1.number
 		LinkEnd = i.node2.number
-		Net.A[LinkStart,LinkNumber]=1
-		Net.A[LinkEnd,LinkNumber] = -1
+		Net.A[LinkStart, LinkNumber] = 1
+		Net.A[LinkEnd, LinkNumber] = -1
 
 	count = 0
 	for i in Net.Type0:
@@ -87,6 +97,11 @@ def create_M(Net):
 	for i in range(LinksNum):
 		Net.M[i,i] = Net.links[i].length / (9.81 * Net.links[i].area) + Net.D[i,i]
 		Net.M_1[i,i] = 1./Net.M[i,i]
+
+def rwc_iteration(Net,Q,H,q,dt):
+	#Todo Produce a vectorised function here for a RWC iteration.
+	print 'Dave'
+
 
 Directory = 'Projects/Water_Seminar/'
 FileName = 'Net3b_no_Tank.LPS.inp'
@@ -151,11 +166,11 @@ qs = []
 # axs[1].plot(Hs)
 # pp.show()
 
-I = np.identity(len(Net.links))
-R = multi_dot((Net.A1,Net.InvL,Net.A1.T))
-InvR = np.linalg.inv(R)
-S = multi_dot((Net.A1.T,InvR,Net.A1,Net.InvL))
-W = multi_dot((Net.InvL,(I - S)))
+Net.I = np.identity(len(Net.links))
+Net.R = multi_dot((Net.A1,Net.InvL,Net.A1.T))
+Net.InvR = np.linalg.inv(Net.R)
+Net.S = multi_dot((Net.A1.T,Net.InvR,Net.A1,Net.InvL))
+Net.W = multi_dot((Net.InvL,(Net.I - Net.S)))
 
 dt = 1./200.
 maxt = 200
@@ -170,6 +185,8 @@ Control[start_Iter:] = (0.6+0.4*np.cos(times[:-start_Iter]))*Net.q1[ControlNode]
 
 Control2 = np.zeros(times.shape)
 Control2[start_Iter:] = 0.001
+
+
 
 for time in times:
 
@@ -188,12 +205,12 @@ for time in times:
 	#Net.q1 = Net.q1 + Net.dq1
 
 	calc_F_submatrix(Net)
-	T = multi_dot((Net.InvL, Net.A1.T, InvR, Net.dq1))
-	dQ = multi_dot((-W, Net.F)) + multi_dot((W, Net.A0.T, Net.H0))-T
+	T = multi_dot((Net.InvL, Net.A1.T, Net.InvR, Net.dq1))
+	dQ = multi_dot((-Net.W, Net.F)) + multi_dot((Net.W, Net.A0.T, Net.H0))-T
 	Net.OldQ = Net.Q
 	Net.Oldq1 = Net.q1
 	Net.Q = Net.Q + dt * dQ
-	Net.H1 =multi_dot((InvR,multi_dot((Net.A1,Net.InvL,(Net.F - multi_dot((Net.A0.T,Net.H0))))) - Net.dq1))
+	Net.H1 =multi_dot((Net.InvR,multi_dot((Net.A1,Net.InvL,(Net.F - multi_dot((Net.A0.T,Net.H0))))) - Net.dq1))
 	#Net.newq1 =
 	#Net.dq1 = (Net.newq1-Net.q1)/dt
 	Net.q1 = multi_dot((Net.A1,Net.Q))
@@ -217,4 +234,5 @@ axs[2].plot(times,qs)
 pp.show()
 
 
-
+#Todo: I need to recreate this file run in the standard MOC and see how closely the two results are.
+#Todo: Implement this RWC in a unscented Kalman filter
