@@ -106,8 +106,8 @@ def rwc_iteration(Net,Q,H,q,dt):
 Directory = 'Projects/Water_Seminar/'
 FileName = 'Net3b_no_Tank.LPS.inp'
 
-#Directory = 'Projects/SimpleBranched/'
-#FileName = 'SimpleBranchedTrue.inp'
+Directory = 'Projects/SimpleBranched/'
+FileName = 'SimpleBranchedTrue.inp'
 
 Net = Import_EPANet_Geom(Directory+FileName)
 Net.open_epanet_file()
@@ -173,20 +173,20 @@ Net.S = multi_dot((Net.A1.T,Net.InvR,Net.A1,Net.InvL))
 Net.W = multi_dot((Net.InvL,(Net.I - Net.S)))
 
 dt = 1./200.
-maxt = 200
+maxt = 20
 
 times = np.arange(0,maxt,dt)
 start_Time = 10
 start_Iter = int(start_Time / dt)
 
-ControlNode = 56
+ControlNode = 9
 Control = np.ones(times.shape)*Net.q1[ControlNode]
 Control[start_Iter:] = (0.6+0.4*np.cos(times[:-start_Iter]))*Net.q1[ControlNode]
 
 Control2 = np.zeros(times.shape)
 Control2[start_Iter:] = 0.001
 
-
+Control = np.random.uniform(0.00001,0.0001,times.size)
 
 for time in times:
 
