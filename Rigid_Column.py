@@ -65,12 +65,17 @@ def create_Solution_Vectors(Net):
 def calc_F_submatrix(Net):
 	LinksNum = len(Net.links)
 	for i in range(LinksNum):
-		Net.links[i].Re = (abs(Net.links[i].Q_0)/(Net.links[i].area) * Net.links[i].diameter / (1.004*10.**-6))
-		Net.links[i].Friction()
-		#print Net.links[i].friction,Net.links[i].FF_0
+		if Net.links[i].linktype == 'Pipe':
+			Net.links[i].Re = (abs(Net.links[i].Q_0)/(Net.links[i].area) * Net.links[i].diameter / (1.004*10.**-6))
+			Net.links[i].Friction()
+			#print Net.links[i].friction,Net.links[i].FF_0
 
 
-		Net.F[i] = 8*Net.links[i].FF_0 * Net.links[i].length / (g*np.pi*Net.links[i].diameter**5) * Net.Q[i]*abs(Net.Q[i])
+			Net.F[i] = 8*Net.links[i].FF_0 * Net.links[i].length / (g*np.pi*Net.links[i].diameter**5) * Net.Q[i]*abs(Net.Q[i])
+
+		elif Net.links[i].linktype == 'Valve':
+			E = 1.0
+			Net.F[i] = 1./(Net.links[i].setting**2 * E**2) * Net.Q[i]*abs(Net.Q[i])
 
 def create_Jacobian_submatrix(Net):
 	LinksNum = len(Net.links)
@@ -109,6 +114,9 @@ FileName = 'Net3b_no_Tank.LPS.inp'
 Directory = 'Projects/SimpleBranched/'
 FileName = 'SimpleBranchedTrue.inp'
 FileName = '5_Pipes.inp'
+
+Directory = 'Projects/Transient_Fingerprinting/'
+FileName = 'transient vlbv4x cut down.inp'
 
 
 Net = Import_EPANet_Geom(Directory+FileName)
@@ -175,7 +183,7 @@ Net.S = multi_dot((Net.A1.T,Net.InvR,Net.A1,Net.InvL))
 Net.W = multi_dot((Net.InvL,(Net.I - Net.S)))
 
 dt = 1./200.
-maxt = 70
+maxt = 1
 
 times = np.arange(0,maxt,dt)
 start_Time = 5
@@ -199,10 +207,13 @@ for time in times:
 	Net.dq1[ControlNode] = (pp.gradient(Control)/dt)[int(time/dt)]
 	Net.q1[ControlNode] = Control[int(time/dt)]
 
+
+
 	#Net.dq1[9] = (pp.gradient(Control2)/dt)[int(time/dt)]
 	#Net.q1[9] = Control2[int(time / dt)]
 
-	# if iters == 1000:
+	if time >= 0.5:
+		Net.valves[2].setting = 1e-6
 	# 	Net.dq1[8] = -0.005 / dt
 	# else:
 	# 	Net.dq1[8] = 0

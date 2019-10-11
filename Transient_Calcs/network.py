@@ -620,15 +620,26 @@ class Network(object):
 			#print 2*9.81*(Headloss/1000.)*Diameter / (Length * V0**2)
 			
 			try:
-			
 				self.link_idx[idx].Q_0 = float(Q0)/1000. #Convert to m^3/s
-				self.link_idx[idx].V_0 = float(V0)
-				self.link_idx[idx].FF_0 = float(2*9.81*(Headloss/1000.)*Diameter / (Length * V0**2))
-				self.link_idx[idx].roughness = Roughness
-				self.link_idx[idx].headloss = Headloss
 			except:
 				print 'Problem getting Flow or Velocity for link:', idx
-				continue
+			try:
+				self.link_idx[idx].V_0 = float(V0)
+			except:
+				print 'Problem getting Velocity for link:', idx
+			try:
+				self.link_idx[idx].FF_0 = float(2*9.81*(Headloss/1000.)*Diameter / (Length * V0**2))
+			except:
+				print 'Problem getting FF_0 for link:', idx
+			try:
+				self.link_idx[idx].roughness = Roughness
+			except:
+				print 'Problem getting Roughness for link:', idx
+			try:
+				self.link_idx[idx].headloss = Headloss
+			except:
+				print 'Problem getting Headloss for link:', idx
+
 				
 
 	def alter_epanet_friction(self,value):
