@@ -106,8 +106,10 @@ def rwc_iteration(Net,Q,H,q,dt):
 Directory = 'Projects/Water_Seminar/'
 FileName = 'Net3b_no_Tank.LPS.inp'
 
-#Directory = 'Projects/SimpleBranched/'
-#FileName = 'SimpleBranchedTrue.inp'
+Directory = 'Projects/SimpleBranched/'
+FileName = 'SimpleBranchedTrue.inp'
+FileName = '5_Pipes.inp'
+
 
 Net = Import_EPANet_Geom(Directory+FileName)
 Net.open_epanet_file()
@@ -173,18 +175,21 @@ Net.S = multi_dot((Net.A1.T,Net.InvR,Net.A1,Net.InvL))
 Net.W = multi_dot((Net.InvL,(Net.I - Net.S)))
 
 dt = 1./200.
-maxt = 200
+maxt = 70
 
 times = np.arange(0,maxt,dt)
-start_Time = 10
+start_Time = 5
 start_Iter = int(start_Time / dt)
+end_Time = 55
+end_Iter = int(end_Time / dt)
 
-ControlNode = 56
+ControlNode = 1
 Control = np.ones(times.shape)*Net.q1[ControlNode]
-Control[start_Iter:] = (0.6+0.4*np.cos(times[:-start_Iter]))*Net.q1[ControlNode]
-
-Control2 = np.zeros(times.shape)
-Control2[start_Iter:] = 0.001
+Control[start_Iter:] = (0.6+0.4*np.cos(1*times[:-start_Iter]))*Net.q1[ControlNode]
+#Control[Start_Iter:End_Iter] =
+#
+# Control2 = np.zeros(times.shape)
+# Control2[start_Iter:] = 0.001
 
 
 
@@ -202,11 +207,15 @@ for time in times:
 	# else:
 	# 	Net.dq1[8] = 0
 
+	#if time > 2:
+#		Net.H0[0] = 300
+
 	#Net.q1 = Net.q1 + Net.dq1
 
 	calc_F_submatrix(Net)
 	T = multi_dot((Net.InvL, Net.A1.T, Net.InvR, Net.dq1))
 	dQ = multi_dot((-Net.W, Net.F)) + multi_dot((Net.W, Net.A0.T, Net.H0))-T
+	dQ = -T
 	Net.OldQ = Net.Q
 	Net.Oldq1 = Net.q1
 	Net.Q = Net.Q + dt * dQ
