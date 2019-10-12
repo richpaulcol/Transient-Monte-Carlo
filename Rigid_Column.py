@@ -110,6 +110,9 @@ Directory = 'Projects/SimpleBranched/'
 FileName = 'SimpleBranchedTrue.inp'
 FileName = '5_Pipes.inp'
 
+Directory = 'Projects/Transient_Fingerprinting/'
+FileName = 'transient vlbv4x cut down.inp'
+
 
 Net = Import_EPANet_Geom(Directory+FileName)
 Net.open_epanet_file()
