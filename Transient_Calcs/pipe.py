@@ -15,7 +15,7 @@ class Pipe:
 		self.roughness = float(Roughness) 		
 		self.wallThickness = wallThickness		#[m]
 		self.modulus = modulus				#[GPa]
-		
+		self.linktype = 'Pipe'
 		k = 2.05e9
 		
 		self.area = self.diameter**2 *np.pi/4.

@@ -8,7 +8,7 @@ Directory = 'Projects/Transient_Fingerprinting/'
 
 FileName = 'transient vlbv4x cut down.inp'
 #FileName = 'transient vlbv4x cut down v1 closed.inp'
-FileName = 'transient vlbv4x cut down v1 and v2 closed.inp'
+#FileName = 'transient vlbv4x cut down v1 and v2 closed.inp'
 
 Net = Import_EPANet_Geom(Directory+FileName)
 Times = Net.Run_EPAnet()
@@ -68,7 +68,7 @@ for time in [32400]:
 	
 	#Net.Graph = G
 
-	Sensor = Net.node_idx['No22']
+	Sensor = Net.node_idx['No21']
 	#Sensor = Net.node_idx['No23194']
 
 	AttenuationArray = {}

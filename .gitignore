@@ -1,0 +1,3 @@
+##Don't try and upload the data files
+*.npy
+/Projects/Nault_Trial/Nault.inp

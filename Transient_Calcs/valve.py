@@ -3,7 +3,7 @@ import pylab as pp
 
 class Valve(object):
 	"""Represents a valve in an EPANET model."""
-	def __init__(self, valve_name, node_1, node_2, diameter, setting, fixed_setting, Valve_Location = None,wallThickness = None,modulus = None,roughness = 10**-6):
+	def __init__(self, valve_name, node_1, node_2, diameter, type, setting, Valve_Location = None,wallThickness = None,modulus = None,roughness = 10**-6):
 		"""Create a new valve.
 		
 		Instance variables:
@@ -16,11 +16,13 @@ class Valve(object):
 		self.Name = valve_name
 		self.node1 = node_1
 		self.node2 = node_2
-		self.setting = setting
-		self.fixed_setting = fixed_setting
+		self.type = type
+		self.setting = float(setting)
+		#self.fixed_setting = fixed_setting
 		self.diameter = float(diameter)/1000.
 		self.area = np.pi * self.diameter*2/ 4.
 		self.roughness = roughness
+		self.linktype = 'Valve'
 		
 		## Adding this pipe to the nodal lists
 		self.node1.pipesOut.append(self)
@@ -61,12 +63,13 @@ class Valve(object):
 		#print self.Re
 		
 	def Friction(self):  ##Not sure if should use log or log10 EPANet looks like it uses log, although equations suggest log10
-		#self.friction = np.ones(self.Re.size)
+		self.friction = np.ones(self.Re.size)
 		if self.Friction_Units == 'D-W':
-			self.friction = 0.25 / (np.log10((self.roughness/1000.) / (3.7*self.diameter) + 5.74/(self.Re**0.9))**2) 
-			
+			self.friction = 0.25 / (np.log10((self.roughness/1000.) / (3.7*self.diameter) + 5.74/(self.Re**0.9))**2)
+
 		elif self.Friction_Units == 'H-W':
 			self.friction = 133.89 / (abs(self.V)**(4./27.) * self.roughness**(50./27.) * self.diameter**(1./16.)+10**-10)
-		
+
 		self.frictionLam = 64./(self.Re+1)
 		self.friction[self.Re<2000] = self.frictionLam[self.Re<2000]
+
