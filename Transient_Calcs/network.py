@@ -344,7 +344,7 @@ class Network(object):
 		
 	######
 	##	Plotting the network configuration
-	def geom_Plot(self,plot_Node_Names = 0,Highlights = None):
+	def geom_Plot(self,plot_Node_Names = 0,Highlights = []):
 		pp.figure()
 		pp.title('Network Geometry')
 		for i in self.nodes:

@@ -247,7 +247,7 @@ Qs = np.array(Qs)
 Hs = np.array(Hs)
 qs = np.array(qs)
 
-f,axs = pp.subplots(3,1)
+f,axs = pp.subplots(3,1,sharex=True)
 axs[0].plot(times,Qs)
 axs[1].plot(times,Hs)
 axs[2].plot(times,qs)

@@ -1,0 +1,1293 @@
+[TITLE]
+
+
+[JUNCTIONS]
+;ID              	Elev        	Demand      	Pattern         
+ CAMVHDWYBC      	77.94       	60          	0101            	;
+ CAMXTLUPLQ      	77.82       	0           	                	;
+ CAN4WI14EF      	77.82       	60          	0101            	;
+ CAJU04DEAE      	82.92       	30          	0101            	;
+ CAK7V3U75Q      	82.84       	0           	                	;
+ CAKIJ91SJ7      	82.8        	0           	                	;
+ CAHY3SP1SX      	91.86       	0           	                	;
+ CAH3PK8EBQ      	77.26       	0           	                	;
+ CAHEPQJDCC      	91.0832     	0           	                	;
+ CAHMGUBXB9      	89.4416     	10           	0108                	;
+ CAHSYX0MQL      	92.14       	0           	                	;
+ CAHVB5XDYX      	92.06       	0           	                	;
+ CAHW7YK6TE      	92.02       	10           	0108                	;
+ CAT9D0UI7M      	77.76       	0           	                	;
+ CATA11682A      	77.78       	0           	                	;
+ CATGQWN42E      	73.5096     	0           	                	;
+ CATHG4T3C2      	73.5648     	0           	                	;
+ CATT7GTXPW      	73.4448     	0           	                	;
+ CAU3UEQ84P      	73.432      	0           	                	;
+ CAWTQQVEVB      	76.48       	0           	                	;
+ CAX35UYJJV      	76.42599    	0           	                	;
+ CAXRMST1XU      	73.46       	0           	                	;
+ CAY2XR11B8      	73.34       	3           	0101            	;
+ CAY8MF6FBW      	76.302      	0           	                	;
+ CB0QS62499      	74.88       	60          	0101            	;
+ CADXK24N13      	82.32       	0           	                	;
+ CAE6C5W3QA      	82.32       	0           	                	;
+ CAF33KUVGM      	77.5        	83          	0101            	;
+ CAFPFW92WV      	77.5        	0           	                	;
+ CAG1S2RCNU      	77.58       	0           	                	;
+ CAGS1F0TLF      	91.2176     	0           	                	;
+ CAH1VXWUNL      	91.1504     	0           	                	;
+ CAHWX6Q63G      	91.98       	0           	                	;
+ CAPIT7B4E5      	77.88       	0           	                	;
+ CAPPYAASDR      	77.88       	0           	                	;
+ CAPVSD54EV      	77.88       	0           	                	;
+ CAPYDEE98V      	75.28       	0           	0101            	;
+ CAQ3U9RK1F      	77.88       	0           	                	;
+ CAQ8FISRY6      	77.76       	0           	                	;
+ CAQIGNNNJR      	77.72       	0           	                	;
+ CARAD29R5S      	78          	0           	                	;
+ CARJR6TXRB      	77.96       	0           	                	;
+ CARXM6AQMI      	77.92       	0           	                	;
+ CBFA18E7W7      	70          	4           	0101            	;
+ CBFAN8PTXP      	70          	0           	                	;
+ C9Y7EGTTLF      	77.16       	0           	                	;
+ CA10DR3GC9      	76.96       	0           	                	;
+ CA1GW02UYE      	95.1        	30          	0101            	;
+ CA1PC3NXWK      	95.04       	0           	                	;
+ CA2V5N2795      	94.72       	0           	                	;
+ CA46TARLYL      	95.04       	0           	                	;
+ CA4CYDRAW4      	95.04       	0           	                	;
+ CA5MC0UVXD      	87.92       	0           	                	;
+ CANS01JKLF      	75.38       	1           	0101            	;
+ CAP5J0V1HB      	75.34       	0           	                	;
+ CAPAYVPEHU      	77.86       	0           	                	;
+ CBE00L0FGR      	70.0448     	1           	0101            	;
+ CBEA1QV88R      	70          	0           	                	;
+ CBF49CE69F      	70          	0           	                	;
+ CBF8Q7RT8I      	70          	0           	                	;
+ CALXFXC0C3      	79.81599    	0           	                	;
+ CAM86331DP      	75.52       	3           	0101            	;
+ CAMPX4EQJ0      	77.8        	0           	                	;
+ C9U9IYAIF0      	94.1        	0           	                	;
+ C9UWJA141Y      	81.45       	0           	                	;
+ C9VE2I219T      	81.5424     	0           	                	;
+ CA72VPGLWJ      	87.52       	54          	0101            	;
+ CA7MM038UT      	84.68       	0           	                	;
+ C8DQK37GHA      	80.3784     	0           	                	;
+ C8E33U7KFT      	80.4368     	0           	                	;
+ C8F0JHAY64      	80.5616     	0           	                	;
+ C8W8QDU3CD      	80          	0           	                	;
+ C8WBYFEKP9      	80          	1           	 0102               	;
+ CB0WL8VFB4      	74.84       	0           	                	;
+ CB2DFY4J7J      	74.72       	0           	                	;
+ CB2MU3NQWW      	74.62       	0           	                	;
+ CB7UJLLUNS      	72.1        	0           	                	;
+ CBC7CBVXKK      	71.3        	0           	                	;
+ CBCBNSL27P      	71.3        	0           	                	;
+ CAIXHGQQNM      	89.3208     	57          	0101            	;
+ CAJ2PIT6KH      	76.98       	0           	                	;
+ CA7T52RTDL      	77.26       	0           	                	;
+ CA7VQ4124D      	84.4        	0           	                	;
+ C9R8XHF0QW      	79.39999    	0           	                	;
+ C9SR389LQ7      	94.74       	37          	0101            	;
+ C94GPWFYTE      	80.3116     	0           	                	;
+ C94K9Y6VB0      	80.1176     	0           	                	;
+ C954Q85WMC      	80.108      	0           	                	;
+ C9DT8FUUX8      	80          	0           	                	;
+ C9E02IP6XR      	80.02       	0           	                	;
+ C9EQAVY4YU      	90.48       	6           	0103                	;
+ CAKJ52I8D0      	82.72       	0           	                	;
+ CAKK69TJKD      	82.64       	0           	                	;
+ CALBCF9VEK      	79.8704     	0           	                	;
+ CALN2SRSSR      	79.844      	0           	                	;
+ CAHYT0U130      	91.82       	0           	                	;
+ CBDU5IM5V4      	70.048      	4           	0101            	;
+ CBDWGRJVVL      	70.0464     	0           	                	;
+ C9T5CEQ1U7      	94.52       	0           	                	;
+ CADQRXTA63      	82.32       	0           	                	;
+ CA81967Y3E      	84.56       	0           	                	;
+ CA81W6IN8H      	84.4        	0           	                	;
+ C9PVQ1R1B5      	79.42       	8           	0101            	;
+ C9PYVVH9RD      	79.38       	0           	                	;
+ C9QE53EE12      	84.0812     	0           	                	;
+ C9QEPVVVHU      	82.9468     	8           	0104                	;
+ C9LML9DG9V      	93.95       	0           	                	;
+ C9MCJL1GV1      	93.658      	0           	                	;
+ C9NRSAHD2T      	82.3188     	0           	0101            	;
+ CA87E97M2F      	84.56       	0           	                	;
+ CA8AYAXHQ3      	84.44       	81          	0101            	;
+ CA7RI202PL      	77.26       	0           	                	;
+ C9QMJ7HKE4      	82.9728     	0           	                	;
+ C9QPT8LCD6      	79.24001    	0           	                	;
+ C9QS39PSWU      	79.26       	0           	                	;
+ C9QTDABWF3      	83.0568     	103         	0101            	;
+ C9QVBBABA5      	79.28       	0           	                	;
+ C9QYVD16KC      	79.32       	0           	                	;
+ C9R3B13HHM      	79.34       	0           	                	;
+ C9R6NGBJ7V      	79.38       	0           	                	;
+ CA8BXBF5RV      	77.2        	0           	                	;
+ CA8EUCTPTA      	84.52       	0           	                	;
+ C9W4YV634F      	81.6652     	0           	                	;
+ C9WA5XMY4F      	94.84       	10           	0105                	;
+ C9X8IEE4HN      	94.42       	0           	                	;
+ C9XV3BBI87      	77.2        	0           	                	;
+ CA68EAL687      	94.84       	0           	                	;
+ CA6U4KP70F      	87.6        	0           	                	;
+ CAI412VSYL      	89.3904     	0           	                	;
+ C9EVNJYJ69      	90.86       	0           	                	;
+ C9EXR0K73H      	90.98       	0           	                	;
+ C9H6T3JU4T      	89.54       	0           	                	;
+ CA81W6J9C0      	77.22       	0           	                	;
+ C9VLY1H0CL      	81.5816     	0           	                	;
+ C9W0RT3RFP      	94.94       	58          	0101            	;
+ CA5US4GYVU      	87.84       	0           	                	;
+ C91KMHRJM3      	80          	0           	                	;
+ C92ICY6VWN      	80.3472     	1           	0101            	;
+ C93NUIDTPD      	80.1332     	0           	                	;
+ C947YS7GPL      	80.384      	0           	                	;
+ C94BQFF6BM      	80.272      	0           	                	;
+ CAINFCCEF3      	80.68       	0           	                	;
+ C9NVNCDIKS      	83.7004     	0           	                	;
+ C9P4FG614L      	82.4976     	15           	0106                	;
+ C9P7NHQGRR      	83.79       	0           	                	;
+ C9PC9RRQ0T      	82.54       	0           	                	;
+ C9PD6KERSF      	79.4        	0           	                	;
+ C9PKCVPRYD      	79.38       	0           	                	;
+ C9L8D2G0AT      	94.0984     	17          	0101            	;
+ C9F1N20DHX      	90.34       	0           	                	;
+ C9FCUSU5IA      	90.24       	0           	                	;
+ C9G2XJ5LAU      	92.18       	108         	0101            	;
+ C9GI5RJ537      	92.1        	0           	                	;
+ C9GVPQUK1X      	91.96       	0           	                	;
+ C9H5U33NWC      	91.88       	0           	                	;
+ CBD7S88RM5      	70.92       	10           	0107                	;
+ CBCMNXY0VF      	71.18       	0           	                	;
+ CBCU6242J0      	71          	0           	                	;
+ CBCGC9GIVH      	71.08       	5           	0101            	;
+ CAIE27S80K      	80.64       	0           	                	;
+ CAIG08PP1M      	90.9152     	19          	0101            	;
+ CAIVVFYH73      	80.64       	0           	                	;
+ hydrx3          	88.72       	0           	                	;
+
+[RESERVOIRS]
+;ID              	Head        	Pattern         
+ 1               	1           	res1            	;
+
+[TANKS]
+;ID              	Elevation   	InitLevel   	MinLevel    	MaxLevel    	Diameter    	MinVol      	VolCurve
+
+[PIPES]
+;ID              	Node1           	Node2           	Length      	Diameter    	Roughness   	MinorLoss   	Status
+ L07KECGB        	CALXFXC0C3      	CALN2SRSSR      	1.59        	94.78       	70.09       	0.00        	Open  	;
+ L07KECGC        	CALBCF9VEK      	CAIVVFYH73      	15.50       	94.78       	70.09       	0.00        	Open  	;
+ L07KECIA        	CAIVVFYH73      	CAE6C5W3QA      	30.21       	94.78       	70.09       	0.00        	Open  	;
+ L07KECKA        	CAE6C5W3QA      	CA8AYAXHQ3      	37.48       	94.78       	70.09       	0.00        	Open  	;
+ L07KECMA        	CA8AYAXHQ3      	CA81967Y3E      	1.83        	94.78       	70.09       	0.00        	Open  	;
+ L07KECGA        	CALN2SRSSR      	CALBCF9VEK      	1.99        	94.78       	70.09       	0.00        	Open  	;
+ L07KED1B        	CARAD29R5S      	CAQ3U9RK1F      	13.86       	195.96      	149.96      	0.00        	Open  	;
+ L07LC28B        	C94GPWFYTE      	C947YS7GPL      	5.39        	99.65       	70.00       	0.00        	Open  	;
+ L07LC28C        	C94BQFF6BM      	C94GPWFYTE      	2.01        	99.65       	70.00       	0.00        	Open  	;
+ L07LC2AA        	C93NUIDTPD      	C94K9Y6VB0      	5.05        	99.65       	70.00       	0.00        	Open  	;
+ L07KED2A        	CARAD29R5S      	CARJR6TXRB      	1.45        	94.37       	50.83       	0.00        	Open  	;
+ L07KED2B        	CARJR6TXRB      	CARXM6AQMI      	2.00        	94.37       	50.83       	0.00        	Open  	;
+ L07KED2C        	CARXM6AQMI      	CAT9D0UI7M      	6.94        	94.37       	50.83       	0.00        	Open  	;
+ L07KED3A        	CAT9D0UI7M      	CAWTQQVEVB      	40.31       	94.37       	50.83       	0.00        	Open  	;
+ L07KED5A        	CAWTQQVEVB      	CB2DFY4J7J      	47.46       	94.37       	50.83       	0.00        	Open  	;
+ L07KED1C        	CAQ3U9RK1F      	CAPVSD54EV      	2.00        	195.96      	149.96      	0.00        	Open  	;
+ L07KEBJA        	CAFPFW92WV      	CAH3PK8EBQ      	9.17        	99.65       	70.00       	0.00        	Open  	;
+ L07KEBKA        	CAH3PK8EBQ      	CAJ2PIT6KH      	14.01       	99.65       	70.00       	0.00        	Open  	;
+ L07KEBNA        	CAG1S2RCNU      	C9UWJA141Y      	137.20      	195.59      	110.00      	0.00        	Open  	;
+ L07KEC0A        	C9UWJA141Y      	C9QTDABWF3      	27.22       	195.59      	110.00      	0.00        	Open  	;
+ L07KECEB        	CAKIJ91SJ7      	CAK7V3U75Q      	1.65        	58.11       	23.42       	0.00        	Open  	;
+ L07KE99A        	CAU3UEQ84P      	CATHG4T3C2      	3.68        	99.62       	100.00      	0.00        	Open  	;
+ L07KE9CA        	CBEA1QV88R      	CBFAN8PTXP      	5.51        	99.65       	70.00       	0.00        	Open  	;
+ L07KE9DA        	CBEA1QV88R      	CBD7S88RM5      	36.25       	99.65       	70.00       	0.00        	Open  	;
+ L07KE9JA        	CBCGC9GIVH      	CB7UJLLUNS      	25.43       	96.63       	100.00      	0.00        	Open  	;
+ L07KE9JB        	CBD7S88RM5      	CBCU6242J0      	1.96        	96.63       	100.00      	0.00        	Open  	;
+ L07KE9JC        	CBCU6242J0      	CBCGC9GIVH      	1.99        	96.63       	100.00      	0.00        	Open  	;
+ L07KECEC        	CAJU04DEAE      	CA72VPGLWJ      	82.57       	58.11       	23.42       	0.00        	Open  	;
+ L07KECFA        	CAKK69TJKD      	CALXFXC0C3      	67.36       	152.97      	150.00      	0.00        	Open  	;
+ L07KECFB        	CAKJ52I8D0      	CAKK69TJKD      	2.00        	152.97      	150.00      	0.00        	Open  	;
+ L07KECFC        	CAKIJ91SJ7      	CAKJ52I8D0      	1.21        	152.97      	150.00      	0.00        	Open  	;
+ L07KEBGB        	CAQIGNNNJR      	CAQ8FISRY6      	1.98        	195.59      	110.00      	0.00        	Open  	;
+ L07KEBIA        	CAG1S2RCNU      	CAFPFW92WV      	8.49        	99.65       	70.00       	0.00        	Open  	;
+ L07KE9KA        	CBD7S88RM5      	CBCMNXY0VF      	7.93        	99.65       	70.00       	0.00        	Open  	;
+ L07KE9LA        	CBC7CBVXKK      	CBCBNSL27P      	2.01        	148.50      	70.00       	0.00        	Open  	;
+ L07KE9LB        	CBCMNXY0VF      	CBC7CBVXKK      	3.20        	148.50      	70.00       	0.00        	Open  	;
+ L07KEBGA        	CAQ8FISRY6      	CAPPYAASDR      	3.46        	195.59      	110.00      	0.00        	Open  	;
+ L07KEC2A        	C9QTDABWF3      	C9NVNCDIKS      	12.74       	148.50      	70.00       	0.00        	Open  	;
+ L07KEC4A        	C9NVNCDIKS      	C9EQAVY4YU      	112.12      	139.47      	100.00      	0.00        	Open  	;
+ L07KEC5A        	C9EQAVY4YU      	C9EVNJYJ69      	7.07        	139.47      	100.00      	0.00        	Open  	;
+ L07KEC5B        	C9EXR0K73H      	C9G2XJ5LAU      	24.64       	139.47      	100.00      	0.00        	Open  	;
+ L07KEC5C        	C9EVNJYJ69      	C9EXR0K73H      	2.01        	139.47      	100.00      	0.00        	Open  	;
+ L07KECEA        	CAK7V3U75Q      	CAJU04DEAE      	1.99        	58.11       	23.42       	0.00        	Open  	;
+ L07LBPMA        	C9SR389LQ7      	C9T5CEQ1U7      	2.38        	99.65       	70.00       	0.00        	Open  	;
+ L07LB06A        	C9VE2I219T      	C9VLY1H0CL      	1.99        	74.25       	70.00       	0.00        	Open  	;
+ L07LB06B        	C9VLY1H0CL      	C9W4YV634F      	4.28        	74.25       	70.00       	0.00        	Open  	;
+ L07KE8IC        	C9QS39PSWU      	C9QVBBABA5      	1.85        	99.65       	70.00       	0.00        	Open  	;
+ L07KE8KA        	C9QPT8LCD6      	CA7RI202PL      	88.59       	78.99       	80.00       	0.00        	Open  	;
+ L07KE8NA        	CA7T52RTDL      	CA7RI202PL      	0.97        	78.99       	80.00       	0.00        	Open  	;
+ L07KE97A        	C9XV3BBI87      	C9Y7EGTTLF      	2.01        	139.47      	100.00      	0.00        	Open  	;
+ L07KE97B        	C9Y7EGTTLF      	CA10DR3GC9      	10.80       	139.47      	100.00      	0.00        	Open  	;
+ L07KE8IB        	C9QPT8LCD6      	C9QS39PSWU      	1.34        	99.65       	70.00       	0.00        	Open  	;
+ L07KE8IA        	C9QVBBABA5      	C9QYVD16KC      	2.01        	99.65       	70.00       	0.00        	Open  	;
+ L07LAP8A        	CA81967Y3E      	CA87E97M2F      	1.57        	74.25       	70.00       	0.00        	Open  	;
+ L07LAP9A        	CA87E97M2F      	CA8EUCTPTA      	1.85        	74.25       	70.00       	0.00        	Open  	;
+ L07LAPAA        	CAE6C5W3QA      	CADXK24N13      	1.89        	74.25       	70.00       	0.00        	Open  	;
+ L07KE8CA        	C9PKCVPRYD      	C9PD6KERSF      	1.25        	99.65       	70.00       	0.00        	Open  	;
+ L07KE8DA        	C9PD6KERSF      	C9DT8FUUX8      	62.97       	99.65       	70.00       	0.00        	Open  	;
+ L07KE8EA        	C9DT8FUUX8      	C947YS7GPL      	57.21       	99.65       	70.00       	0.00        	Open  	;
+ L07KE8HA        	C9PYVVH9RD      	C9QPT8LCD6      	7.79        	99.65       	70.00       	0.00        	Open  	;
+ L07KE8HB        	C9PD6KERSF      	C9PVQ1R1B5      	3.65        	99.65       	70.00       	0.00        	Open  	;
+ L07KE8HC        	C9PVQ1R1B5      	C9PYVVH9RD      	2.00        	99.65       	70.00       	0.00        	Open  	;
+ L07KJN0B        	CAHVB5XDYX      	CAHW7YK6TE      	2.00        	195.59      	110.00      	0.00        	Open  	;
+ L07KJN0C        	CAHW7YK6TE      	CAHWX6Q63G      	2.00        	195.59      	110.00      	0.00        	Open  	;
+ L07KJN0D        	CAHYT0U130      	CAIG08PP1M      	39.18       	195.59      	110.00      	0.00        	Open  	;
+ L07KJN0E        	CAHSYX0MQL      	CAHVB5XDYX      	4.57        	195.59      	110.00      	0.00        	Open  	;
+ L07KJN0F        	CAHY3SP1SX      	CAHYT0U130      	2.00        	195.59      	110.00      	0.00        	Open  	;
+ L07KJN2A        	CAIG08PP1M      	CAIXHGQQNM      	48.19       	195.59      	110.00      	0.00        	Open  	;
+ L07KJN4A        	CAKIJ91SJ7      	hydrx3          	126.00      	152.97      	150.00      	0.00        	Open  	;
+ L07KJN5A        	CA72VPGLWJ      	CA6U4KP70F      	1.50        	99.65       	70.00       	0.00        	Open  	;
+ L07L0E5A        	CA81W6J9C0      	CA8BXBF5RV      	1.99        	78.99       	80.00       	0.00        	Open  	;
+ L07L0E5B        	CA7RI202PL      	CA81W6J9C0      	1.50        	78.99       	80.00       	0.00        	Open  	;
+ L07L0E5C        	CA8BXBF5RV      	CAM86331DP      	75.27       	78.99       	80.00       	0.00        	Open  	;
+ L07LBPNA        	C9T5CEQ1U7      	C9U9IYAIF0      	6.83        	99.65       	70.00       	0.00        	Open  	;
+ L07LBPGA        	CAIXHGQQNM      	CAI412VSYL      	4.41        	74.25       	70.00       	0.00        	Open  	;
+ L07LBPCA        	CA72VPGLWJ      	CA5US4GYVU      	8.38        	74.25       	70.00       	0.00        	Open  	;
+ L07LBPIA        	CA1GW02UYE      	CA1PC3NXWK      	1.35        	74.25       	70.00       	0.00        	Open  	;
+ L07LBPJA        	CA1PC3NXWK      	CA2V5N2795      	7.05        	74.25       	70.00       	0.00        	Open  	;
+ L07LBPKA        	C9W0RT3RFP      	C9WA5XMY4F      	1.68        	74.25       	70.00       	0.00        	Open  	;
+ L07LBPLA        	C9WA5XMY4F      	C9X8IEE4HN      	5.68        	74.25       	70.00       	0.00        	Open  	;
+ L07L0ELA        	CAFPFW92WV      	CAF33KUVGM      	5.26        	99.65       	70.00       	0.00        	Open  	;
+ L07L0ENA        	CANS01JKLF      	CAP5J0V1HB      	2.00        	98.94       	130.00      	0.00        	Open  	;
+ L07L0ENB        	CAM86331DP      	CANS01JKLF      	9.09        	98.94       	130.00      	0.00        	Open  	;
+ L07L0ENC        	CAP5J0V1HB      	CAPYDEE98V      	4.40        	98.94       	130.00      	0.00        	Open  	;
+ L07L0EPA        	CAXRMST1XU      	CAY2XR11B8      	2.00        	98.94       	130.00      	0.00        	Open  	;
+ L07LBPPA        	C9L8D2G0AT      	C9LML9DG9V      	2.51        	74.25       	70.00       	0.00        	Open  	;
+ L07LC00A        	C9LML9DG9V      	C9MCJL1GV1      	4.23        	74.25       	70.00       	0.00        	Open  	;
+ L07LC01A        	C9G2XJ5LAU      	C9GI5RJ537      	2.43        	74.25       	70.00       	0.00        	Open  	;
+ L07LC02A        	C9GI5RJ537      	C9GVPQUK1X      	2.00        	74.25       	70.00       	0.00        	Open  	;
+ L07LC02B        	C9GVPQUK1X      	C9H5U33NWC      	1.46        	74.25       	70.00       	0.00        	Open  	;
+ L07LC27A        	C91KMHRJM3      	C93NUIDTPD      	28.51       	99.65       	70.00       	0.00        	Open  	;
+ L07LC28A        	C93NUIDTPD      	C94BQFF6BM      	8.77        	99.65       	70.00       	0.00        	Open  	;
+ L07L32MB        	CAMPX4EQJ0      	CAG1S2RCNU      	57.55       	195.59      	110.00      	0.00        	Open  	;
+ L07L32MC        	CAN4WI14EF      	CAMXTLUPLQ      	1.52        	195.59      	110.00      	0.00        	Open  	;
+ L07L32NA        	CAN4WI14EF      	CAMVHDWYBC      	6.03        	99.62       	100.00      	0.00        	Open  	;
+ L07LAP2A        	C9NVNCDIKS      	C9P7NHQGRR      	2.66        	74.25       	70.00       	0.00        	Open  	;
+ L07LAP3A        	C9P7NHQGRR      	C9QE53EE12      	10.23       	74.25       	70.00       	0.00        	Open  	;
+ L07LAP4A        	C9QTDABWF3      	C9QMJ7HKE4      	1.46        	139.47      	100.00      	0.00        	Open  	;
+ L07LAP4B        	C9PC9RRQ0T      	C9P4FG614L      	2.01        	139.47      	100.00      	0.00        	Open  	;
+ L07LAP4C        	C9QMJ7HKE4      	C9QEPVVVHU      	2.00        	139.47      	100.00      	0.00        	Open  	;
+ L07LAP4D        	C9QEPVVVHU      	C9PC9RRQ0T      	9.34        	139.47      	100.00      	0.00        	Open  	;
+ L07LAP5A        	C9P4FG614L      	C9NRSAHD2T      	2.96        	139.47      	100.00      	0.00        	Open  	;
+ L07LAP6A        	CA8AYAXHQ3      	CA81W6IN8H      	2.28        	74.25       	70.00       	0.00        	Open  	;
+ L07LAP7A        	CA81W6IN8H      	CA7VQ4124D      	1.44        	74.25       	70.00       	0.00        	Open  	;
+ L07KJMEC        	CA46TARLYL      	CA1GW02UYE      	29.49       	148.50      	70.00       	0.00        	Open  	;
+ L07KJMGA        	CA1GW02UYE      	C9W0RT3RFP      	48.91       	148.50      	70.00       	0.00        	Open  	;
+ L07KJMIA        	C9W0RT3RFP      	C9SR389LQ7      	35.71       	148.50      	70.00       	0.00        	Open  	;
+ L07KJMKA        	C9SR389LQ7      	C9L8D2G0AT      	71.14       	195.59      	110.00      	0.00        	Open  	;
+ L07KJMMA        	C9L8D2G0AT      	C9G2XJ5LAU      	61.30       	148.50      	70.00       	0.00        	Open  	;
+ L07KJN0A        	CAHWX6Q63G      	CAHY3SP1SX      	3.40        	195.59      	110.00      	0.00        	Open  	;
+ L07KJMEB        	CA4CYDRAW4      	CA46TARLYL      	2.01        	148.50      	70.00       	0.00        	Open  	;
+ L07KEEMA        	C8F0JHAY64      	C92ICY6VWN      	128.48      	78.99       	80.00       	0.00        	Open  	;
+ L07LBPFA        	CAH1VXWUNL      	CAGS1F0TLF      	1.37        	74.25       	70.00       	0.00        	Open  	;
+ L07KEF0A        	C8WBYFEKP9      	C91KMHRJM3      	66.57       	78.99       	80.00       	0.00        	Open  	;
+ L07KEF0B        	C8W8QDU3CD      	C8WBYFEKP9      	1.98        	78.99       	80.00       	0.00        	Open  	;
+ L07KEF5A        	C8F0JHAY64      	C8E33U7KFT      	5.50        	99.62       	100.00      	0.00        	Open  	;
+ L07KEF5B        	C8E33U7KFT      	C8DQK37GHA      	2.01        	99.62       	100.00      	0.00        	Open  	;
+ L07KJMEA        	CA68EAL687      	CA4CYDRAW4      	16.98       	148.50      	70.00       	0.00        	Open  	;
+ L07LBPDA        	CA5US4GYVU      	CA5MC0UVXD      	1.40        	74.25       	70.00       	0.00        	Open  	;
+ L07LBPEA        	CAIG08PP1M      	CAHEPQJDCC      	5.46        	74.25       	70.00       	0.00        	Open  	;
+ L07LCJKA        	C9DT8FUUX8      	C9E02IP6XR      	1.58        	74.25       	70.00       	0.00        	Open  	;
+ L07LC2BA        	C94K9Y6VB0      	C954Q85WMC      	3.05        	99.65       	70.00       	0.00        	Open  	;
+ L07LC47A        	C9EQAVY4YU      	C9F1N20DHX      	1.86        	74.25       	70.00       	0.00        	Open  	;
+ L07LC48A        	C9F1N20DHX      	C9FCUSU5IA      	2.00        	74.25       	70.00       	0.00        	Open  	;
+ L07LC48B        	C9FCUSU5IA      	C9H6T3JU4T      	11.04       	74.25       	70.00       	0.00        	Open  	;
+ L07LCJCA        	C9R3B13HHM      	C9R6NGBJ7V      	2.18        	99.65       	70.00       	0.00        	Open  	;
+ L07LCJCB        	C9QYVD16KC      	C9R3B13HHM      	1.99        	99.65       	70.00       	0.00        	Open  	;
+ L07LCJCC        	C9R6NGBJ7V      	C9R8XHF0QW      	1.55        	99.65       	70.00       	0.00        	Open  	;
+ L07KED8A        	CAT9D0UI7M      	CATA11682A      	0.71        	99.65       	70.00       	0.00        	Open  	;
+ L07KEENA        	C92ICY6VWN      	C947YS7GPL      	10.11       	91.65       	100.00      	0.00        	Open  	;
+ L07KE98A        	CA10DR3GC9      	CATGQWN42E      	164.82      	99.88       	120.00      	0.00        	Open  	;
+ L07KE98B        	CATGQWN42E      	CATT7GTXPW      	2.00        	99.88       	120.00      	0.00        	Open  	;
+ L07L0EPB        	CAY2XR11B8      	CBDU5IM5V4      	94.29       	98.94       	130.00      	0.00        	Open  	;
+ L07KECPA        	CA81967Y3E      	CA7MM038UT      	2.34        	94.78       	70.09       	0.00        	Open  	;
+ L07KED0A        	CALXFXC0C3      	CARAD29R5S      	51.97       	152.97      	150.00      	0.00        	Open  	;
+ L07KED1A        	CAPVSD54EV      	CAPPYAASDR      	1.42        	195.96      	149.96      	0.00        	Open  	;
+ L07L0EBA        	CBFA18E7W7      	CBEA1QV88R      	33.88       	78.99       	80.00       	0.00        	Open  	;
+ L07L0EGA        	CBE00L0FGR      	CBDWGRJVVL      	2.01        	99.62       	100.00      	0.00        	Open  	;
+ L07L0EGB        	CAU3UEQ84P      	CBE00L0FGR      	152.40      	99.62       	100.00      	0.00        	Open  	;
+ L07L0EGC        	CBDWGRJVVL      	CBDU5IM5V4      	1.92        	99.62       	100.00      	0.00        	Open  	;
+ L07L0EKA        	CBF49CE69F      	CBF8Q7RT8I      	2.01        	98.94       	130.00      	0.00        	Open  	;
+ L07L0EKB        	CBDU5IM5V4      	CBF49CE69F      	8.11        	98.94       	130.00      	0.00        	Open  	;
+ L07L0EKC        	CBF8Q7RT8I      	CBFA18E7W7      	1.62        	98.94       	130.00      	0.00        	Open  	;
+ L07L32MA        	CAMXTLUPLQ      	CAMPX4EQJ0      	2.00        	195.59      	110.00      	0.00        	Open  	;
+ L07KE98C        	CATT7GTXPW      	CAU3UEQ84P      	1.60        	99.88       	120.00      	0.00        	Open  	;
+ L07KED6A        	CB2DFY4J7J      	CB2MU3NQWW      	2.02        	99.65       	70.00       	0.00        	Open  	;
+ L07L0EPC        	CAPYDEE98V      	CAXRMST1XU      	54.93       	98.94       	130.00      	0.00        	Open  	;
+ L07L0F0A        	CAF33KUVGM      	CAPYDEE98V      	96.46       	98.94       	130.00      	0.00        	Open  	;
+ L07L32LA        	CAPIT7B4E5      	CAPAYVPEHU      	1.99        	195.96      	149.96      	0.00        	Open  	;
+ L07L32LB        	CAPPYAASDR      	CAPIT7B4E5      	1.42        	195.96      	149.96      	0.00        	Open  	;
+ L07L32LC        	CAPAYVPEHU      	CAN4WI14EF      	10.21       	195.96      	149.96      	0.00        	Open  	;
+ L07LBPFB        	CAHEPQJDCC      	CAH1VXWUNL      	1.99        	74.25       	70.00       	0.00        	Open  	;
+ L07LBPHA        	CAI412VSYL      	CAHMGUBXB9      	2.41        	74.25       	70.00       	0.00        	Open  	;
+ L07LAPIA        	CB0WL8VFB4      	CB0QS62499      	1.24        	99.65       	70.00       	0.00        	Open  	;
+ L07LB05A        	C9UWJA141Y      	C9VE2I219T      	4.29        	74.25       	70.00       	0.00        	Open  	;
+ L07LAPBA        	CADXK24N13      	CADQRXTA63      	1.83        	74.25       	70.00       	0.00        	Open  	;
+ L07LAPDA        	CAIE27S80K      	CAINFCCEF3      	2.43        	74.25       	70.00       	0.00        	Open  	;
+ L07LAPEA        	CAINFCCEF3      	CAIVVFYH73      	1.81        	74.25       	70.00       	0.00        	Open  	;
+ L07LAPFA        	CAWTQQVEVB      	CAX35UYJJV      	1.41        	99.65       	70.00       	0.00        	Open  	;
+ L07LAPGA        	CAX35UYJJV      	CAY8MF6FBW      	7.34        	99.65       	70.00       	0.00        	Open  	;
+ L07LAPHA        	CB2DFY4J7J      	CB0WL8VFB4      	10.71       	99.65       	70.00       	0.00        	Open  	;
+ L07KJN4B        	hydrx3          	CAIXHGQQNM      	12.50       	195.59      	110.00      	0.00        	Open  	;
+ 10              	CAMVHDWYBC      	1               	1.50        	200.00      	100.00      	0.00        	Open  	;
+
+[PUMPS]
+;ID              	Node1           	Node2           	Parameters
+
+[VALVES]
+;ID              	Node1           	Node2           	Diameter    	Type	Setting     	MinorLoss   
+
+[TAGS]
+
+[DEMANDS]
+;Junction        	Demand      	Pattern         	Category
+ CAMVHDWYBC      	60          	0101            	;        
+ CAMVHDWYBC      	1           	0102            	;        
+ CAMVHDWYBC      	1           	0103            	;        
+ CAMVHDWYBC      	1          	0104            	;        
+ CAMVHDWYBC      	01          	0105            	;        
+ CAMVHDWYBC      	01           	0106            	;        
+ CAMVHDWYBC      	01          	0107            	;        
+ CAMVHDWYBC      	60          	0108            	;        
+ CAN4WI14EF      	60          	0101            	;        
+ CAN4WI14EF      	01           	0102            	;        
+ CAN4WI14EF      	01           	0103            	;        
+ CAN4WI14EF      	01           	0104            	;        
+ CAN4WI14EF      	01           	0105            	;        
+ CAN4WI14EF      	01           	0106            	;        
+ CAN4WI14EF      	01           	0107            	;        
+ CAN4WI14EF      	60          	0108            	;        
+ CAJU04DEAE      	30          	0101            	;        
+ CAJU04DEAE      	01           	0102            	;        
+ CAJU04DEAE      	01           	0103            	;        
+ CAJU04DEAE      	01           	0104            	;        
+ CAJU04DEAE      	01           	0105            	;        
+ CAJU04DEAE      	01           	0106            	;        
+ CAJU04DEAE      	01           	0107            	;        
+ CAJU04DEAE      	30          	0108            	;        
+ CAY2XR11B8      	3           	0101            	;        
+ CAY2XR11B8      	01           	0102            	;        
+ CAY2XR11B8      	14.65205    	0103            	;        
+ CAY2XR11B8      	01           	0104            	;        
+ CAY2XR11B8      	01           	0105            	;        
+ CAY2XR11B8      	01           	0106            	;        
+ CAY2XR11B8      	01           	0107            	;        
+ CAY2XR11B8      	2           	0108            	;        
+ CB0QS62499      	60          	0101            	;        
+ CB0QS62499      	01           	0102            	;        
+ CB0QS62499      	01           	0103            	;        
+ CB0QS62499      	01           	0104            	;        
+ CB0QS62499      	01           	0105            	;        
+ CB0QS62499      	01           	0106            	;        
+ CB0QS62499      	01           	0107            	;        
+ CB0QS62499      	60          	0108            	;        
+ CAF33KUVGM      	83          	0101            	;        
+ CAF33KUVGM      	01           	0102            	;        
+ CAF33KUVGM      	01           	0103            	;        
+ CAF33KUVGM      	01           	0104            	;        
+ CAF33KUVGM      	01           	0105            	;        
+ CAF33KUVGM      	01           	0106            	;        
+ CAF33KUVGM      	01           	0107            	;        
+ CAF33KUVGM      	83          	0108            	;        
+ CAPYDEE98V      	01           	0101            	;        
+ CAPYDEE98V      	01           	0102            	;        
+ CAPYDEE98V      	01           	0103            	;        
+ CAPYDEE98V      	01           	0104            	;        
+ CAPYDEE98V      	01           	0105            	;        
+ CAPYDEE98V      	01           	0106            	;        
+ CAPYDEE98V      	01           	0107            	;        
+ CAPYDEE98V      	01           	0108            	;        
+ CBFA18E7W7      	4           	0101            	;        
+ CBFA18E7W7      	01           	0102            	;        
+ CBFA18E7W7      	01           	0103            	;        
+ CBFA18E7W7      	01           	0104            	;        
+ CBFA18E7W7      	01           	0105            	;        
+ CBFA18E7W7      	01           	0106            	;        
+ CBFA18E7W7      	01           	0107            	;        
+ CBFA18E7W7      	4           	0108            	;        
+ CA1GW02UYE      	30          	0101            	;        
+ CA1GW02UYE      	01           	0102            	;        
+ CA1GW02UYE      	01           	0103            	;        
+ CA1GW02UYE      	01           	0104            	;        
+ CA1GW02UYE      	01           	0105            	;        
+ CA1GW02UYE      	01           	0106            	;        
+ CA1GW02UYE      	01           	0107            	;        
+ CA1GW02UYE      	30          	0108            	;        
+ CANS01JKLF      	1           	0101            	;        
+ CANS01JKLF      	01           	0102            	;        
+ CANS01JKLF      	01           	0103            	;        
+ CANS01JKLF      	01           	0104            	;        
+ CANS01JKLF      	01           	0105            	;        
+ CANS01JKLF      	01           	0106            	;        
+ CANS01JKLF      	01           	0107            	;        
+ CANS01JKLF      	1           	0108            	;        
+ CBE00L0FGR      	1           	0101            	;        
+ CBE00L0FGR      	01           	0102            	;        
+ CBE00L0FGR      	01           	0103            	;        
+ CBE00L0FGR      	01           	0104            	;        
+ CBE00L0FGR      	01           	0105            	;        
+ CBE00L0FGR      	01           	0106            	;        
+ CBE00L0FGR      	01           	0107            	;        
+ CBE00L0FGR      	1           	0108            	;        
+ CAM86331DP      	3           	0101            	;        
+ CAM86331DP      	01           	0102            	;        
+ CAM86331DP      	01           	0103            	;        
+ CAM86331DP      	01           	0104            	;        
+ CAM86331DP      	01           	0105            	;        
+ CAM86331DP      	01           	0106            	;        
+ CAM86331DP      	01           	0107            	;        
+ CAM86331DP      	2           	0108            	;        
+ CA72VPGLWJ      	54          	0101            	;        
+ CA72VPGLWJ      	01           	0102            	;        
+ CA72VPGLWJ      	01           	0103            	;        
+ CA72VPGLWJ      	01           	0104            	;        
+ CA72VPGLWJ      	01           	0105            	;        
+ CA72VPGLWJ      	01           	0106            	;        
+ CA72VPGLWJ      	01           	0107            	;        
+ CA72VPGLWJ      	54          	0108            	;        
+ CAIXHGQQNM      	57          	0101            	;        
+ CAIXHGQQNM      	01           	0102            	;        
+ CAIXHGQQNM      	01           	0103            	;        
+ CAIXHGQQNM      	01           	0104            	;        
+ CAIXHGQQNM      	01           	0105            	;        
+ CAIXHGQQNM      	01           	0106            	;        
+ CAIXHGQQNM      	01           	0107            	;        
+ CAIXHGQQNM      	57          	0108            	;        
+ C9SR389LQ7      	37          	0101            	;        
+ C9SR389LQ7      	01           	0102            	;        
+ C9SR389LQ7      	01           	0103            	;        
+ C9SR389LQ7      	01           	0104            	;        
+ C9SR389LQ7      	01           	0105            	;        
+ C9SR389LQ7      	01           	0106            	;        
+ C9SR389LQ7      	01           	0107            	;        
+ C9SR389LQ7      	37          	0108            	;        
+ CBDU5IM5V4      	4           	0101            	;        
+ CBDU5IM5V4      	01           	0102            	;        
+ CBDU5IM5V4      	01           	0103            	;        
+ CBDU5IM5V4      	01           	0104            	;        
+ CBDU5IM5V4      	01           	0105            	;        
+ CBDU5IM5V4      	01           	0106            	;        
+ CBDU5IM5V4      	01           	0107            	;        
+ CBDU5IM5V4      	4           	0108            	;        
+ C9PVQ1R1B5      	8           	0101            	;        
+ C9PVQ1R1B5      	01           	0102            	;        
+ C9PVQ1R1B5      	43.33425    	0103            	;        
+ C9PVQ1R1B5      	01           	0104            	;        
+ C9PVQ1R1B5      	01           	0105            	;        
+ C9PVQ1R1B5      	01           	0106            	;        
+ C9PVQ1R1B5      	11.77534    	0107            	;        
+ C9PVQ1R1B5      	6           	0108            	;        
+ C9NRSAHD2T      	01           	0101            	;        
+ C9NRSAHD2T      	01           	0102            	;        
+ C9NRSAHD2T      	01           	0103            	;        
+ C9NRSAHD2T      	01           	0104            	;        
+ C9NRSAHD2T      	01           	0105            	;        
+ C9NRSAHD2T      	01           	0106            	;        
+ C9NRSAHD2T      	01           	0107            	;        
+ C9NRSAHD2T      	01           	0108            	;        
+ CA8AYAXHQ3      	81          	0101            	;        
+ CA8AYAXHQ3      	01           	0102            	;        
+ CA8AYAXHQ3      	01           	0103            	;        
+ CA8AYAXHQ3      	01           	0104            	;        
+ CA8AYAXHQ3      	01           	0105            	;        
+ CA8AYAXHQ3      	01           	0106            	;        
+ CA8AYAXHQ3      	01           	0107            	;        
+ CA8AYAXHQ3      	81          	0108            	;        
+ C9QTDABWF3      	103         	0101            	;        
+ C9QTDABWF3      	01           	0102            	;        
+ C9QTDABWF3      	1.76438     	0103            	;        
+ C9QTDABWF3      	01           	0104            	;        
+ C9QTDABWF3      	01           	0105            	;        
+ C9QTDABWF3      	01           	0106            	;        
+ C9QTDABWF3      	01           	0107            	;        
+ C9QTDABWF3      	102         	0108            	;        
+ C9W0RT3RFP      	58          	0101            	;        
+ C9W0RT3RFP      	01           	0102            	;        
+ C9W0RT3RFP      	01           	0103            	;        
+ C9W0RT3RFP      	01           	0104            	;        
+ C9W0RT3RFP      	01           	0105            	;        
+ C9W0RT3RFP      	01           	0106            	;        
+ C9W0RT3RFP      	01           	0107            	;        
+ C9W0RT3RFP      	58          	0108            	;        
+ C92ICY6VWN      	1           	0101            	;        
+ C92ICY6VWN      	01           	0102            	;        
+ C92ICY6VWN      	01           	0103            	;        
+ C92ICY6VWN      	01           	0104            	;        
+ C92ICY6VWN      	01           	0105            	;        
+ C92ICY6VWN      	01           	0106            	;        
+ C92ICY6VWN      	01           	0107            	;        
+ C92ICY6VWN      	1           	0108            	;        
+ C9L8D2G0AT      	17          	0101            	;        
+ C9L8D2G0AT      	01           	0102            	;        
+ C9L8D2G0AT      	01           	0103            	;        
+ C9L8D2G0AT      	01           	0104            	;        
+ C9L8D2G0AT      	01           	0105            	;        
+ C9L8D2G0AT      	01           	0106            	;        
+ C9L8D2G0AT      	01           	0107            	;        
+ C9L8D2G0AT      	17          	0108            	;        
+ C9G2XJ5LAU      	108         	0101            	;        
+ C9G2XJ5LAU      	01           	0102            	;        
+ C9G2XJ5LAU      	01           	0103            	;        
+ C9G2XJ5LAU      	01           	0104            	;        
+ C9G2XJ5LAU      	01           	0105            	;        
+ C9G2XJ5LAU      	01           	0106            	;        
+ C9G2XJ5LAU      	01           	0107            	;        
+ C9G2XJ5LAU      	108         	0108            	;        
+ CBCGC9GIVH      	5           	0101            	;        
+ CBCGC9GIVH      	01           	0102            	;        
+ CBCGC9GIVH      	01           	0103            	;        
+ CBCGC9GIVH      	01           	0104            	;        
+ CBCGC9GIVH      	01           	0105            	;        
+ CBCGC9GIVH      	01           	0106            	;        
+ CBCGC9GIVH      	01           	0107            	;        
+ CBCGC9GIVH      	5           	0108            	;        
+ CAIG08PP1M      	19          	0101            	;        
+ CAIG08PP1M      	01           	0102            	;        
+ CAIG08PP1M      	1.56164     	0103            	;        
+ CAIG08PP1M      	01           	0104            	;        
+ CAIG08PP1M      	01           	0105            	;        
+ CAIG08PP1M      	01           	0106            	;        
+ CAIG08PP1M      	01           	0107            	;        
+ CAIG08PP1M      	18          	0108            	;        
+
+[STATUS]
+;ID              	Status/Setting
+
+[PATTERNS]
+;ID              	Multipliers
+;;J796 J796T01 Profile (Demand Type 1)
+ 0101            	0.00083373  	0.000834745 	0.00083373  	0.000832716 	0.000828643 	0.000832716 
+ 0101            	0.000832716 	0.00083068  	0.000831702 	0.000831702 	0.000832716 	0.000824553 
+ 0101            	0.000832716 	0.000832716 	0.000828643 	0.000828643 	0.000828643 	0.000828643 
+ 0101            	0.000832716 	0.000826598 	0.00081941  	0.000805877 	0.000802722 	0.000787837 
+ 0101            	0.000782452 	0.000786767 	0.000795316 	0.000779208 	0.000780287 	0.000787837 
+ 0101            	0.000781373 	0.000794253 	0.000782452 	0.000781373 	0.000795316 	0.000785688 
+ 0101            	0.000789979 	0.000786767 	0.000787837 	0.000791049 	0.000773758 	0.000785688 
+ 0101            	0.00079212  	0.000787837 	0.000782452 	0.000778121 	0.000782452 	0.000787837 
+ 0101            	0.000787837 	0.000791049 	0.000802722 	0.000793191 	0.000794253 	0.000787837 
+ 0101            	0.000787837 	0.000795316 	0.000789979 	0.000795316 	0.000795316 	0.000791049 
+ 0101            	0.000791049 	0.000788908 	0.000788908 	0.000786767 	0.000795316 	0.000796378 
+ 0101            	0.000788908 	0.00079212  	0.000791049 	0.000806924 	0.000797441 	0.000809025 
+ 0101            	0.000803776 	0.00079212  	0.000805877 	0.000812148 	0.000807979 	0.000796378 
+ 0101            	0.000795316 	0.000810063 	0.000809025 	0.000807979 	0.000817341 	0.000810063 
+ 0101            	0.000817341 	0.000816302 	0.000817341 	0.000813195 	0.000818371 	0.000840798 
+ 0101            	0.000817341 	0.000824553 	0.000825576 	0.000825576 	0.000825576 	0.000831702 
+ 0101            	0.0008372   
+;;J796 24 Hour Profile (Demand Type 2)
+ 0102            	0.011574    	0.011574    	0.011574    	0.011574    	0.011574    	0.011574    
+ 0102            	0.011574    	0.011574    	0.011574    	0.011574    	0.011574    	0.011574    
+ 0102            	0.011574    	0.011574    	0.011574    	0.011574    	0.011574    	0.011574    
+ 0102            	0.011574    	0.011574    	0.011574    	0.011574    	0.011574    	0.011574    
+ 0102            	0.011574    	0.011574    	0.011574    	0.011574    	0.011574    	0.011574    
+ 0102            	0.011574    	0.011574    	0.011574    	0.011574    	0.011574    	0.011574    
+ 0102            	0.011574    	0.011574    	0.011574    	0.011574    	0.011574    	0.011574    
+ 0102            	0.011574    	0.011574    	0.011574    	0.011574    	0.011574    	0.011574    
+ 0102            	0.011574    	0.011574    	0.011574    	0.011574    	0.011574    	0.011574    
+ 0102            	0.011574    	0.011574    	0.011574    	0.011574    	0.011574    	0.011574    
+ 0102            	0.011574    	0.011574    	0.011574    	0.011574    	0.011574    	0.011574    
+ 0102            	0.011574    	0.011574    	0.011574    	0.011574    	0.011574    	0.011574    
+ 0102            	0.011574    	0.011574    	0.011574    	0.011574    	0.011574    	0.011574    
+ 0102            	0.011574    	0.011574    	0.011574    	0.011574    	0.011574    	0.011574    
+ 0102            	0.011574    	0.011574    	0.011574    	0.011574    	0.011574    	0.011574    
+ 0102            	0.011574    	0.011574    	0.011574    	0.011574    	0.011574    	0.011574    
+ 0102            	0.011574    
+;;J796 16 Hour Profile (Demand Type 3)
+ 0103            	0.001157    	0.001157    	0.001157    	0.001157    	0.001157    	0.001157    
+ 0103            	0.001157    	0.001157    	0.001157    	0.001157    	0.001157    	0.001157    
+ 0103            	0.001157    	0.001157    	0.001157    	0.001157    	0.001157    	0.001157    
+ 0103            	0.001157    	0.001157    	0.001157    	0.002894    	0.004630    	0.006366    
+ 0103            	0.008102    	0.010301    	0.012500    	0.014699    	0.016898    	0.016898    
+ 0103            	0.016898    	0.016898    	0.016898    	0.016898    	0.016898    	0.016898    
+ 0103            	0.016898    	0.016898    	0.016898    	0.016898    	0.016898    	0.016898    
+ 0103            	0.016898    	0.016898    	0.016898    	0.016898    	0.016898    	0.016898    
+ 0103            	0.016898    	0.016898    	0.016898    	0.016898    	0.016898    	0.016898    
+ 0103            	0.016898    	0.016898    	0.016898    	0.016898    	0.016898    	0.016898    
+ 0103            	0.016898    	0.016898    	0.016898    	0.016898    	0.016898    	0.016898    
+ 0103            	0.016898    	0.016898    	0.016898    	0.016898    	0.016898    	0.016898    
+ 0103            	0.016898    	0.016898    	0.016898    	0.016898    	0.016898    	0.016898    
+ 0103            	0.016898    	0.016898    	0.016898    	0.016898    	0.016898    	0.016898    
+ 0103            	0.016898    	0.014699    	0.012500    	0.010301    	0.008102    	0.006366    
+ 0103            	0.004630    	0.002894    	0.001157    	0.001157    	0.001157    	0.001157    
+ 0103            	0.001157    
+;J796 10 Hour Profile (Demand Type 4)
+ 0104            	0.001157    	0.001157    	0.001157    	0.001157    	0.001157    	0.001157    
+ 0104            	0.001157    	0.001157    	0.001157    	0.001157    	0.001157    	0.001157    
+ 0104            	0.001157    	0.001157    	0.001157    	0.001157    	0.001157    	0.001157    
+ 0104            	0.001157    	0.001157    	0.001157    	0.001157    	0.001157    	0.001157    
+ 0104            	0.001157    	0.001157    	0.001157    	0.001157    	0.001157    	0.004398    
+ 0104            	0.007639    	0.010880    	0.014178    	0.017130    	0.020139    	0.023148    
+ 0104            	0.026042    	0.026042    	0.026042    	0.026042    	0.026042    	0.026042    
+ 0104            	0.026042    	0.026042    	0.026042    	0.026042    	0.026042    	0.026042    
+ 0104            	0.026042    	0.026042    	0.026042    	0.026042    	0.026042    	0.026042    
+ 0104            	0.026042    	0.026042    	0.026042    	0.026042    	0.026042    	0.026042    
+ 0104            	0.026042    	0.026042    	0.026042    	0.026042    	0.026042    	0.026042    
+ 0104            	0.026042    	0.026042    	0.026042    	0.023148    	0.020139    	0.017130    
+ 0104            	0.014178    	0.010880    	0.007639    	0.004398    	0.001157    	0.001157    
+ 0104            	0.001157    	0.001157    	0.001157    	0.001157    	0.001157    	0.001157    
+ 0104            	0.001157    	0.001157    	0.001157    	0.001157    	0.001157    	0.001157    
+ 0104            	0.001157    	0.001157    	0.001157    	0.001157    	0.001157    	0.001157    
+ 0104            	0.001157    
+;J796 Agric Profile (Demand Type 5)
+ 0105            	0.002894    	0.002894    	0.002894    	0.002894    	0.002894    	0.002894    
+ 0105            	0.002894    	0.002894    	0.002894    	0.002894    	0.002894    	0.002894    
+ 0105            	0.002894    	0.002894    	0.002894    	0.002894    	0.002894    	0.002894    
+ 0105            	0.002894    	0.002894    	0.002894    	0.002894    	0.002894    	0.002894    
+ 0105            	0.002894    	0.002894    	0.002894    	0.002894    	0.002894    	0.006944    
+ 0105            	0.010995    	0.015046    	0.019097    	0.019097    	0.019097    	0.019097    
+ 0105            	0.019097    	0.019097    	0.019097    	0.019097    	0.019097    	0.019097    
+ 0105            	0.019097    	0.019097    	0.019097    	0.019097    	0.019097    	0.019097    
+ 0105            	0.019097    	0.019097    	0.019097    	0.019097    	0.019097    	0.019097    
+ 0105            	0.019097    	0.019097    	0.019097    	0.019097    	0.019097    	0.019097    
+ 0105            	0.019097    	0.019097    	0.019097    	0.019097    	0.019097    	0.019097    
+ 0105            	0.019097    	0.019097    	0.019097    	0.019097    	0.019097    	0.019097    
+ 0105            	0.019097    	0.016898    	0.014699    	0.012616    	0.010417    	0.010417    
+ 0105            	0.010417    	0.010417    	0.010417    	0.010417    	0.010417    	0.010417    
+ 0105            	0.010417    	0.010417    	0.010417    	0.010417    	0.010417    	0.008565    
+ 0105            	0.006713    	0.004745    	0.002894    	0.002894    	0.002894    	0.002894    
+ 0105            	0.002894    
+;J796 Hols Profile (Demand Type 6)
+ 0106            	0.010417    	0.009120    	0.007813    	0.006505    	0.005208    	0.004919    
+ 0106            	0.004630    	0.004340    	0.004051    	0.003900    	0.003762    	0.003623    
+ 0106            	0.003472    	0.003333    	0.003183    	0.003044    	0.002894    	0.002894    
+ 0106            	0.002894    	0.002894    	0.002894    	0.003044    	0.003183    	0.003322    
+ 0106            	0.003472    	0.004051    	0.004630    	0.005208    	0.005787    	0.008241    
+ 0106            	0.010706    	0.013160    	0.015625    	0.017789    	0.019965    	0.022130    
+ 0106            	0.024306    	0.023866    	0.023438    	0.022998    	0.022569    	0.021551    
+ 0106            	0.020544    	0.019525    	0.018519    	0.017650    	0.016782    	0.015914    
+ 0106            	0.015046    	0.014178    	0.013310    	0.012442    	0.011574    	0.011574    
+ 0106            	0.011574    	0.011574    	0.011574    	0.011863    	0.012153    	0.012442    
+ 0106            	0.012731    	0.012870    	0.013021    	0.013171    	0.013310    	0.013461    
+ 0106            	0.013600    	0.013750    	0.013889    	0.014178    	0.014468    	0.014757    
+ 0106            	0.015046    	0.016204    	0.017361    	0.018519    	0.019676    	0.017940    
+ 0106            	0.016204    	0.014468    	0.012731    	0.012442    	0.012153    	0.011863    
+ 0106            	0.011574    	0.011435    	0.011285    	0.011146    	0.010995    	0.010856    
+ 0106            	0.010706    	0.010567    	0.010417    	0.010417    	0.010417    	0.010417    
+ 0106            	0.010417    
+;J796 DomEq Profile (Demand Type 7)
+ 0107            	0.003356    	0.003125    	0.002778    	0.002546    	0.002315    	0.002199    
+ 0107            	0.002199    	0.002083    	0.001968    	0.001968    	0.001736    	0.001852    
+ 0107            	0.001736    	0.001852    	0.001852    	0.001968    	0.001968    	0.002431    
+ 0107            	0.002894    	0.003472    	0.003935    	0.006134    	0.008333    	0.010417    
+ 0107            	0.012616    	0.015394    	0.017940    	0.020833    	0.023495    	0.024190    
+ 0107            	0.024884    	0.025579    	0.026273    	0.025116    	0.023843    	0.022801    
+ 0107            	0.021644    	0.020255    	0.018866    	0.017477    	0.016088    	0.015856    
+ 0107            	0.015509    	0.015394    	0.015162    	0.015625    	0.015972    	0.016435    
+ 0107            	0.016782    	0.016088    	0.015394    	0.014815    	0.014120    	0.013194    
+ 0107            	0.012153    	0.011227    	0.010185    	0.010185    	0.010069    	0.010185    
+ 0107            	0.010185    	0.010764    	0.011343    	0.011806    	0.012384    	0.012963    
+ 0107            	0.013426    	0.014005    	0.014583    	0.014815    	0.015162    	0.015394    
+ 0107            	0.015625    	0.015509    	0.015394    	0.015394    	0.015278    	0.014931    
+ 0107            	0.014583    	0.014120    	0.013773    	0.013079    	0.012269    	0.011690    
+ 0107            	0.010995    	0.010301    	0.009491    	0.008796    	0.007986    	0.007292    
+ 0107            	0.006597    	0.006019    	0.005324    	0.004861    	0.004398    	0.003819    
+ 0107            	0.003356    
+;J796 J796T08 Profile (Demand Type 8)
+ 0108            	0.001668878 	0.001455263 	0.001165773 	0.001748841 	0.001006803 	0.001185882 
+ 0108            	0.001106417 	0.001087311 	0.000747268 	0.000486172 	0.000715285 	0.001176037 
+ 0108            	0.000510949 	0.000679682 	0.000695135 	0.000750348 	0.0007617   	0.00114148  
+ 0108            	0.001097134 	0.001640455 	0.001516632 	0.001209743 	0.001357841 	0.001201438 
+ 0108            	0.001839918 	0.00156592  	0.002357843 	0.002193675 	0.004966824 	0.003406064 
+ 0108            	0.0031876   	0.003256166 	0.00312254  	0.003309378 	0.003346416 	0.003994394 
+ 0108            	0.003960138 	0.003334872 	0.003568048 	0.003106595 	0.003869099 	0.004143983 
+ 0108            	0.003835644 	0.003523646 	0.004088412 	0.003348702 	0.003135364 	0.003396202 
+ 0108            	0.002903424 	0.003125161 	0.003485957 	0.003548697 	0.003250405 	0.003450874 
+ 0108            	0.002965309 	0.00242526  	0.002467262 	0.002779745 	0.003087797 	0.003794371 
+ 0108            	0.003419754 	0.004152055 	0.003576719 	0.003799726 	0.004294225 	0.003343201 
+ 0108            	0.003821319 	0.002947595 	0.003133922 	0.002819693 	0.002949471 	0.003241219 
+ 0108            	0.003527209 	0.00352914  	0.003233036 	0.003680803 	0.00330058  	0.003157971 
+ 0108            	0.002471209 	0.002791759 	0.001991452 	0.002421814 	0.002797835 	0.002177184 
+ 0108            	0.002882966 	0.002126839 	0.001688025 	0.002410789 	0.001729417 	0.001689381 
+ 0108            	0.002467477 	0.001646569 	0.002150275 	0.001997536 	0.001719924 	0.001687436 
+ 0108            	0.001668878 
+;;J796 J796_F1 Inlet Flow Profile (J796_F1)
+ J796_F1         	2.32        	2.13        	1.87        	2.38        	1.72        	1.88        
+ J796_F1         	1.81        	1.79        	1.49        	1.26        	1.46        	1.86        
+ J796_F1         	1.28        	1.43        	1.44        	1.49        	1.5         	1.84        
+ J796_F1         	1.81        	2.29        	2.18        	2.03        	2.29        	2.27        
+ J796_F1         	2.96        	2.89        	3.76        	3.77        	6.38        	5.02        
+ J796_F1         	4.83        	4.91        	4.79        	4.94        	4.97        	5.52        
+ J796_F1         	5.48        	4.91        	5.1         	4.68        	5.32        	5.57        
+ J796_F1         	5.3         	5.02        	5.51        	4.86        	4.68        	4.92        
+ J796_F1         	4.49        	4.68        	5           	5.04        	4.77        	4.93        
+ J796_F1         	4.49        	4.01        	4.03        	4.31        	4.58        	5.2         
+ J796_F1         	4.87        	5.52        	5.02        	5.22        	5.67        	4.84        
+ J796_F1         	5.26        	4.5         	4.67        	4.41        	4.52        	4.79        
+ J796_F1         	5.04        	5.03        	4.78        	5.18        	4.84        	4.7         
+ J796_F1         	4.09        	4.38        	3.67        	4.04        	4.37        	3.81        
+ J796_F1         	4.43        	3.62        	3.09        	3.58        	2.84        	2.71        
+ J796_F1         	3.26        	2.43        	2.76        	2.62        	2.37        	2.34        
+ J796_F1         	2.32        
+;;J796 res profile
+ res1            	145.885     	146.18      	146.27      	146.40375   	146.675     	146.7375    
+ res1            	146.74875   	146.87125   	147.00625   	146.99      	147.055     	147.0475    
+ res1            	147.09875   	147.15625   	147.21125   	147.2025    	147.24125   	147.21      
+ res1            	147.20875   	147.23375   	147.18625   	147.18125   	147.2125    	147.025     
+ res1            	146.92625   	146.80625   	146.46875   	146.28      	145.88375   	145.385     
+ res1            	144.98      	144.255     	143.96      	143.7685714 	143.5657143 	143.22      
+ res1            	143.1242857 	142.8842857 	142.7685714 	142.47      	142.1928571 	142.3085714 
+ res1            	142.11      	142.1971429 	142.0614286 	142.0428571 	142.22      	142.2657143 
+ res1            	141.7614286 	142.0571429 	142.2942857 	142.53      	142.1642857 	142.5685714 
+ res1            	142.5557143 	142.6057143 	142.7071429 	142.8442857 	142.8557143 	143.0171429 
+ res1            	143.1885714 	143.1685714 	143.3071429 	143.1557143 	143.4442857 	143.615     
+ res1            	143.43125   	143.55125   	143.42      	143.6875    	143.62875   	143.74625   
+ res1            	143.845     	143.73625   	143.5425    	143.61      	143.81125   	144.01625   
+ res1            	143.88375   	144.28125   	144.05875   	144.29875   	144.23375   	144.27375   
+ res1            	144.1625    	144.58875   	144.6775    	144.91625   	144.72875   	144.9425    
+ res1            	145.0325    	145.05875   	145.16125   	145.35875   	145.52625   	145.68375   
+
+[CURVES]
+;ID              	X-Value     	Y-Value
+
+[CONTROLS]
+
+
+
+
+
+
+
+
+[RULES]
+
+
+
+
+
+
+
+
+[ENERGY]
+ Global Efficiency  	75
+ Global Price       	0
+ Demand Charge      	0
+
+[EMITTERS]
+;Junction        	Coefficient
+C947YS7GPL              0.000001
+[QUALITY]
+;Node            	InitQual
+
+[SOURCES]
+;Node            	Type        	Quality     	Pattern
+
+[REACTIONS]
+;Type     	Pipe/Tank       	Coefficient
+
+
+[REACTIONS]
+ Order Bulk            	1
+ Order Tank            	1
+ Order Wall            	1
+ Global Bulk           	-0.2
+ Global Wall           	-0.05
+ Limiting Potential    	0
+ Roughness Correlation 	0
+
+[MIXING]
+;Tank            	Model
+
+[TIMES]
+ Duration           	336:00 
+ Hydraulic Timestep 	0:15 
+ Quality Timestep   	0:15 
+ Pattern Timestep   	0:15 
+ Pattern Start      	0:00 
+ Report Timestep    	0:15 
+ Report Start       	0:00 
+ Start ClockTime    	12 am
+ Statistic          	NONE
+
+[REPORT]
+ Status             	No
+ Summary            	No
+ Page               	0
+
+[OPTIONS]
+ Units              	LPS
+ Headloss           	H-W
+ Specific Gravity   	1
+ Viscosity          	1
+ Trials             	10000
+ Accuracy           	0.11
+ CHECKFREQ          	2
+ MAXCHECK           	10
+ DAMPLIMIT          	0
+ Unbalanced         	Stop
+ Pattern            	J796_F1
+ Demand Multiplier  	1.0
+ Emitter Exponent   	0.5
+ Quality            	None mg/L
+ Diffusivity        	1
+ Tolerance          	0.0001
+
+[COORDINATES]
+;Node            	X-Coord         	Y-Coord
+ CAMVHDWYBC      	43476656.00     	38613752.00     
+ CAMXTLUPLQ      	43476692.00     	38614224.00     
+ CAN4WI14EF      	43476836.00     	38614032.00     
+ CAJU04DEAE      	43475064.00     	38600160.00     
+ CAK7V3U75Q      	43475260.00     	38600152.00     
+ CAKIJ91SJ7      	43475412.00     	38600136.00     
+ CAHY3SP1SX      	43474056.00     	38577416.00     
+ CAH3PK8EBQ      	43473532.00     	38620080.00     
+ CAHEPQJDCC      	43473828.00     	38581596.00     
+ CAHMGUBXB9      	43473920.00     	38586372.00     
+ CAHSYX0MQL      	43473984.00     	38576300.00     
+ CAHVB5XDYX      	43474012.00     	38576664.00     
+ CAHW7YK6TE      	43474028.00     	38576888.00     
+ CAT9D0UI7M      	43479400.00     	38611692.00     
+ CATA11682A      	43479424.00     	38611536.00     
+ CATGQWN42E      	43478140.00     	38641612.00     
+ CATHG4T3C2      	43479628.00     	38642132.00     
+ CATT7GTXPW      	43479744.00     	38641904.00     
+ CAU3UEQ84P      	43479896.00     	38641956.00     
+ CAWTQQVEVB      	43481260.00     	38615000.00     
+ CAX35UYJJV      	43481464.00     	38614924.00     
+ CAXRMST1XU      	43481428.00     	38628812.00     
+ CAY2XR11B8      	43481980.00     	38629244.00     
+ CAY8MF6FBW      	43482024.00     	38614584.00     
+ CB0QS62499      	43482884.00     	38619828.00     
+ CADXK24N13      	43471960.00     	38604692.00     
+ CAE6C5W3QA      	43472052.00     	38604568.00     
+ CAF33KUVGM      	43472576.00     	38619948.00     
+ CAFPFW92WV      	43472892.00     	38619516.00     
+ CAG1S2RCNU      	43472996.00     	38618920.00     
+ CAGS1F0TLF      	43473452.00     	38581624.00     
+ CAH1VXWUNL      	43473596.00     	38581612.00     
+ CAHWX6Q63G      	43474040.00     	38577088.00     
+ CAPIT7B4E5      	43477524.00     	38613136.00     
+ CAPPYAASDR      	43477620.00     	38613028.00     
+ CAPVSD54EV      	43477712.00     	38612912.00     
+ CAPYDEE98V      	43477220.00     	38625300.00     
+ CAQ3U9RK1F      	43477872.00     	38612652.00     
+ CAQ8FISRY6      	43477896.00     	38613268.00     
+ CAQIGNNNJR      	43478020.00     	38613368.00     
+ CARAD29R5S      	43478208.00     	38611148.00     
+ CARJR6TXRB      	43478564.00     	38611616.00     
+ CARXM6AQMI      	43478760.00     	38611632.00     
+ CBFA18E7W7      	43490508.00     	38633280.00     
+ CBFAN8PTXP      	43490468.00     	38629972.00     
+ C9Y7EGTTLF      	43464192.00     	38638208.00     
+ CA10DR3GC9      	43465056.00     	38638692.00     
+ CA1GW02UYE      	43465548.00     	38578480.00     
+ CA1PC3NXWK      	43465508.00     	38578804.00     
+ CA2V5N2795      	43466072.00     	38579120.00     
+ CA46TARLYL      	43466836.00     	38576136.00     
+ CA4CYDRAW4      	43467016.00     	38575840.00     
+ CA5MC0UVXD      	43467600.00     	38595092.00     
+ CANS01JKLF      	43477036.00     	38626040.00     
+ CAP5J0V1HB      	43477292.00     	38625988.00     
+ CAPAYVPEHU      	43477408.00     	38613288.00     
+ CBE00L0FGR      	43488840.00     	38635160.00     
+ CBEA1QV88R      	43490036.00     	38630408.00     
+ CBF49CE69F      	43490356.00     	38633652.00     
+ CBF8Q7RT8I      	43490484.00     	38633444.00     
+ CALXFXC0C3      	43476148.00     	38607028.00     
+ CAM86331DP      	43475572.00     	38626076.00     
+ CAMPX4EQJ0      	43476572.00     	38614380.00     
+ C9U9IYAIF0      	43462080.00     	38586596.00     
+ C9UWJA141Y      	43463536.00     	38613700.00     
+ C9VE2I219T      	43462708.00     	38612804.00     
+ CA72VPGLWJ      	43469012.00     	38595844.00     
+ CA7MM038UT      	43468664.00     	38602204.00     
+ C8DQK37GHA      	43436144.00     	38610716.00     
+ C8E33U7KFT      	43436352.00     	38610828.00     
+ C8F0JHAY64      	43436740.00     	38611036.00     
+ C8W8QDU3CD      	43445324.00     	38628180.00     
+ C8WBYFEKP9      	43445364.00     	38628028.00     
+ CB0WL8VFB4      	43483040.00     	38619676.00     
+ CB2DFY4J7J      	43483752.00     	38618936.00     
+ CB2MU3NQWW      	43483864.00     	38619132.00     
+ CB7UJLLUNS      	43486852.00     	38626356.00     
+ CBC7CBVXKK      	43488916.00     	38625680.00     
+ CBCBNSL27P      	43488952.00     	38625524.00     
+ CAIXHGQQNM      	43474548.00     	38585844.00     
+ CAJ2PIT6KH      	43474536.00     	38620432.00     
+ CA7T52RTDL      	43468728.00     	38625720.00     
+ CA7VQ4124D      	43468776.00     	38602712.00     
+ C9R8XHF0QW      	43460552.00     	38622440.00     
+ C9SR389LQ7      	43461516.00     	38585852.00     
+ C94GPWFYTE      	43449112.00     	38618148.00     
+ C94K9Y6VB0      	43449128.00     	38619292.00     
+ C954Q85WMC      	43449432.00     	38619408.00     
+ C9DT8FUUX8      	43454580.00     	38620320.00     
+ C9E02IP6XR      	43454104.00     	38619904.00     
+ C9EQAVY4YU      	43454984.00     	38602124.00     
+ CAKJ52I8D0      	43475420.00     	38600252.00     
+ CAKK69TJKD      	43475432.00     	38600444.00     
+ CALBCF9VEK      	43475844.00     	38607160.00     
+ CALN2SRSSR      	43476020.00     	38607092.00     
+ CAHYT0U130      	43474068.00     	38577632.00     
+ CBDU5IM5V4      	43489760.00     	38634040.00     
+ CBDWGRJVVL      	43489796.00     	38634228.00     
+ C9T5CEQ1U7      	43461528.00     	38586272.00     
+ CADQRXTA63      	43471856.00     	38604840.00     
+ CA81967Y3E      	43468856.00     	38602332.00     
+ CA81W6IN8H      	43468864.00     	38602588.00     
+ C9PVQ1R1B5      	43459812.00     	38622948.00     
+ C9PYVVH9RD      	43459884.00     	38623072.00     
+ C9QE53EE12      	43460048.00     	38609740.00     
+ C9QEPVVVHU      	43460132.00     	38611704.00     
+ C9LML9DG9V      	43458120.00     	38592508.00     
+ C9MCJL1GV1      	43458472.00     	38592704.00     
+ C9NRSAHD2T      	43459272.00     	38612836.00     
+ CA87E97M2F      	43468924.00     	38602208.00     
+ CA8AYAXHQ3      	43468988.00     	38602420.00     
+ CA7RI202PL      	43468708.00     	38625796.00     
+ C9QMJ7HKE4      	43460248.00     	38611548.00     
+ C9QPT8LCD6      	43460236.00     	38623440.00     
+ C9QS39PSWU      	43460308.00     	38623364.00     
+ C9QTDABWF3      	43460544.00     	38611612.00     
+ C9QVBBABA5      	43460356.00     	38623192.00     
+ C9QYVD16KC      	43460408.00     	38623000.00     
+ C9R3B13HHM      	43460464.00     	38622808.00     
+ C9R6NGBJ7V      	43460516.00     	38622596.00     
+ CA8BXBF5RV      	43468988.00     	38625780.00     
+ CA8EUCTPTA      	43469040.00     	38602064.00     
+ C9W4YV634F      	43463092.00     	38612308.00     
+ C9WA5XMY4F      	43463184.00     	38583108.00     
+ C9X8IEE4HN      	43463648.00     	38583360.00     
+ C9XV3BBI87      	43464052.00     	38638128.00     
+ CA68EAL687      	43467800.00     	38574752.00     
+ CA6U4KP70F      	43468232.00     	38595284.00     
+ CAI412VSYL      	43474180.00     	38586352.00     
+ C9EVNJYJ69      	43454580.00     	38600544.00     
+ C9EXR0K73H      	43454616.00     	38600296.00     
+ C9H6T3JU4T      	43455700.00     	38601864.00     
+ CA81W6J9C0      	43468836.00     	38625840.00     
+ C9VLY1H0CL      	43462844.00     	38612628.00     
+ C9W0RT3RFP      	43463288.00     	38582600.00     
+ CA5US4GYVU      	43467768.00     	38595184.00     
+ C91KMHRJM3      	43447380.00     	38622380.00     
+ C92ICY6VWN      	43446964.00     	38616556.00     
+ C93NUIDTPD      	43448596.00     	38619388.00     
+ C947YS7GPL      	43448896.00     	38617596.00     
+ C94BQFF6BM      	43449008.00     	38618396.00     
+ CAINFCCEF3      	43474420.00     	38606444.00     
+ C9NVNCDIKS      	43459416.00     	38610752.00     
+ C9P4FG614L      	43459448.00     	38612608.00     
+ C9P7NHQGRR      	43459468.00     	38610492.00     
+ C9PC9RRQ0T      	43459612.00     	38612388.00     
+ C9PD6KERSF      	43459580.00     	38623012.00     
+ C9PKCVPRYD      	43459668.00     	38623056.00     
+ C9L8D2G0AT      	43458264.00     	38591776.00     
+ C9F1N20DHX      	43454648.00     	38601260.00     
+ C9FCUSU5IA      	43454820.00     	38601360.00     
+ C9G2XJ5LAU      	43455480.00     	38597336.00     
+ C9GI5RJ537      	43455420.00     	38597940.00     
+ C9GVPQUK1X      	43455620.00     	38597988.00     
+ C9H5U33NWC      	43455764.00     	38598028.00     
+ CBD7S88RM5      	43489480.00     	38626936.00     
+ CBCMNXY0VF      	43489160.00     	38625944.00     
+ CBCU6242J0      	43489248.00     	38626604.00     
+ CBCGC9GIVH      	43489052.00     	38626628.00     
+ CAIE27S80K      	43474304.00     	38606600.00     
+ CAIG08PP1M      	43474296.00     	38581168.00     
+ CAIVVFYH73      	43474540.00     	38606300.00     
+ hydrx3          	43474620.00     	38586992.00     
+ 1               	43476676.00     	38613740.00     
+
+[VERTICES]
+;Link            	X-Coord         	Y-Coord
+ L07KECGA        	43475836.00     	38607176.00     
+ L07KED1B        	43478420.00     	38611844.00     
+ L07KED1B        	43477804.00     	38612592.00     
+ L07LC28B        	43449168.00     	38618008.00     
+ L07KED2B        	43478584.00     	38611616.00     
+ L07KED3A        	43479568.00     	38611704.00     
+ L07KED3A        	43479576.00     	38611704.00     
+ L07KED3A        	43480000.00     	38611744.00     
+ L07KED5A        	43482192.00     	38617040.00     
+ L07KED5A        	43482352.00     	38617356.00     
+ L07KED5A        	43482520.00     	38617640.00     
+ L07KED5A        	43482660.00     	38617836.00     
+ L07KED5A        	43482820.00     	38618036.00     
+ L07KED5A        	43483060.00     	38618312.00     
+ L07KED1C        	43477808.00     	38612796.00     
+ L07KEBJA        	43472940.00     	38619624.00     
+ L07KEBKA        	43474152.00     	38620760.00     
+ L07KEBNA        	43471940.00     	38620368.00     
+ L07KEBNA        	43469632.00     	38618600.00     
+ L07KEBNA        	43466480.00     	38616196.00     
+ L07KEBNA        	43464912.00     	38614980.00     
+ L07KEC0A        	43461340.00     	38612236.00     
+ L07KECEB        	43475256.00     	38600152.00     
+ L07KE9CA        	43490044.00     	38630076.00     
+ L07KE9CA        	43490048.00     	38630076.00     
+ L07KE9DA        	43489616.00     	38628648.00     
+ L07KE9DA        	43489784.00     	38628244.00     
+ L07KE9JA        	43487780.00     	38626776.00     
+ L07KE9JA        	43487632.00     	38626768.00     
+ L07KE9JA        	43487476.00     	38626756.00     
+ L07KE9JA        	43487328.00     	38626720.00     
+ L07KE9JA        	43487196.00     	38626680.00     
+ L07KE9JA        	43487056.00     	38626620.00     
+ L07KE9JA        	43486920.00     	38626544.00     
+ L07KE9JA        	43486800.00     	38626464.00     
+ L07KE9JA        	43486620.00     	38626328.00     
+ L07KE9JB        	43489236.00     	38626604.00     
+ L07KECEC        	43474996.00     	38600164.00     
+ L07KECEC        	43474768.00     	38600000.00     
+ L07KECFA        	43475664.00     	38604688.00     
+ L07KECFA        	43475496.00     	38604896.00     
+ L07KECFA        	43475648.00     	38605460.00     
+ L07KECFA        	43475832.00     	38606064.00     
+ L07KECFA        	43476020.00     	38606648.00     
+ L07KEBIA        	43473116.00     	38619004.00     
+ L07KEBIA        	43473120.00     	38619004.00     
+ L07KEBIA        	43473244.00     	38619100.00     
+ L07KEBIA        	43473124.00     	38619256.00     
+ L07KE9KA        	43489316.00     	38626080.00     
+ L07KE9LA        	43488860.00     	38625632.00     
+ L07KEC4A        	43458424.00     	38610000.00     
+ L07KEC4A        	43458416.00     	38609996.00     
+ L07KEC4A        	43457880.00     	38609604.00     
+ L07KEC4A        	43457596.00     	38608952.00     
+ L07KEC4A        	43457240.00     	38608640.00     
+ L07KEC4A        	43457044.00     	38608456.00     
+ L07KEC4A        	43456836.00     	38608256.00     
+ L07KEC4A        	43456496.00     	38607872.00     
+ L07KEC4A        	43456116.00     	38607392.00     
+ L07KEC4A        	43455844.00     	38607004.00     
+ L07KEC4A        	43455560.00     	38606528.00     
+ L07KEC4A        	43455328.00     	38606088.00     
+ L07KEC4A        	43455120.00     	38605616.00     
+ L07KEC4A        	43454904.00     	38605040.00     
+ L07KEC4A        	43454820.00     	38604728.00     
+ L07KEC4A        	43454764.00     	38604484.00     
+ L07KEC4A        	43454696.00     	38604076.00     
+ L07KEC4A        	43454608.00     	38603416.00     
+ L07KEC4A        	43454552.00     	38602740.00     
+ L07KEC4A        	43454504.00     	38602056.00     
+ L07KEC4A        	43454504.00     	38601720.00     
+ L07KEC5A        	43454536.00     	38600864.00     
+ L07KEC5A        	43454580.00     	38600520.00     
+ L07KEC5B        	43454644.00     	38600128.00     
+ L07KEC5B        	43454644.00     	38600124.00     
+ L07KEC5B        	43454672.00     	38600000.00     
+ L07KEC5B        	43454712.00     	38599776.00     
+ L07KEC5B        	43454792.00     	38599420.00     
+ L07KEC5B        	43454912.00     	38598936.00     
+ L07KEC5B        	43455056.00     	38598432.00     
+ L07KE8IC        	43460312.00     	38623352.00     
+ L07KE8KA        	43468500.00     	38625596.00     
+ L07KE8KA        	43468504.00     	38625756.00     
+ L07KE97A        	43464036.00     	38638120.00     
+ L07LAPAA        	43471984.00     	38604672.00     
+ L07KE8EA        	43450000.00     	38617800.00     
+ L07KE8EA        	43449956.00     	38617776.00     
+ L07KE8EA        	43449512.00     	38617936.00     
+ L07KE8HA        	43459800.00     	38623360.00     
+ L07KE8HB        	43459628.00     	38622932.00     
+ L07KE8HB        	43459632.00     	38622928.00     
+ L07KE8HB        	43459676.00     	38622860.00     
+ L07KE8HC        	43459844.00     	38622944.00     
+ L07KE8HC        	43459924.00     	38622984.00     
+ L07KJN0E        	43473992.00     	38576340.00     
+ L07KJN0E        	43473992.00     	38576340.00     
+ L07KJN2A        	43474396.00     	38582820.00     
+ L07KJN2A        	43474344.00     	38582924.00     
+ L07KJN2A        	43474312.00     	38583020.00     
+ L07KJN2A        	43474288.00     	38583100.00     
+ L07KJN2A        	43474276.00     	38583180.00     
+ L07KJN2A        	43474264.00     	38583272.00     
+ L07KJN2A        	43474264.00     	38583352.00     
+ L07KJN2A        	43474272.00     	38583420.00     
+ L07KJN2A        	43474280.00     	38583504.00     
+ L07KJN2A        	43474304.00     	38583604.00     
+ L07KJN2A        	43474336.00     	38583688.00     
+ L07KJN2A        	43474368.00     	38583776.00     
+ L07KJN2A        	43474420.00     	38583860.00     
+ L07KJN4A        	43475316.00     	38598600.00     
+ L07KJN4A        	43474956.00     	38592980.00     
+ L07KJN4A        	43474632.00     	38587568.00     
+ L07KJN5A        	43468260.00     	38595304.00     
+ L07L0E5A        	43468856.00     	38625844.00     
+ L07L0E5A        	43468924.00     	38625864.00     
+ L07L0E5C        	43469040.00     	38625736.00     
+ L07L0E5C        	43473184.00     	38626808.00     
+ L07LBPCA        	43468232.00     	38595528.00     
+ L07L0ENA        	43477144.00     	38626024.00     
+ L07L0ENA        	43477152.00     	38626024.00     
+ L07L0ENB        	43476340.00     	38626216.00     
+ L07L32MB        	43474160.00     	38617524.00     
+ L07L32MC        	43476684.00     	38614232.00     
+ L07L32NA        	43476720.00     	38614072.00     
+ L07L32NA        	43476716.00     	38614068.00     
+ L07L32NA        	43476488.00     	38613904.00     
+ L07L32NA        	43476540.00     	38613840.00     
+ L07LAP2A        	43459452.00     	38610508.00     
+ L07LAP2A        	43459456.00     	38610504.00     
+ L07KJMGA        	43464344.00     	38580680.00     
+ L07KJMKA        	43458968.00     	38590512.00     
+ L07KJMMA        	43456008.00     	38595924.00     
+ L07KJMMA        	43455832.00     	38596256.00     
+ L07KJMMA        	43455736.00     	38596476.00     
+ L07KJMMA        	43455644.00     	38596688.00     
+ L07KJMMA        	43455504.00     	38597040.00     
+ L07KJMMA        	43455300.00     	38597608.00     
+ L07KEF0A        	43445784.00     	38626552.00     
+ L07KEF0A        	43445856.00     	38626300.00     
+ L07KEF0A        	43445916.00     	38626124.00     
+ L07KEF0A        	43445952.00     	38626008.00     
+ L07KEF0A        	43446156.00     	38625524.00     
+ L07KEF0A        	43447536.00     	38622176.00     
+ L07KEF0A        	43447580.00     	38621952.00     
+ L07KEF0B        	43445320.00     	38628200.00     
+ L07KEF0B        	43445360.00     	38628044.00     
+ L07KEF5B        	43436128.00     	38610712.00     
+ L07KJMEA        	43467844.00     	38574672.00     
+ L07KJMEA        	43467840.00     	38574672.00     
+ L07KJMEA        	43467564.00     	38574920.00     
+ L07KJMEA        	43467504.00     	38574980.00     
+ L07KJMEA        	43467436.00     	38575060.00     
+ L07KJMEA        	43467376.00     	38575144.00     
+ L07KJMEA        	43467320.00     	38575236.00     
+ L07LCJKA        	43454056.00     	38619976.00     
+ L07LCJCA        	43460476.00     	38622760.00     
+ L07LCJCA        	43460476.00     	38622760.00     
+ L07LCJCC        	43460520.00     	38622576.00     
+ L07KEENA        	43448512.00     	38617392.00     
+ L07KE98A        	43466220.00     	38639320.00     
+ L07KE98A        	43467436.00     	38640076.00     
+ L07KE98A        	43468464.00     	38640716.00     
+ L07KE98A        	43468488.00     	38640856.00     
+ L07KE98A        	43468528.00     	38640996.00     
+ L07KE98A        	43468576.00     	38641112.00     
+ L07KE98A        	43468660.00     	38641232.00     
+ L07KE98A        	43468752.00     	38641344.00     
+ L07KE98A        	43468860.00     	38641456.00     
+ L07KE98A        	43468964.00     	38641552.00     
+ L07KE98A        	43469072.00     	38641644.00     
+ L07KE98A        	43469480.00     	38641984.00     
+ L07KE98A        	43470500.00     	38641904.00     
+ L07KE98A        	43470556.00     	38642064.00     
+ L07KE98A        	43470624.00     	38642220.00     
+ L07KE98A        	43470712.00     	38642364.00     
+ L07KE98A        	43470804.00     	38642504.00     
+ L07KE98A        	43470916.00     	38642636.00     
+ L07KE98A        	43471036.00     	38642752.00     
+ L07KE98A        	43471060.00     	38642776.00     
+ L07KE98A        	43471192.00     	38642880.00     
+ L07KE98A        	43471336.00     	38642968.00     
+ L07KE98A        	43471484.00     	38643048.00     
+ L07KE98A        	43471640.00     	38643116.00     
+ L07KE98A        	43471756.00     	38643156.00     
+ L07KE98A        	43472564.00     	38643124.00     
+ L07KE98A        	43477324.00     	38642976.00     
+ L07KE98A        	43477664.00     	38642912.00     
+ L07KE98A        	43477860.00     	38642848.00     
+ L07KE98A        	43478016.00     	38642792.00     
+ L07KE98A        	43478328.00     	38642640.00     
+ L07KE98B        	43479688.00     	38641872.00     
+ L07L0EPB        	43482000.00     	38629260.00     
+ L07L0EPB        	43482724.00     	38629792.00     
+ L07L0EPB        	43482936.00     	38629952.00     
+ L07L0EPB        	43483460.00     	38630352.00     
+ L07L0EPB        	43483976.00     	38630736.00     
+ L07L0EPB        	43484456.00     	38631116.00     
+ L07L0EPB        	43484596.00     	38631088.00     
+ L07L0EPB        	43484860.00     	38631024.00     
+ L07L0EPB        	43485324.00     	38630920.00     
+ L07L0EPB        	43489140.00     	38633816.00     
+ L07L0EPB        	43489232.00     	38633884.00     
+ L07L0EPB        	43489304.00     	38633928.00     
+ L07L0EPB        	43489376.00     	38633960.00     
+ L07L0EPB        	43489448.00     	38633992.00     
+ L07L0EPB        	43489528.00     	38634008.00     
+ L07L0EPB        	43489608.00     	38634020.00     
+ L07L0EPB        	43489696.00     	38634024.00     
+ L07KED0A        	43476200.00     	38607168.00     
+ L07KED0A        	43476200.00     	38607168.00     
+ L07KED0A        	43476312.00     	38607440.00     
+ L07KED0A        	43476476.00     	38607792.00     
+ L07KED0A        	43476684.00     	38608160.00     
+ L07KED0A        	43476888.00     	38608488.00     
+ L07KED0A        	43477768.00     	38609904.00     
+ L07KED0A        	43478472.00     	38611076.00     
+ L07L0EBA        	43490520.00     	38633184.00     
+ L07L0EBA        	43490800.00     	38632808.00     
+ L07L0EGB        	43481072.00     	38641284.00     
+ L07L0EGB        	43481860.00     	38640784.00     
+ L07L0EGB        	43482336.00     	38640436.00     
+ L07L0EGB        	43482760.00     	38640040.00     
+ L07L0EGB        	43483016.00     	38639744.00     
+ L07L0EGB        	43483284.00     	38639316.00     
+ L07L0EGB        	43483464.00     	38638944.00     
+ L07L0EGB        	43483604.00     	38638564.00     
+ L07L0EGB        	43483696.00     	38638164.00     
+ L07L0EGB        	43483752.00     	38637616.00     
+ L07L0EGB        	43485716.00     	38637136.00     
+ L07L0EGB        	43489416.00     	38636920.00     
+ L07L0EGB        	43489604.00     	38637100.00     
+ L07L0EGB        	43489956.00     	38637080.00     
+ L07L0EGB        	43490208.00     	38636536.00     
+ L07L0EGB        	43490236.00     	38636464.00     
+ L07L0EGC        	43489792.00     	38634204.00     
+ L07L0EKA        	43490480.00     	38633516.00     
+ L07L0EKB        	43489820.00     	38634016.00     
+ L07L0EKB        	43489900.00     	38633996.00     
+ L07L0EKB        	43489984.00     	38633968.00     
+ L07L0EKB        	43490084.00     	38633924.00     
+ L07L0EKB        	43490168.00     	38633872.00     
+ L07L0EKB        	43490232.00     	38633820.00     
+ L07L0EKB        	43490280.00     	38633776.00     
+ L07L0EKB        	43490316.00     	38633736.00     
+ L07L0EKB        	43490396.00     	38633648.00     
+ L07L0EKC        	43490488.00     	38633424.00     
+ L07L0EKC        	43490500.00     	38633364.00     
+ L07KE98C        	43479764.00     	38641904.00     
+ L07KED6A        	43483808.00     	38619072.00     
+ L07KED6A        	43483808.00     	38619076.00     
+ L07L0EPC        	43477980.00     	38625840.00     
+ L07L0EPC        	43478144.00     	38625824.00     
+ L07L0EPC        	43478300.00     	38625840.00     
+ L07L0EPC        	43478448.00     	38625884.00     
+ L07L0EPC        	43478632.00     	38625980.00     
+ L07L0EPC        	43478776.00     	38626084.00     
+ L07L0EPC        	43478888.00     	38626180.00     
+ L07L0EPC        	43478984.00     	38626284.00     
+ L07L0EPC        	43479088.00     	38626424.00     
+ L07L0EPC        	43479196.00     	38626604.00     
+ L07L0EPC        	43479352.00     	38626944.00     
+ L07L0EPC        	43479516.00     	38627204.00     
+ L07L0EPC        	43479632.00     	38627368.00     
+ L07L0EPC        	43479844.00     	38627568.00     
+ L07L0EPC        	43480288.00     	38627960.00     
+ L07L0EPC        	43480832.00     	38628376.00     
+ L07L0EPC        	43481236.00     	38628680.00     
+ L07L0F0A        	43472480.00     	38619944.00     
+ L07L0F0A        	43472476.00     	38619944.00     
+ L07L0F0A        	43472432.00     	38619916.00     
+ L07L0F0A        	43471420.00     	38621220.00     
+ L07L0F0A        	43472420.00     	38621960.00     
+ L07L0F0A        	43475704.00     	38624392.00     
+ L07LAPBA        	43471920.00     	38604752.00     
+ L07LAPBA        	43471920.00     	38604752.00     
+ L07LAPDA        	43474396.00     	38606476.00     
+ L07LAPEA        	43474476.00     	38606380.00     
+ L07LAPFA        	43481420.00     	38614944.00     
+ L07LAPFA        	43481424.00     	38614940.00     
+ L07LAPGA        	43481848.00     	38614784.00     
+ L07LAPHA        	43483672.00     	38619072.00     
+ L07LAPHA        	43483668.00     	38619072.00     
+
+[LABELS]
+;X-Coord           Y-Coord          Label & Anchor Node
+
+[BACKDROP]
+ DIMENSIONS     	43433425.59     	38571382.32     	43493226.21     	38645499.99     
+ UNITS          	None
+ FILE           	
+ OFFSET         	0.00            	0.00            
+
+[END]

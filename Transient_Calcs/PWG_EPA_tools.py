@@ -157,7 +157,7 @@ def Import_EPANet_Geom(inp_filename):
                 elif section == '[VALVES]':
                 	#print vals
                 	if Units == 'H-W':
-                		roughness = HW_DW(vals[4],vals[5])
+                		roughness = HW_DW(vals[3],100)
                 	else:
                 		roughness = vals[5]
                 	new_Valve = Valve(vals[0], Node_idx[vals[1]], Node_idx[vals[2]], vals[3], vals[4], roughness)
