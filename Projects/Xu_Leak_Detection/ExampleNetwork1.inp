@@ -12,10 +12,10 @@
  CAHY3SP1SX      	91.86       	0           	                	;
  CAH3PK8EBQ      	77.26       	0           	                	;
  CAHEPQJDCC      	91.0832     	0           	                	;
- CAHMGUBXB9      	89.4416     	10           	0108                	;
+ CAHMGUBXB9      	89.4416     	0           	                	;
  CAHSYX0MQL      	92.14       	0           	                	;
  CAHVB5XDYX      	92.06       	0           	                	;
- CAHW7YK6TE      	92.02       	10           	0108                	;
+ CAHW7YK6TE      	92.02       	0           	                	;
  CAT9D0UI7M      	77.76       	0           	                	;
  CATA11682A      	77.78       	0           	                	;
  CATGQWN42E      	73.5096     	0           	                	;
@@ -75,7 +75,7 @@
  C8E33U7KFT      	80.4368     	0           	                	;
  C8F0JHAY64      	80.5616     	0           	                	;
  C8W8QDU3CD      	80          	0           	                	;
- C8WBYFEKP9      	80          	1           	 0102               	;
+ C8WBYFEKP9      	80          	0           	                	;
  CB0WL8VFB4      	74.84       	0           	                	;
  CB2DFY4J7J      	74.72       	0           	                	;
  CB2MU3NQWW      	74.62       	0           	                	;
@@ -93,7 +93,7 @@
  C954Q85WMC      	80.108      	0           	                	;
  C9DT8FUUX8      	80          	0           	                	;
  C9E02IP6XR      	80.02       	0           	                	;
- C9EQAVY4YU      	90.48       	6           	0103                	;
+ C9EQAVY4YU      	90.48       	0           	                	;
  CAKJ52I8D0      	82.72       	0           	                	;
  CAKK69TJKD      	82.64       	0           	                	;
  CALBCF9VEK      	79.8704     	0           	                	;
@@ -108,7 +108,7 @@
  C9PVQ1R1B5      	79.42       	8           	0101            	;
  C9PYVVH9RD      	79.38       	0           	                	;
  C9QE53EE12      	84.0812     	0           	                	;
- C9QEPVVVHU      	82.9468     	8           	0104                	;
+ C9QEPVVVHU      	82.9468     	0           	                	;
  C9LML9DG9V      	93.95       	0           	                	;
  C9MCJL1GV1      	93.658      	0           	                	;
  C9NRSAHD2T      	82.3188     	0           	0101            	;
@@ -126,7 +126,7 @@
  CA8BXBF5RV      	77.2        	0           	                	;
  CA8EUCTPTA      	84.52       	0           	                	;
  C9W4YV634F      	81.6652     	0           	                	;
- C9WA5XMY4F      	94.84       	10           	0105                	;
+ C9WA5XMY4F      	94.84       	0           	                	;
  C9X8IEE4HN      	94.42       	0           	                	;
  C9XV3BBI87      	77.2        	0           	                	;
  CA68EAL687      	94.84       	0           	                	;
@@ -146,7 +146,7 @@
  C94BQFF6BM      	80.272      	0           	                	;
  CAINFCCEF3      	80.68       	0           	                	;
  C9NVNCDIKS      	83.7004     	0           	                	;
- C9P4FG614L      	82.4976     	15           	0106                	;
+ C9P4FG614L      	82.4976     	0           	                	;
  C9P7NHQGRR      	83.79       	0           	                	;
  C9PC9RRQ0T      	82.54       	0           	                	;
  C9PD6KERSF      	79.4        	0           	                	;
@@ -158,7 +158,7 @@
  C9GI5RJ537      	92.1        	0           	                	;
  C9GVPQUK1X      	91.96       	0           	                	;
  C9H5U33NWC      	91.88       	0           	                	;
- CBD7S88RM5      	70.92       	10           	0107                	;
+ CBD7S88RM5      	70.92       	0           	                	;
  CBCMNXY0VF      	71.18       	0           	                	;
  CBCU6242J0      	71          	0           	                	;
  CBCGC9GIVH      	71.08       	5           	0101            	;
@@ -351,212 +351,212 @@
 [DEMANDS]
 ;Junction        	Demand      	Pattern         	Category
  CAMVHDWYBC      	60          	0101            	;        
- CAMVHDWYBC      	1           	0102            	;        
- CAMVHDWYBC      	1           	0103            	;        
- CAMVHDWYBC      	1          	0104            	;        
- CAMVHDWYBC      	01          	0105            	;        
- CAMVHDWYBC      	01           	0106            	;        
- CAMVHDWYBC      	01          	0107            	;        
+ CAMVHDWYBC      	0           	0102            	;        
+ CAMVHDWYBC      	0           	0103            	;        
+ CAMVHDWYBC      	0           	0104            	;        
+ CAMVHDWYBC      	0           	0105            	;        
+ CAMVHDWYBC      	0           	0106            	;        
+ CAMVHDWYBC      	0           	0107            	;        
  CAMVHDWYBC      	60          	0108            	;        
  CAN4WI14EF      	60          	0101            	;        
- CAN4WI14EF      	01           	0102            	;        
- CAN4WI14EF      	01           	0103            	;        
- CAN4WI14EF      	01           	0104            	;        
- CAN4WI14EF      	01           	0105            	;        
- CAN4WI14EF      	01           	0106            	;        
- CAN4WI14EF      	01           	0107            	;        
+ CAN4WI14EF      	0           	0102            	;        
+ CAN4WI14EF      	0           	0103            	;        
+ CAN4WI14EF      	0           	0104            	;        
+ CAN4WI14EF      	0           	0105            	;        
+ CAN4WI14EF      	0           	0106            	;        
+ CAN4WI14EF      	0           	0107            	;        
  CAN4WI14EF      	60          	0108            	;        
  CAJU04DEAE      	30          	0101            	;        
- CAJU04DEAE      	01           	0102            	;        
- CAJU04DEAE      	01           	0103            	;        
- CAJU04DEAE      	01           	0104            	;        
- CAJU04DEAE      	01           	0105            	;        
- CAJU04DEAE      	01           	0106            	;        
- CAJU04DEAE      	01           	0107            	;        
+ CAJU04DEAE      	0           	0102            	;        
+ CAJU04DEAE      	0           	0103            	;        
+ CAJU04DEAE      	0           	0104            	;        
+ CAJU04DEAE      	0           	0105            	;        
+ CAJU04DEAE      	0           	0106            	;        
+ CAJU04DEAE      	0           	0107            	;        
  CAJU04DEAE      	30          	0108            	;        
  CAY2XR11B8      	3           	0101            	;        
- CAY2XR11B8      	01           	0102            	;        
+ CAY2XR11B8      	0           	0102            	;        
  CAY2XR11B8      	14.65205    	0103            	;        
- CAY2XR11B8      	01           	0104            	;        
- CAY2XR11B8      	01           	0105            	;        
- CAY2XR11B8      	01           	0106            	;        
- CAY2XR11B8      	01           	0107            	;        
+ CAY2XR11B8      	0           	0104            	;        
+ CAY2XR11B8      	0           	0105            	;        
+ CAY2XR11B8      	0           	0106            	;        
+ CAY2XR11B8      	0           	0107            	;        
  CAY2XR11B8      	2           	0108            	;        
  CB0QS62499      	60          	0101            	;        
- CB0QS62499      	01           	0102            	;        
- CB0QS62499      	01           	0103            	;        
- CB0QS62499      	01           	0104            	;        
- CB0QS62499      	01           	0105            	;        
- CB0QS62499      	01           	0106            	;        
- CB0QS62499      	01           	0107            	;        
+ CB0QS62499      	0           	0102            	;        
+ CB0QS62499      	0           	0103            	;        
+ CB0QS62499      	0           	0104            	;        
+ CB0QS62499      	0           	0105            	;        
+ CB0QS62499      	0           	0106            	;        
+ CB0QS62499      	0           	0107            	;        
  CB0QS62499      	60          	0108            	;        
  CAF33KUVGM      	83          	0101            	;        
- CAF33KUVGM      	01           	0102            	;        
- CAF33KUVGM      	01           	0103            	;        
- CAF33KUVGM      	01           	0104            	;        
- CAF33KUVGM      	01           	0105            	;        
- CAF33KUVGM      	01           	0106            	;        
- CAF33KUVGM      	01           	0107            	;        
+ CAF33KUVGM      	0           	0102            	;        
+ CAF33KUVGM      	0           	0103            	;        
+ CAF33KUVGM      	0           	0104            	;        
+ CAF33KUVGM      	0           	0105            	;        
+ CAF33KUVGM      	0           	0106            	;        
+ CAF33KUVGM      	0           	0107            	;        
  CAF33KUVGM      	83          	0108            	;        
- CAPYDEE98V      	01           	0101            	;        
- CAPYDEE98V      	01           	0102            	;        
- CAPYDEE98V      	01           	0103            	;        
- CAPYDEE98V      	01           	0104            	;        
- CAPYDEE98V      	01           	0105            	;        
- CAPYDEE98V      	01           	0106            	;        
- CAPYDEE98V      	01           	0107            	;        
- CAPYDEE98V      	01           	0108            	;        
+ CAPYDEE98V      	0           	0101            	;        
+ CAPYDEE98V      	0           	0102            	;        
+ CAPYDEE98V      	0           	0103            	;        
+ CAPYDEE98V      	0           	0104            	;        
+ CAPYDEE98V      	0           	0105            	;        
+ CAPYDEE98V      	0           	0106            	;        
+ CAPYDEE98V      	0           	0107            	;        
+ CAPYDEE98V      	0           	0108            	;        
  CBFA18E7W7      	4           	0101            	;        
- CBFA18E7W7      	01           	0102            	;        
- CBFA18E7W7      	01           	0103            	;        
- CBFA18E7W7      	01           	0104            	;        
- CBFA18E7W7      	01           	0105            	;        
- CBFA18E7W7      	01           	0106            	;        
- CBFA18E7W7      	01           	0107            	;        
+ CBFA18E7W7      	0           	0102            	;        
+ CBFA18E7W7      	0           	0103            	;        
+ CBFA18E7W7      	0           	0104            	;        
+ CBFA18E7W7      	0           	0105            	;        
+ CBFA18E7W7      	0           	0106            	;        
+ CBFA18E7W7      	0           	0107            	;        
  CBFA18E7W7      	4           	0108            	;        
  CA1GW02UYE      	30          	0101            	;        
- CA1GW02UYE      	01           	0102            	;        
- CA1GW02UYE      	01           	0103            	;        
- CA1GW02UYE      	01           	0104            	;        
- CA1GW02UYE      	01           	0105            	;        
- CA1GW02UYE      	01           	0106            	;        
- CA1GW02UYE      	01           	0107            	;        
+ CA1GW02UYE      	0           	0102            	;        
+ CA1GW02UYE      	0           	0103            	;        
+ CA1GW02UYE      	0           	0104            	;        
+ CA1GW02UYE      	0           	0105            	;        
+ CA1GW02UYE      	0           	0106            	;        
+ CA1GW02UYE      	0           	0107            	;        
  CA1GW02UYE      	30          	0108            	;        
  CANS01JKLF      	1           	0101            	;        
- CANS01JKLF      	01           	0102            	;        
- CANS01JKLF      	01           	0103            	;        
- CANS01JKLF      	01           	0104            	;        
- CANS01JKLF      	01           	0105            	;        
- CANS01JKLF      	01           	0106            	;        
- CANS01JKLF      	01           	0107            	;        
+ CANS01JKLF      	0           	0102            	;        
+ CANS01JKLF      	0           	0103            	;        
+ CANS01JKLF      	0           	0104            	;        
+ CANS01JKLF      	0           	0105            	;        
+ CANS01JKLF      	0           	0106            	;        
+ CANS01JKLF      	0           	0107            	;        
  CANS01JKLF      	1           	0108            	;        
  CBE00L0FGR      	1           	0101            	;        
- CBE00L0FGR      	01           	0102            	;        
- CBE00L0FGR      	01           	0103            	;        
- CBE00L0FGR      	01           	0104            	;        
- CBE00L0FGR      	01           	0105            	;        
- CBE00L0FGR      	01           	0106            	;        
- CBE00L0FGR      	01           	0107            	;        
+ CBE00L0FGR      	0           	0102            	;        
+ CBE00L0FGR      	0           	0103            	;        
+ CBE00L0FGR      	0           	0104            	;        
+ CBE00L0FGR      	0           	0105            	;        
+ CBE00L0FGR      	0           	0106            	;        
+ CBE00L0FGR      	0           	0107            	;        
  CBE00L0FGR      	1           	0108            	;        
  CAM86331DP      	3           	0101            	;        
- CAM86331DP      	01           	0102            	;        
- CAM86331DP      	01           	0103            	;        
- CAM86331DP      	01           	0104            	;        
- CAM86331DP      	01           	0105            	;        
- CAM86331DP      	01           	0106            	;        
- CAM86331DP      	01           	0107            	;        
+ CAM86331DP      	0           	0102            	;        
+ CAM86331DP      	0           	0103            	;        
+ CAM86331DP      	0           	0104            	;        
+ CAM86331DP      	0           	0105            	;        
+ CAM86331DP      	0           	0106            	;        
+ CAM86331DP      	0           	0107            	;        
  CAM86331DP      	2           	0108            	;        
  CA72VPGLWJ      	54          	0101            	;        
- CA72VPGLWJ      	01           	0102            	;        
- CA72VPGLWJ      	01           	0103            	;        
- CA72VPGLWJ      	01           	0104            	;        
- CA72VPGLWJ      	01           	0105            	;        
- CA72VPGLWJ      	01           	0106            	;        
- CA72VPGLWJ      	01           	0107            	;        
+ CA72VPGLWJ      	0           	0102            	;        
+ CA72VPGLWJ      	0           	0103            	;        
+ CA72VPGLWJ      	0           	0104            	;        
+ CA72VPGLWJ      	0           	0105            	;        
+ CA72VPGLWJ      	0           	0106            	;        
+ CA72VPGLWJ      	0           	0107            	;        
  CA72VPGLWJ      	54          	0108            	;        
  CAIXHGQQNM      	57          	0101            	;        
- CAIXHGQQNM      	01           	0102            	;        
- CAIXHGQQNM      	01           	0103            	;        
- CAIXHGQQNM      	01           	0104            	;        
- CAIXHGQQNM      	01           	0105            	;        
- CAIXHGQQNM      	01           	0106            	;        
- CAIXHGQQNM      	01           	0107            	;        
+ CAIXHGQQNM      	0           	0102            	;        
+ CAIXHGQQNM      	0           	0103            	;        
+ CAIXHGQQNM      	0           	0104            	;        
+ CAIXHGQQNM      	0           	0105            	;        
+ CAIXHGQQNM      	0           	0106            	;        
+ CAIXHGQQNM      	0           	0107            	;        
  CAIXHGQQNM      	57          	0108            	;        
  C9SR389LQ7      	37          	0101            	;        
- C9SR389LQ7      	01           	0102            	;        
- C9SR389LQ7      	01           	0103            	;        
- C9SR389LQ7      	01           	0104            	;        
- C9SR389LQ7      	01           	0105            	;        
- C9SR389LQ7      	01           	0106            	;        
- C9SR389LQ7      	01           	0107            	;        
+ C9SR389LQ7      	0           	0102            	;        
+ C9SR389LQ7      	0           	0103            	;        
+ C9SR389LQ7      	0           	0104            	;        
+ C9SR389LQ7      	0           	0105            	;        
+ C9SR389LQ7      	0           	0106            	;        
+ C9SR389LQ7      	0           	0107            	;        
  C9SR389LQ7      	37          	0108            	;        
  CBDU5IM5V4      	4           	0101            	;        
- CBDU5IM5V4      	01           	0102            	;        
- CBDU5IM5V4      	01           	0103            	;        
- CBDU5IM5V4      	01           	0104            	;        
- CBDU5IM5V4      	01           	0105            	;        
- CBDU5IM5V4      	01           	0106            	;        
- CBDU5IM5V4      	01           	0107            	;        
+ CBDU5IM5V4      	0           	0102            	;        
+ CBDU5IM5V4      	0           	0103            	;        
+ CBDU5IM5V4      	0           	0104            	;        
+ CBDU5IM5V4      	0           	0105            	;        
+ CBDU5IM5V4      	0           	0106            	;        
+ CBDU5IM5V4      	0           	0107            	;        
  CBDU5IM5V4      	4           	0108            	;        
  C9PVQ1R1B5      	8           	0101            	;        
- C9PVQ1R1B5      	01           	0102            	;        
+ C9PVQ1R1B5      	0           	0102            	;        
  C9PVQ1R1B5      	43.33425    	0103            	;        
- C9PVQ1R1B5      	01           	0104            	;        
- C9PVQ1R1B5      	01           	0105            	;        
- C9PVQ1R1B5      	01           	0106            	;        
+ C9PVQ1R1B5      	0           	0104            	;        
+ C9PVQ1R1B5      	0           	0105            	;        
+ C9PVQ1R1B5      	0           	0106            	;        
  C9PVQ1R1B5      	11.77534    	0107            	;        
  C9PVQ1R1B5      	6           	0108            	;        
- C9NRSAHD2T      	01           	0101            	;        
- C9NRSAHD2T      	01           	0102            	;        
- C9NRSAHD2T      	01           	0103            	;        
- C9NRSAHD2T      	01           	0104            	;        
- C9NRSAHD2T      	01           	0105            	;        
- C9NRSAHD2T      	01           	0106            	;        
- C9NRSAHD2T      	01           	0107            	;        
- C9NRSAHD2T      	01           	0108            	;        
+ C9NRSAHD2T      	0           	0101            	;        
+ C9NRSAHD2T      	0           	0102            	;        
+ C9NRSAHD2T      	0           	0103            	;        
+ C9NRSAHD2T      	0           	0104            	;        
+ C9NRSAHD2T      	0           	0105            	;        
+ C9NRSAHD2T      	0           	0106            	;        
+ C9NRSAHD2T      	0           	0107            	;        
+ C9NRSAHD2T      	0           	0108            	;        
  CA8AYAXHQ3      	81          	0101            	;        
- CA8AYAXHQ3      	01           	0102            	;        
- CA8AYAXHQ3      	01           	0103            	;        
- CA8AYAXHQ3      	01           	0104            	;        
- CA8AYAXHQ3      	01           	0105            	;        
- CA8AYAXHQ3      	01           	0106            	;        
- CA8AYAXHQ3      	01           	0107            	;        
+ CA8AYAXHQ3      	0           	0102            	;        
+ CA8AYAXHQ3      	0           	0103            	;        
+ CA8AYAXHQ3      	0           	0104            	;        
+ CA8AYAXHQ3      	0           	0105            	;        
+ CA8AYAXHQ3      	0           	0106            	;        
+ CA8AYAXHQ3      	0           	0107            	;        
  CA8AYAXHQ3      	81          	0108            	;        
  C9QTDABWF3      	103         	0101            	;        
- C9QTDABWF3      	01           	0102            	;        
+ C9QTDABWF3      	0           	0102            	;        
  C9QTDABWF3      	1.76438     	0103            	;        
- C9QTDABWF3      	01           	0104            	;        
- C9QTDABWF3      	01           	0105            	;        
- C9QTDABWF3      	01           	0106            	;        
- C9QTDABWF3      	01           	0107            	;        
+ C9QTDABWF3      	0           	0104            	;        
+ C9QTDABWF3      	0           	0105            	;        
+ C9QTDABWF3      	0           	0106            	;        
+ C9QTDABWF3      	0           	0107            	;        
  C9QTDABWF3      	102         	0108            	;        
  C9W0RT3RFP      	58          	0101            	;        
- C9W0RT3RFP      	01           	0102            	;        
- C9W0RT3RFP      	01           	0103            	;        
- C9W0RT3RFP      	01           	0104            	;        
- C9W0RT3RFP      	01           	0105            	;        
- C9W0RT3RFP      	01           	0106            	;        
- C9W0RT3RFP      	01           	0107            	;        
+ C9W0RT3RFP      	0           	0102            	;        
+ C9W0RT3RFP      	0           	0103            	;        
+ C9W0RT3RFP      	0           	0104            	;        
+ C9W0RT3RFP      	0           	0105            	;        
+ C9W0RT3RFP      	0           	0106            	;        
+ C9W0RT3RFP      	0           	0107            	;        
  C9W0RT3RFP      	58          	0108            	;        
  C92ICY6VWN      	1           	0101            	;        
- C92ICY6VWN      	01           	0102            	;        
- C92ICY6VWN      	01           	0103            	;        
- C92ICY6VWN      	01           	0104            	;        
- C92ICY6VWN      	01           	0105            	;        
- C92ICY6VWN      	01           	0106            	;        
- C92ICY6VWN      	01           	0107            	;        
+ C92ICY6VWN      	0           	0102            	;        
+ C92ICY6VWN      	0           	0103            	;        
+ C92ICY6VWN      	0           	0104            	;        
+ C92ICY6VWN      	0           	0105            	;        
+ C92ICY6VWN      	0           	0106            	;        
+ C92ICY6VWN      	0           	0107            	;        
  C92ICY6VWN      	1           	0108            	;        
  C9L8D2G0AT      	17          	0101            	;        
- C9L8D2G0AT      	01           	0102            	;        
- C9L8D2G0AT      	01           	0103            	;        
- C9L8D2G0AT      	01           	0104            	;        
- C9L8D2G0AT      	01           	0105            	;        
- C9L8D2G0AT      	01           	0106            	;        
- C9L8D2G0AT      	01           	0107            	;        
+ C9L8D2G0AT      	0           	0102            	;        
+ C9L8D2G0AT      	0           	0103            	;        
+ C9L8D2G0AT      	0           	0104            	;        
+ C9L8D2G0AT      	0           	0105            	;        
+ C9L8D2G0AT      	0           	0106            	;        
+ C9L8D2G0AT      	0           	0107            	;        
  C9L8D2G0AT      	17          	0108            	;        
  C9G2XJ5LAU      	108         	0101            	;        
- C9G2XJ5LAU      	01           	0102            	;        
- C9G2XJ5LAU      	01           	0103            	;        
- C9G2XJ5LAU      	01           	0104            	;        
- C9G2XJ5LAU      	01           	0105            	;        
- C9G2XJ5LAU      	01           	0106            	;        
- C9G2XJ5LAU      	01           	0107            	;        
+ C9G2XJ5LAU      	0           	0102            	;        
+ C9G2XJ5LAU      	0           	0103            	;        
+ C9G2XJ5LAU      	0           	0104            	;        
+ C9G2XJ5LAU      	0           	0105            	;        
+ C9G2XJ5LAU      	0           	0106            	;        
+ C9G2XJ5LAU      	0           	0107            	;        
  C9G2XJ5LAU      	108         	0108            	;        
  CBCGC9GIVH      	5           	0101            	;        
- CBCGC9GIVH      	01           	0102            	;        
- CBCGC9GIVH      	01           	0103            	;        
- CBCGC9GIVH      	01           	0104            	;        
- CBCGC9GIVH      	01           	0105            	;        
- CBCGC9GIVH      	01           	0106            	;        
- CBCGC9GIVH      	01           	0107            	;        
+ CBCGC9GIVH      	0           	0102            	;        
+ CBCGC9GIVH      	0           	0103            	;        
+ CBCGC9GIVH      	0           	0104            	;        
+ CBCGC9GIVH      	0           	0105            	;        
+ CBCGC9GIVH      	0           	0106            	;        
+ CBCGC9GIVH      	0           	0107            	;        
  CBCGC9GIVH      	5           	0108            	;        
  CAIG08PP1M      	19          	0101            	;        
- CAIG08PP1M      	01           	0102            	;        
+ CAIG08PP1M      	0           	0102            	;        
  CAIG08PP1M      	1.56164     	0103            	;        
- CAIG08PP1M      	01           	0104            	;        
- CAIG08PP1M      	01           	0105            	;        
- CAIG08PP1M      	01           	0106            	;        
- CAIG08PP1M      	01           	0107            	;        
+ CAIG08PP1M      	0           	0104            	;        
+ CAIG08PP1M      	0           	0105            	;        
+ CAIG08PP1M      	0           	0106            	;        
+ CAIG08PP1M      	0           	0107            	;        
  CAIG08PP1M      	18          	0108            	;        
 
 [STATUS]
@@ -772,7 +772,11 @@
 
 [EMITTERS]
 ;Junction        	Coefficient
-C947YS7GPL              0.000001
+CA81W6J9C0          0.00000001
+CBEA1QV88R          0.00000001
+CAFPFW92WV          0.00000001
+CADXK24N13          0.00000001
+
 [QUALITY]
 ;Node            	InitQual
 
@@ -796,7 +800,7 @@ C947YS7GPL              0.000001
 ;Tank            	Model
 
 [TIMES]
- Duration           	336:00 
+ Duration           	336:00
  Hydraulic Timestep 	0:15 
  Quality Timestep   	0:15 
  Pattern Timestep   	0:15 
@@ -816,12 +820,12 @@ C947YS7GPL              0.000001
  Headloss           	H-W
  Specific Gravity   	1
  Viscosity          	1
- Trials             	10000
- Accuracy           	0.11
+ Trials             	1000
+ Accuracy           	0.0011
  CHECKFREQ          	2
  MAXCHECK           	10
  DAMPLIMIT          	0
- Unbalanced         	Stop
+ Unbalanced         	Continue 10
  Pattern            	J796_F1
  Demand Multiplier  	1.0
  Emitter Exponent   	0.5
