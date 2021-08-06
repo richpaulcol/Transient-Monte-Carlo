@@ -7,3 +7,5 @@ https://sites.google.com/sheffield.ac.uk/probabilistic-transients
 Further info can be obtained by contacting Dr Richard Collins r.p.collins@sheffield.ac.uk
 
 Department of Civil and Structural Engineering, University of Sheffield, UK
+
+Almost certainly broken at the moment, needs updating to Python3 and restructuring
